@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimuladorFinanceiro</title>
+</head>
+<body>
+    <div style="text-align: center;"> <!-- "text-align" é uma propriedade de estilo que define o alinhamento do conteúdo; "center" faz os elementos dentro da div ficarem centralizados horizontalmente-->
+        <h1>Simulador Financeiro</h1> <br>
+        Informe o custo da obra que deseja fazer: <br> <input type="text" id="input_valorObra"> <br> <br>
+        Informe o tamanho da área que sera feita a obra (em m²):<br> <input type="text" id="input_areaObra"> <br><br>
+        
+
+        <button onclick="calcular()">Calcular</button> <br> <br>
+    </div>
+    <div id="div_msg" style="text-align: center;"></div>
+</body>
+</html>
+<script>
+    function calcular(){
+        let valorObra = Number(input_valorObra.value)
+        let areaObra = Number (input_areaObra.value)
+        let aumentoPreco = valorObra * 0.25//valor a decidir ainda
+        let precoAumentado = valorObra * 1.25
+        let qtd = (areaObra / 100) * 5 // conta para descobrir a quantidade, pois a cada 100m² será 5 sensores
+
+        let parteInteira = qtd.toFixed(0) // transfomar em número inteiro
+        let qtdSensores
+
+        if (parteInteira < qtd) {
+        // Verifica se a conta para descobrir a quantidade de sensores é maior que o arredondamento dele, se for, somará 1 para ficar certo, se não for, mantém o número.
+        qtdSensores = Number(parteInteira) + 1;
+        } else {
+        qtdSensores = parteInteira;
+        }
+        
+        let valorTotal = precoAumentado;
+        let porcentagemValor = valorTotal / valorObra * 100
+        let diferenca = aumentoPreco - valorTotal
+
+        div_msg.innerHTML += `
+            Sua obra custa R$${valorObra}. Problemas de umidade podem gerar prejuízo de <b style="color: red;">R$${aumentoPreco}</b>, elevando o custo para <b style="color: red;">R$${precoAumentado}</b><br>
+            Para uma área de ${areaObra}m² serão necessários ${qtdSensores} sensores.<br>
+            Custo total do serviço: R$${valorTotal} (${porcentagemValor.toFixed(2)}% do valor da obra).<br>
+            Economia em relação ao possível prejuízo: <b style="color: green;">R$${diferenca}</b>`
+
+
+}
+</script>
