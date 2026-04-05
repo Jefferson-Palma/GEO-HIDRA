@@ -83,7 +83,7 @@ header{
     margin-bottom: 20px;
 }
 
-#login-escolha{
+#escolha{
     margin-left: 100px;
     padding: 10px;
     border-radius: 15px;
@@ -126,6 +126,12 @@ button{
     color: #6a3e37;
     font-weight: bold;
     font-size: large;
+    z-index: 999;
+    position: relative;
+    cursor: pointer;
+}
+button:hover{
+    background-color: cyan;
 }
 .imagem{
     position: absolute;
@@ -173,4 +179,147 @@ footer{
     width: 100%;
     font-weight: bold;
     margin-right: 190px;
+}
+.caixa-login #mensagem{
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+    margin-right: 30px;
+    font-size: medium;
+}
+.container-cadastro{
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+    
+}
+.caixa-cadastro{
+    background-color: #06ba63;
+    width: 40%;
+    height: 600px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    margin-right: 280px;
+}
+.container-cadastro h1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.campo-cadastro p{
+    margin-left: 100px;
+    font-size: x-large;
+}
+#input_nomeEmpresa{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+#input_cnpj{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+#input_telefone{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+#input_emailEmpresa{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+#input_senhaEmpresa{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+#input_confirmarSenha{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+.botaoCadastro{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.botaoCadastro button{
+    background-color: #6a3e37;
+    color: white;
+}
+
+.container-cadastroFuncionario{
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+    
+}
+.caixa-cadastroFuncionario{
+    background-color: #06ba63;
+    width: 40%;
+    height: 600px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    margin-right: 280px;
+}
+.container-cadastroFuncionario h1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.campo-cadastroFuncionario p{
+    margin-left: 100px;
+    font-size: x-large;
+}
+
+#input_nomeFuncionario{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+#input_cpf{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+#input_acesso{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.botaoCadastroFuncionario{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.botaoCadastroFuncionario button{
+    background-color: #6a3e37;
+    color: white;
 }

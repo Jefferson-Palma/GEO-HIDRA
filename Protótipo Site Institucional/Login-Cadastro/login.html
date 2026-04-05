@@ -21,7 +21,7 @@
         <div class="caixa-login">
             <h1>Login</h1>
             <div class="campo">
-                <select id="login-escolha" required>
+                <select id="escolha" required>
                     <option value="#" selected disabled>Selecione uma opção</option>
                     <option value="empresa">Empresa</option>
                     <option value="funcionario">Funcionário</option>
@@ -31,6 +31,7 @@
                 <p>Senha</p>
                 <input type="text" id="input_senhaLogin">
             </div>
+             <div id="mensagem"></div>
             <div class="botao">
                 <button onclick="login()">Login</button>
             </div>
@@ -53,6 +54,51 @@
             </div>
         </div>
     </footer>
+   
 </body>
 
 </html>
+<script>
+    
+    let login1 = 'brandao@sptech.school';
+    let senha = 'brandao123@';
+    let contador = 3
+
+    function login(){
+        
+        let selecionar = escolha.value;
+        let loginEmpresa = input_emailLogin.value;
+        let senhaEmpresa = input_senhaLogin.value;
+        
+        if(contador == 0){
+            alert("Acesso bloqueado, fale com nossa equipe para resolver esse problema.")
+        }
+        if(selecionar == "empresa"){
+         if(loginEmpresa != login1 && senhaEmpresa != senha){
+            contador -=1
+            mensagem.innerHTML = "Email e senha inválidos"
+         } else if (senhaEmpresa != senha){
+            contador -=1
+            mensagem.innerHTML = "Senha inválida"
+         }else if (loginEmpresa != login1){
+            contador -=1
+            mensagem.innerHTML = "Email inválido"
+         }
+         else{
+             mensagem.innerHTML = "Login realizado"
+         }
+          
+        } 
+        
+        
+        
+        
+
+
+
+
+
+    }
+
+
+</script>
