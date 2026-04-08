@@ -5,7 +5,7 @@
   font-family: 'Inter', sans-serif;}
 
 body{
-    
+    background-color: #e2e1df;
 }
 
 header{
@@ -89,6 +89,8 @@ header{
     border-radius: 12%
     
 }
+
+/* Sobre Nós */
 .titulo2{
     display: flex;
     color: black;
@@ -96,124 +98,153 @@ header{
     align-self: center;
     font-size: 50px;
     font-weight: bold;
-    margin-top: 120px;
+    margin-bottom: 60px;
 }
 .textCards {
-color: white;
-margin-top: 10px;
-font-size: 20px;
-margin-left: 60px;
-margin-right: 60px;
-
+    color: white;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.7;
 }
 .tituloCards{
     color: white;
     align-self: center;
     font-size: 50px;
     font-weight: bold;
-    margin-left: 60px;
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
 }
 
 .imagemCardA{
-background: url(./imagemEngenheiro.png)no-repeat;
-overflow: hidden;
-background-size: cover;
-border-radius: 20px;
-height: 280px;
-margin-top: 100px;
-width: 500px;
-margin-left: 750px;
-border-radius: 20px;
-
+    background: url(./imagemEngenheiro.png) no-repeat;
+    border-radius: 20px;
+    width: 600px;
+    height: 350px;
 }
 .imagemCardB{
-    background-image: url(./imagemVisao.png);
-    border-radius: 20px;   
-    width: 500px;
-    height: 278px;
-    margin-left: 30px;
-    margin-top: 50px;
+    background: url(./imagemVisao.png) no-repeat;
+    border-radius: 20px;
+    width: 600px;
+    height: 350px;
 }
 .imagemCardC{
-    background-image: url(./imagemValores.png);
+    background: url(./imagemValores.png) no-repeat;
     border-radius: 20px;
-    width: 522px;
-    height: 278px;
-    margin-left: 60px;
-    margin-top: 50px;
+    width: 600px;
+    height: 350px;
 }
+
 .cardA{
-position: absolute;
-width: 595px;
-height: 290px;
-left: 120px;
-top: 1400px;
-
-background: #06BA63;
-border-radius: 20px;
-
-
-}
-
-.cardA hr {
-  border: none;              
-  height: 2px;               
-  background-color: #ffffff; 
-  margin: 15px auto;            
-  width: 85%;                
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 30px;
+    width: 80%;
 }
 
 .cardB{
-    
-position: absolute;
-width: 595px;
-height: 290px;
-left: 550px;
-top: 300px;
-
-background: #06BA63;
-border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 30px;
+    width: 80%;
 }
 
 .cardC{
-position: absolute;
-width: 595px;
-height: 280px;
-right:560px;
-top: 300px;
-
-background: #06BA63;
-border-radius: 20px;
-
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 30px;
+    width: 80%;
 }
+
+.divConteudoA{
+    width: 850px;
+    height: 350px;
+    background: #06BA63;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.divConteudoB{
+    width: 850px;
+    height: 350px;
+    background: #06BA63;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.divConteudoC{
+    width: 850px;
+    height: 350px;
+    background: #06BA63;
+    border-radius: 20px;
+    padding: 30px;
+} 
+
+.cardA hr {
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff;            
+    width: 100%;                
+}
+
+.cardB hr {
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff; 
+    width: 100%;                
+}
+
+.cardC hr {
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff;            
+    width: 100%;                
+}
+
 .iconeMissao{
     background-image: url(./iconeMissao.png);
     border-radius: 20px;
     width: 40px;
     height: 40px;
-    margin-left: 520px;
-    position: absolute;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 .iconeVisao{
     background-image: url(./iconeVisao.png);
     border-radius: 20px;
     width: 40px;
     height: 40px;
-    margin-left: 520px;
-    position: absolute;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 .iconeValores{
     background-image: url(./iconeValores.png);
     border-radius: 20px;
     width: 40px;
     height: 40px;
-    margin-left: 520px;
-    position: absolute;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
-    
+.divCardsSobreNos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    justify-content: space-around;
+    height: 700px;
+    align-items: center;
+}
 
+.divCards{
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
