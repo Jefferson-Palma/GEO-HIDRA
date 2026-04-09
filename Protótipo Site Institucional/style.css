@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;}
+  font-family: 'Inter', sans-serif;
+}
 
 body{
     background-color: #e2e1df;
@@ -14,20 +15,22 @@ header{
     padding-left: 10%;
     padding-right: 10%;
     height: 20%;
-    
-    
 }
+
 .componentes{
     display: flex;
     width: 100%;
     padding: 15px;
     border: solid 2px #6A3E37;
     border-radius: 45px;
+    background-color: white;    
 }
+
 .logo img{
     width: 300px;
     
 }
+
 .logo{
         
     display: flex;
@@ -88,6 +91,14 @@ header{
     flex-direction: column;
     border-radius: 12%
     
+}
+
+.divContaiiner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
 }
 
 /* Sobre Nós */
@@ -168,7 +179,7 @@ header{
 
 .divConteudoA{
     width: 850px;
-    height: 350px;
+    min-height: 350px;
     background: #06BA63;
     border-radius: 20px;
     padding: 30px;
@@ -176,7 +187,7 @@ header{
 
 .divConteudoB{
     width: 850px;
-    height: 350px;
+    min-height: 350px;
     background: #06BA63;
     border-radius: 20px;
     padding: 30px;
@@ -184,7 +195,7 @@ header{
 
 .divConteudoC{
     width: 850px;
-    height: 350px;
+    min-height: 350px;
     background: #06BA63;
     border-radius: 20px;
     padding: 30px;
@@ -238,13 +249,171 @@ header{
     flex-direction: column;
     margin-top: 100px;
     justify-content: space-around;
-    height: 700px;
+    height: auto;    
     align-items: center;
 }
 
 .divCards{
-    height: 500px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* Por que a GeoHidra */
+.divPorque{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.centralizar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.divCardsPorque{
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.divTitulo{
+    margin-bottom: 100px;
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-self: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.divCard1,
+.divCard2,
+.divCard3,
+.divCard4{
+    min-height: 400px;
+    width: 300px;
+    background-color: white;
+    border-radius: 50px;
+    border: solid 2px #1dcdfe;
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imgCardPorque{
+    height: 130px;
+    width: 130px;
+}
+
+/* Como funciona */
+.divTitulo2{
+    margin-top: 150px;
+    margin-bottom: 100px;
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-self: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.divComoFunciona{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divCardsComoFunciona{
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.divComoFuncionaCard1,
+.divComoFuncionaCard2,
+.divComoFuncionaCard3,
+.divComoFuncionaCard4{
+    min-height: 290px;
+    width: 350px;
+    background-color: transparent;
+    border-radius: 50px;
+    border: solid 2px #000000;
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tituloCardComo{
+    font-size: 28px;
+}
+
+.imgComoFunciona{
+    height: 80px;
+    width: 100px;
+}
+
+.divNumeracao{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.divNumero{
+    position: absolute;
+    margin-top: -25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #1dcdfe;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fale Conosco */
+
+/* Footer */
+footer{
+   background-color: #6a3e37; 
+   width: 100%;
+   margin-top: 200px;
+   color: white;
+   font-weight: bold;
+   
+}
+.footerConteudo{
+    display: flex;
+    height: 120px;
+    
+    
+    
+}
+.logoFooter img{
+    margin-left: 250px;
+    margin-top: 40px;
+    width: 200px;
+}
+.conteudo{
+    font-size: medium;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+    margin-right: 190px;
 }
