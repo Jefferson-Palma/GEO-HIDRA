@@ -5,14 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geo Tech</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
     <header>
         <div class="componentes">
-            <div class="logo"><img src="./Group 10.png" alt="Logo da Empresa"></div>
-            <div class="caminhos"><span>Home</span> <span>Sobre Nós</span> <span>Contato</span> <span>Login</span></div>
+            <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
+            <div class="caminhos">
+                <span><a href="inicial.html">Home</a></span>
+                <span><a href="#sobreNos">Sobre Nós</a></span>
+                <span>Contato</span>
+                <span>
+                    <a href="login.html">
+                        <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
+                    </a>
+                </span>
+            </div>
         </div>
     </header>
     <div class="home">
@@ -20,10 +29,9 @@
             <div class="titulo">SOLUÇÕES TÉCNICAS <br>EM INFRAESTRUTURA</div>
             <div class="subtitulo">Construindo prédios mais seguros</div>
         </div>
-        <!-- <img src="./pexels-ygpixeltz-35340757 2.png" alt="Indice"> -->
     </div>
 
-    <div class="divContainer">
+    <div class="divContainer" id="sobreNos">
         <div class="divCardsSobreNos">
             <div class=" titulo2">Sobre Nós</div>
             <div class="divCards">
@@ -94,14 +102,14 @@
             <div class="centralizar"></div>
             <div class="divCardsPorque">
                 <div class="divCard1">
-                    <img class="imgCardPorque" src="./imagemTrator.png" alt="Imagme Trator em PNG">
+                    <img class="imgCardPorque" src="assets/imgs/imagemTrator.png" alt="Imagme Trator em PNG">
                     <h3>Segurança Estrutural</h3>
                     <p>Eliminamos os "riscos invisíveis" monitorando a saturação do código, garantindo que a sua
                         fundação
                         seja executada na condição perfeita.</p>
                 </div>
                 <div class="divCard2">
-                    <img class="imgCardPorque" src="./imagemSensor.png" alt="Imagem Sensor em PNG">
+                    <img class="imgCardPorque" src="assets/imgs/imagemSensor.png" alt="Imagem Sensor em PNG">
                     <h3>Precisão via IoT</h3>
                     <p>Substitua a inspeção visual "no olhômetro" por telemetria exata. Sensores robustos entregam
                         dados
@@ -109,14 +117,16 @@
                         umidade em tempo real no seu dashboard.</p>
                 </div>
                 <div class="divCard3">
-                    <img class="imgCardPorque" src="./imagemSemRetrabalho.png" alt="Imagem Zero Retrabalho em PNG">
+                    <img class="imgCardPorque" src="assets/imgs/imagemSemRetrabalho.png"
+                        alt="Imagem Zero Retrabalho em PNG">
                     <h3>Zero Retrabalho</h3>
                     <p>Evite a contaminação do concreto, paralisações desnecessárias e o custo altíssimo de quebrar
                         e
                         refazer sapatas comprometidas.</p>
                 </div>
                 <div class="divCard4">
-                    <img class="imgCardPorque" src="./imagemParceria.png" alt="Imagem Respaldo Técnico em PNG">
+                    <img class="imgCardPorque" src="assets/imgs/imagemParceria.png"
+                        alt="Imagem Respaldo Técnico em PNG">
                     <h3>Respaldo Técnico</h3>
                     <p>Tenha a "caixa preta" da sua obra. Nossos relatórios formam um histórico auditável que
                         garante
@@ -135,7 +145,7 @@
                 <div class="divComoFuncionaCard1">
                     <h3 class="tituloCardComo">Mapeamento de Terreno</h3>
                     <p>Identificação de pontos críticos e zonas de risco hídrico</p>
-                    <img class="imgComoFunciona" src="./mapa.png" alt="Imagem Mapa">
+                    <img class="imgComoFunciona" src="assets/imgs/mapa.png" alt="Imagem Mapa">
                 </div>
             </div>
             <div class="divNumeracao">
@@ -143,7 +153,7 @@
                 <div class="divComoFuncionaCard2">
                     <h3 class="tituloCardComo">Implementação dos Sensores</h3>
                     <p>Instalação e calibração dos dispositivos nas áreas de fundação</p>
-                    <img class="imgComoFunciona" src="./engrenagem.png" alt="Imagem Engrenagem">
+                    <img class="imgComoFunciona" src="assets/imgs/engrenagem.png" alt="Imagem Engrenagem">
                 </div>
             </div>
             <div class="divNumeracao">
@@ -151,7 +161,7 @@
                 <div class="divComoFuncionaCard3">
                     <h3 class="tituloCardComo">Monitoramento e Transmissão</h3>
                     <p>Monitoramento automatizado e em tempo real da saturação do solo</p>
-                    <img class="imgComoFunciona" src="./sinal.png" alt="Imagem Sinal de Transmissão">
+                    <img class="imgComoFunciona" src="assets/imgs/sinal.png" alt="Imagem Sinal de Transmissão">
                 </div>
             </div>
             <div class="divNumeracao">
@@ -159,7 +169,7 @@
                 <div class="divComoFuncionaCard4">
                     <h3 class="tituloCardComo">Análise da Dashboard</h3>
                     <p>Gestão visual de alertas e suporte à decisão para concretagem</p>
-                    <img class="imgComoFunciona" src="./grafico.png" alt="Imagem Gráfico de Pizza">
+                    <img class="imgComoFunciona" src="assets/imgs/grafico.png" alt="Imagem Gráfico de Pizza">
                 </div>
             </div>
         </div>
@@ -188,10 +198,12 @@
 
     <footer>
         <div class="footerConteudo">
-            <div class="logoFooter"><img src="./Group 10.png" alt="Logo da Empresa">
+            <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
             </div>
             <div class="conteudo">
-                <span>Home</span> <span>Sobre nós</span> <span>Contato</span> <span>Cadastre-se</span>
+                <span><a href="inicial.html">Home</a></span>
+                <span><a href="#sobreNos">Sobre Nós</a></span>
+                <span>Contato</span>
             </div>
         </div>
     </footer>

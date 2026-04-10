@@ -2,12 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;}
+  font-family: 'Inter', sans-serif;
+}
 
 body{
-   
     background-color: #e2e1df;
-
 }
 
 header{
@@ -16,21 +15,27 @@ header{
     padding-left: 10%;
     padding-right: 10%;
     height: 20%;
-    
-    
 }
+
+a {
+    color: #6A3E37;
+    text-decoration: none;
+}
+
 .componentes{
-    background-color: white;
     display: flex;
     width: 100%;
     padding: 15px;
-    border: solid 1px black;
+    border: solid 1px #6A3E37;
     border-radius: 45px;
+    background-color: white;    
 }
+
 .logo img{
-    width: 200px;
-    margin-left: 40px;
+    width: 300px;
+    
 }
+
 .logo{
         
     display: flex;
@@ -39,15 +44,14 @@ header{
         
 }
 .caminhos{
-    color: black;
+    color: #6A3E37;
     font-size: large;
     justify-content: space-evenly;
     align-items: center;
     display: flex;
     width: 100%;
     font-weight: bold;
-    margin-left: 180px;
-  
+   
 }
 
 .simule{
@@ -322,5 +326,9 @@ footer{
 
 .botaoCadastroFuncionario button{
     background-color: #6a3e37;
+    color: white;
+}
+
+.footerConteudo .conteudo a {
     color: white;
 }

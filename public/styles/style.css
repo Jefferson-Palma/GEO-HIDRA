@@ -17,11 +17,16 @@ header{
     height: 20%;
 }
 
+a {
+    color: #6A3E37;
+    text-decoration: none;
+}
+
 .componentes{
     display: flex;
     width: 100%;
     padding: 15px;
-    border: solid 2px #6A3E37;
+    border: solid 1px #6A3E37;
     border-radius: 45px;
     background-color: white;    
 }
@@ -83,7 +88,7 @@ header{
 }
 .container{
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(./pexels-ygpixeltz-35340757\ 2.png),no-repeat;
+    url(../assets/imgs/pexels-ygpixeltz-35340757\ 2.png),no-repeat;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -132,19 +137,19 @@ header{
 }
 
 .imagemCardA{
-    background: url(./imagemEngenheiro.png) no-repeat;
+    background: url(../assets/imgs/imagemEngenheiro.png) no-repeat;
     border-radius: 20px;
     width: 600px;
     height: 350px;
 }
 .imagemCardB{
-    background: url(./imagemVisao.png) no-repeat;
+    background: url(../assets/imgs/imagemVisao.png) no-repeat;
     border-radius: 20px;
     width: 600px;
     height: 350px;
 }
 .imagemCardC{
-    background: url(./imagemValores.png) no-repeat;
+    background: url(../assets/imgs/imagemValores.png) no-repeat;
     border-radius: 20px;
     width: 600px;
     height: 350px;
@@ -223,21 +228,21 @@ header{
 }
 
 .iconeMissao{
-    background-image: url(./iconeMissao.png);
+    background-image: url(../assets/imgs/iconeMissao.png);
     border-radius: 20px;
     width: 40px;
     height: 40px;
     margin-top: 5px;
 }
 .iconeVisao{
-    background-image: url(./iconeVisao.png);
+    background-image: url(../assets/imgs/iconeVisao.png);
     border-radius: 20px;
     width: 40px;
     height: 40px;
     margin-top: 5px;
 }
 .iconeValores{
-    background-image: url(./iconeValores.png);
+    background-image: url(../assets/imgs/iconeValores.png);
     border-radius: 20px;
     width: 40px;
     height: 40px;
@@ -397,6 +402,11 @@ footer{
    font-weight: bold;
    
 }
+
+.footerConteudo .conteudo a {
+    color: white;
+}
+
 .footerConteudo{
     display: flex;
     height: 120px;
