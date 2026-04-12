@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="componentes">
+            <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
+            <div class="caminhos">
+                <span><a href="inicial.html">Home</a></span>
+                <span><a href="inicial.html #sobreNos">Sobre Nós</a></span>
+                <span>Contato</span>
+                <span>
+                    <a href="login.html">
+                        <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
+                    </a>
+                </span>
+            </div>
+        </div>
+    </header>
+    <div class="box">
+        <div class="obra">
+            <div class="select">
+                <p>SELECIONAR OBRA</p>
+                <select id="">
+                    <option >obra 1</option>
+                    <option >obra 2</option>
+                    <option >obra 3</option>
+                </select>
+            </div>
+            <div class="usuario">
+                 <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
+                 <p>Marcos Silva</p>
+            </div>
+        </div>
+        <div class="kpi">
+            <div class="operante">
+                <p>SENSORES OPERANTES</p>
+                <p>3/4 Ativos</p>
+            </div>
+            <div class="media">
+                <p>Umidade média atual:</p>
+                <p>22,6%</p>
+            </div>
+            <div class="regiao">
+                <h1>mapaCalor</h1>
+            </div>
+        </div>
+        <div class="grafico">
+            <h2>TENDÊNCIA DE UMIDADE(Últimas 24h)</h2>
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="footerConteudo">
+            <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
+            </div>
+            <div class="conteudo">
+                <span><a href="inicial.html">Home</a></span>
+                <span><a href="inicial.html #sobreNos">Sobre Nós</a></span>
+                <span>Contato</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00','20:00','22:00'],
+      datasets: [{
+        label: 'Umidade em porcentagem(%)',
+        data: [0, 22, 34, 41,44, 22,24,30],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          
+        }
+      }
+    }
+  });
+</script>
+ 
