@@ -31,6 +31,12 @@ a {
     background-color: white;    
 }
 
+.componentes .divSimulador {
+    background-color: #06BA63;
+    border-radius: 8px;
+    padding: 8px;
+}
+
 .logo img{
     width: 300px;
     
