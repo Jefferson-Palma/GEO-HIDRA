@@ -217,7 +217,14 @@ footer{
     margin-left: 100px;
     font-size: x-large;
 }
-#input_nomeEmpresa{
+.input_base{
+    margin-left: 100px;
+    width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+/* #input_nomeEmpresa{
     margin-left: 100px;
     width: 60%;
     padding: 10px;
@@ -238,14 +245,14 @@ footer{
     border-radius: 15px;
     margin-bottom: 5px;
 }
-#input_emailEmpresa{
+#input_email{
     margin-left: 100px;
     width: 60%;
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 5px;
 }
-#input_senhaEmpresa{
+#input_senha{
     margin-left: 100px;
     width: 60%;
     padding: 10px;
@@ -258,7 +265,7 @@ footer{
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 5px;
-}
+} */
 .botaoCadastro{
     display: flex;
     justify-content: center;

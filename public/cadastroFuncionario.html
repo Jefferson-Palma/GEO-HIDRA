@@ -31,17 +31,22 @@
             <h1>Cadastrar Funcionário</h1>
             <div class="campo-cadastroFuncionario">
                 <p>Nome</p>
-                <input type="text" id="input_nomeFuncionario">
+                <input class="input_base" type="text" id="input_nomeFuncionario">
+                <div id="nomee"></div>
                 <p>CPF</p>
-                <input type="text" id="input_cpf">
+                <input class="input_base" type="text" id="input_cpf">
+                <div id="cpff"></div>
                 <p>Tipo de acesso</p>
-                <input type="text" id="input_acesso">
+                <input class="input_base" type="text" id="input_acesso">
+                <div id="acessoo"></div>
                 <p>Email</p>
-                <input type="text" id="input_emailEmpresa">
+                <input class="input_base" type="text" id="input_email">
+                <div id="emaill"></div>
                 <p>Senha</p>
-                <input type="text" id="input_senhaEmpresa">
+                <input class="input_base" type="text" id="input_senha">
                 <p>Confirmar senha</p>
-                <input type="text" id="input_confirmarSenha">
+                <input class="input_base" type="text" id="input_confirmarSenha">
+                <div id="senhaa"></div>
                 <div class="botaoCadastroFuncionario">
                     <button onclick="cadastro()">Registrar</button>
                 </div>
@@ -67,3 +72,61 @@
 </body>
 
 </html>
+
+<script>
+    function cadastro() {
+        let tipoAcessosValidos = ['Admin', 'admin', 'comum', 'Comum'];
+        let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+        let nome = input_nomeFuncionario.value;
+        let cpf = input_cpf.value;
+        let email = input_email.value;
+        let senha = input_senha.value;
+        let senha2 = input_confirmarSenha.value;
+        let tipoAcesso = input_acesso.value;
+        let invalido = 0;
+        //validação nome
+        for (letra in nome) {
+            if (nome[letra].toLowerCase() == nome[letra].toUpperCase() && !nome[letra].includes(' ')) {
+            invalido++;
+            nomee.innerHTML = `<span style="color:red;">Nome invalido</span>`
+            } else {
+            nomee.innerHTML = '';
+            }
+        
+        }
+        //validação cpf
+        for(caracter in numeros){
+        if (cpf.length !== 11) {
+            cpff.innerHTML = `<span style="color:red;">CPF inválido</span>`
+            invalido++
+        } else {
+            cpff.innerHTML = '';
+        }
+        }
+        //validação email
+        if (!email.endsWith('.com') || !email.includes('@')) {
+            emaill.innerHTML = `<span style="color:red;">Email inválido</span>`
+            invalido++
+        } else {
+            emaill.innerHTML = '';
+        }
+        //validação senha
+        if (senha != senha2) {
+            senhaa.innerHTML = `<span style="color:red;">Senhas não conferem</span>`
+            invalido++
+        } else {
+            senhaa.innerHTML = ''
+        }
+        // validação tipo acesso
+        if (tipoAcessosValidos.includes(tipoAcesso)) {
+            acessoo.innerHTML = ''
+        } else {
+            acessoo.innerHTML = `<span style="color:red;">Tipo de Acesso Inválido</span>`
+            invalido++
+        }
+    }
+
+
+
+
+</script>
