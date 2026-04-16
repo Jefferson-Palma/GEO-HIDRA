@@ -86,7 +86,6 @@
         let email = input_email.value;
         let senha = input_senha.value;
         let senha2 = input_confirmarSenha.value;
-        let tipoAcesso = input_acesso.value;
         let invalido = 0;
         let cpfInvalido = 0;
 
@@ -145,13 +144,6 @@
             }
         } else {
             senhaa.innerHTML = `<span style="color:red;">Senha Inválida</span>`
-        }
-        // validação tipo acesso
-        if (tipoAcessosValidos.includes(tipoAcesso)) {
-            acessoo.innerHTML = ''
-        } else {
-            acessoo.innerHTML = `<span style="color:red;">Tipo de Acesso Inválido</span>`
-            invalido++
         }
         if (invalido > 0) {
             alert('Cadastro não Realizado, Tente Novamente')
