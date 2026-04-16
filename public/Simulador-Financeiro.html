@@ -24,31 +24,32 @@
             </div>
         </div>
     </header>
-    <div style="text-align: center;">
-        <!-- "text-align" é uma propriedade de estilo que define o alinhamento do conteúdo; "center" faz os elementos dentro da div ficarem centralizados horizontalmente-->
-
-        <div id="div_msg" class="div_msg">
-            <h1>Simulador Financeiro</h1> <br>
-            Informe o custo total da obra: <br> <input type="text" id="input_valorObra"> <br> <br>
-            Informe o tempo para ser concluída a obra (em meses):<br> <input type="text" id="input_tempo"> <br><br>
-            <button onclick="calcular()">Calcular</button> <br> <br>
+    <div style="text-align: center;" class="container">
+        <div class="simulador-container">
+            <div class="card">
+                <div id="div_msg" class="div_msg">
+                    <h1>Simulador Financeiro</h1> <br>
+                    <input class="input_financeiro" type="text" id="input_valorObra" placeholder="Informe o custo total da obra:"> <br> <br>
+                    <input class="input_financeiro" type="text" id="input_tempo" placeholder="Informe o tempo para ser concluída a obra (em meses):">
+                    <br><br>
+                    <button class="button_financeiro" onclick="calcular()">Simular</button> <br> <br>
+                </div>
+                <div id="div_msg2" class="div_msg2" style="text-align: center;"></div>
+            </div>
         </div>
-        <div id="div_msg2" class="div_msg2" style="text-align: center;"></div>
-
-
     </div>
 
-    <footer>
-        <div class="footerConteudo">
-            <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
+        <footer>
+            <div class="footerConteudo">
+                <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
+                </div>
+                <div class="conteudo">
+                    <span><a href="inicial.html">Home</a></span>
+                    <span><a href="inicial.html #sobreNos">Sobre Nós</a></span>
+                    <span>Contato</span>
+                </div>
             </div>
-            <div class="conteudo">
-                <span><a href="inicial.html">Home</a></span>
-                <span><a href="inicial.html #sobreNos">Sobre Nós</a></span>
-                <span>Contato</span>
-            </div>
-        </div>
-    </footer>
+        </footer>
 </body>
 
 </html>
@@ -60,9 +61,15 @@
         let valorInicio = valorObra * 1.3
         let atraso = tempo + 6;
         msg.style.display = 'none';
-        div_msg2.innerHTML = `Custo esperado para a obra: <span>R$${valorObra.toFixed(2)}</span><br>
-        Possível custo da obra total sem verificação de umidade do solo da Geo Hidra na etapa da fundação(aumento de 30%): <span style="color:red">R$${valorInicio.toFixed(2)}</span><br>
-        Possível tempo de entrega estimado da obra após atrasos(aumento de 6 meses):<span style="color:red">${atraso} meses</span><br>
-        Com a Geo Hidra você pode garantir que o solo da sua obra está pronto para construir sem aumento indesejado nos custos. <br> <button><a href="Simulador-Financeiro.html">Simule Novamente</a></button>`;
+        div_msg2.innerHTML = `
+            <h1>Simulador Financeiro</h1> <br> 
+            <div class="container_mensagem">
+                Custo esperado para a obra: <span>R$${valorObra.toFixed(2)}</span><br> <br>
+                Possível custo da obra total sem verificação de umidade do solo da Geo Hidra na etapa da fundação(aumento de 30%): <span style="color:red">R$${valorInicio.toFixed(2)}</span><br> <br>
+                Possível tempo de entrega estimado da obra após atrasos(aumento de 6 meses): <span style="color:red">${atraso} meses</span><br> <br>
+                Com a Geo Hidra você pode garantir que o solo da sua obra está pronto para construir sem aumento indesejado nos custos. <br> 
+            </div>
+            <button class="button_financeiro"><a href="Simulador-Financeiro.html">Simule Novamente</a></button>
+        `;
     }
 </script>

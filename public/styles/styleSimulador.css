@@ -1,15 +1,15 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
-body{
+body {
     background-color: #e2e1df;
 }
 
-header{
+header {
     padding-bottom: 2%;
     padding-top: 2%;
     padding-left: 10%;
@@ -22,28 +22,29 @@ a {
     text-decoration: none;
 }
 
-.componentes{
+.componentes {
     display: flex;
     width: 100%;
     padding: 15px;
     border: solid 1px #6A3E37;
     border-radius: 45px;
-    background-color: white;    
+    background-color: white;
 }
 
-.logo img{
+.logo img {
     width: 300px;
-    
+
 }
 
-.logo{
-        
+.logo {
+
     display: flex;
     justify-content: left;
     align-items: center;
-        
+
 }
-.caminhos{
+
+.caminhos {
     color: #6A3E37;
     font-size: large;
     justify-content: space-evenly;
@@ -51,36 +52,35 @@ a {
     display: flex;
     width: 100%;
     font-weight: bold;
-   
+
 }
 
 /* Footer */
-footer{
-   background-color: #6a3e37; 
-   width: 100%;
-   margin-top: 200px;
-   color: white;
-   font-weight: bold;
-   
+footer {
+    background-color: #6a3e37;
+    width: 100%;
+    margin-top: 200px;
+    color: white;
+    font-weight: bold;
+
 }
-.footerConteudo{
+
+.footerConteudo {
     display: flex;
     height: 120px;
-    
-    
-    
 }
 
 .footerConteudo .conteudo a {
     color: white;
 }
 
-.logoFooter img{
+.logoFooter img {
     margin-left: 250px;
     margin-top: 40px;
     width: 200px;
 }
-.conteudo{
+
+.conteudo {
     font-size: medium;
     justify-content: space-evenly;
     align-items: center;
@@ -88,4 +88,72 @@ footer{
     width: 100%;
     font-weight: bold;
     margin-right: 190px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.simulador-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 70%;
+}
+
+.card {
+    background-color: #f5f5f5;
+    padding: 30px;
+    border-radius: 15px;
+    width: 80%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div_msg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+.button_financeiro {
+    background-color: #06ba63;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+    color: white;
+}
+
+.input_financeiro {
+    width: 300px;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    padding: 15px;
+    background-color: #d9d9d9;
+}
+
+.container_mensagem{
+    margin-bottom: 20px;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.div_msg2 {
+    
+}
+
+.div_msg2 a{
+    color: white;
 }
