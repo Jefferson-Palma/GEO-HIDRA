@@ -31,26 +31,26 @@
             <h1>Cadastrar Funcionário</h1>
             <div class="campo-cadastroFuncionario">
                 <p>Nome</p>
-                <input class="input_base" type="text" id="input_nomeFuncionario" placeholder="Insira seu nome">
-                <div id="nomee"></div>
+                <input class="input_base" type="text" id="input_nomeFuncionario" placeholder="* Insira seu nome">
+                <div class="mensagemDeErro" id="nomee"></div>
                 <p>CPF</p>
-                <input class="input_base" type="text" id="input_cpf" placeholder="Insira seu CPF sem pontos e traços">
-                <div id="cpff"></div>
+                <input class="input_base" type="text" id="input_cpf" placeholder="* Insira seu CPF - Sem pontos e traços ">
+                <div class="mensagemDeErro" id="cpff"></div>
                 <p>Tipo de acesso</p>
                 <select class="input_base" name="" id="tipoAcesso">
-                    <option selected disabled>Selecione Um tipo De Acesso</option>
-                    <option>Admiministrador</option>
-                    <option>Comum</option>
+                    <option selected disabled>* Selecione Um tipo De Acesso</option>
+                    <option value="adm">Admiministrador</option>
+                    <option value="comum">Comum</option>
                 </select>
-                <div id="acessoo"></div>
                 <p>Email</p>
-                <input class="input_base" type="text" id="input_email" placeholder="Insira seu email">
-                <div id="emaill"></div>
+                <input class="input_base" type="text" id="input_email"
+                    placeholder="* Insira seu email - exemple@gmail.com">
+                <div class="mensagemDeErro" id="emaill"></div>
                 <p>Senha</p>
-                <input class="input_base" type="password" id="input_senha" placeholder="Insira sua senha">
+                <input class="input_base" type="password" id="input_senha" placeholder="* Insira sua senha">
                 <p>Confirmar senha</p>
-                <input class="input_base" type="password" id="input_confirmarSenha" placeholder="Confirme sua senha">
-                <div id="senhaa"></div>
+                <input class="input_base" type="password" id="input_confirmarSenha" placeholder="* Confirme sua senha">
+                <div class="mensagemDeErro" id="senhaa"></div>
                 <div class="botaoCadastroFuncionario">
                     <button onclick="cadastro()">Registrar</button>
                 </div>
@@ -94,14 +94,14 @@
             for (letra in nome) {
                 if (nome[letra].toLowerCase() == nome[letra].toUpperCase() && !nome[letra].includes(' ')) {
                     invalido++;
-                    nomee.innerHTML = `<span style="color:red;">Nome invalido</span>`
+                    nomee.innerHTML = `Nome inválido`
                 } else {
                     nomee.innerHTML = '';
                 }
 
             }
         } else {
-            nomee.innerHTML = `<span style="color:red;">Nome invalido</span>`
+            nomee.innerHTML = `Nome inválido`
         }
         //validação cpf
         if (cpf.length == 11) {
@@ -117,19 +117,19 @@
                 }
             }
             if (cpfInvalido > 0) {
-                cpff.innerHTML = `<span style="color:red;">CPF inválido</span>`;
+                cpff.innerHTML = `CPF inválido`;
             } else {
                 cpff.innerHTML = '';
             }
 
         } else if (cpf.length !== 11) {
-            cpff.innerHTML = `<span style="color:red;">CPF inválido</span>`;
+            cpff.innerHTML = `CPF inválido`;
         } else {
             cpff.innerHTML = '';
         }
         //validação email
         if (!email.endsWith('.com') || !email.includes('@')) {
-            emaill.innerHTML = `<span style="color:red;">Email inválido</span>`
+            emaill.innerHTML = `Email inválido`
             invalido++
         } else {
             emaill.innerHTML = '';
@@ -137,13 +137,13 @@
         //validação senha
         if (senha !== '' || senha2 !== '') {
             if (senha != senha2) {
-                senhaa.innerHTML = `<span style="color:red;">Senhas não conferem</span>`
+                senhaa.innerHTML = `Senhas não conferem`
                 invalido++
             } else {
                 senhaa.innerHTML = ''
             }
         } else {
-            senhaa.innerHTML = `<span style="color:red;">Senha Inválida</span>`
+            senhaa.innerHTML = `Senha Inválida`
         }
         if (invalido > 0) {
             alert('Cadastro não Realizado, Tente Novamente')

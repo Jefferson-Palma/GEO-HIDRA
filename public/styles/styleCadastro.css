@@ -230,6 +230,22 @@ footer{
     border-radius: 15px;
     margin-bottom: 5px;
 }
+.cardMensagemErro{
+    border: red;
+    background: #e2e1df;
+    width: 40%;
+    height: 60%;
+    display: flex;
+    margin-left: 150px;
+}
+.mensagemDeErro{
+    color: red;
+    width: 50%;
+    background-color: #D0F0C0; 
+    font-size: medium;
+    text-align: center;
+    justify-self: center;
+}
 /* #input_nomeEmpresa{
     margin-left: 100px;
     width: 60%;
