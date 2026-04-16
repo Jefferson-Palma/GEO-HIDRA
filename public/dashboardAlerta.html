@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/styleAlerta.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -39,20 +39,18 @@
             </div>
         </div>
         <div class="kpi">
-            <div class="operante">
-                <p>SENSORES OPERANTES</p>
-                <p>3/4 Ativos</p>
+            <div class="status">
+                <h3>STATUS ATUAL DA OPERAÇÃO</h3>
+                <p></p>
             </div>
-            <div class="media">
-                <p>Umidade média atual:</p>
-                <p>22,6%</p>
-            </div>
-            <div class="regiao">
-                <h1>mapaCalor</h1>
+            <div class="ultimosAlertas">
+                <h3>ÚLTIMOS ALERTAS REGISTRADOS</h3>
+                <p>[2026-09-03]  SN-003  LESTE  <span class="corAlertasAlto">[ALTO]</span></p>
+                <p>[2026-09-03]  SN-003  LESTE  <span class="corAlertasBaixo">[BAIXO]</span></p>
             </div>
         </div>
         <div class="grafico">
-            <h2>TENDÊNCIA DE UMIDADE(Últimas 24h)</h2>
+            <h3>TENDÊNCIA DE UMIDADE (Últimas 24h)</h3>
             <canvas id="myChart"></canvas>
         </div>
     </div>

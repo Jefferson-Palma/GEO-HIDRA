@@ -1,0 +1,519 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body{
+    background-color: #e2e1df;
+}
+
+header{
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 20%;
+}
+
+a {
+    color: #6A3E37;
+    text-decoration: none;
+}
+
+.componentes{
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    border: solid 1px #6A3E37;
+    border-radius: 45px;
+    background-color: white;    
+}
+
+.componentes .divSimulador {
+    background-color: #06BA63;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.logo img{
+    width: 300px;
+    
+}
+
+.logo{
+        
+    display: flex;
+    justify-content: left;
+    align-items: center;
+        
+}
+.caminhos{
+    color: #6A3E37;
+    font-size: large;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+   
+}
+.home{
+    padding-bottom: 2%;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 20%;
+   
+  
+}
+.home img{
+ width: 100%;
+ height: 50%;
+ 
+  
+}
+.titulo{
+    color: white;
+    align-self: center;
+    order: 1;
+    font-size: 50px;
+    font-weight: bold;
+    
+    
+}
+.subtitulo{
+    color: white;
+    align-self: center;
+    order: 2;
+    font-weight: bold;
+    font-size: 25px;
+    text-shadow: black;
+    
+    
+}
+.container{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../assets/imgs/pexels-ygpixeltz-35340757\ 2.png),no-repeat;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 938px;
+    flex-direction: column;
+    border-radius: 12%
+    
+}
+
+.divContaiiner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+}
+
+/* Sobre Nós */
+.titulo2{
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-self: center;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+.textCards {
+    color: white;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.7;
+}
+.tituloCards{
+    color: white;
+    align-self: center;
+    font-size: 50px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+}
+
+.imagemCardA{
+    background: url(../assets/imgs/imagemEngenheiro.png) no-repeat;
+    border-radius: 20px;
+    width: 600px;
+    height: 350px;
+}
+.imagemCardB{
+    background: url(../assets/imgs/imagemVisao.png) no-repeat;
+    border-radius: 20px;
+    width: 600px;
+    height: 350px;
+}
+.imagemCardC{
+    background: url(../assets/imgs/imagemValores.png) no-repeat;
+    border-radius: 20px;
+    width: 600px;
+    height: 350px;
+}
+
+.cardA{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 30px;
+    width: 80%;
+}
+
+.cardB{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 30px;
+    width: 80%;
+}
+
+.cardC{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 30px;
+    width: 80%;
+}
+
+.divConteudoA{
+    width: 850px;
+    min-height: 350px;
+    background: #06BA63;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.divConteudoB{
+    width: 850px;
+    min-height: 350px;
+    background: #06BA63;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.divConteudoC{
+    width: 850px;
+    min-height: 350px;
+    background: #06BA63;
+    border-radius: 20px;
+    padding: 30px;
+} 
+
+.cardA hr {
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff;            
+    width: 100%;                
+}
+
+.cardB hr {
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff; 
+    width: 100%;                
+}
+
+.cardC hr {
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff;            
+    width: 100%;                
+}
+
+.iconeMissao{
+    background-image: url(../assets/imgs/iconeMissao.png);
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+}
+.iconeVisao{
+    background-image: url(../assets/imgs/iconeVisao.png);
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+}
+.iconeValores{
+    background-image: url(../assets/imgs/iconeValores.png);
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+}
+
+.divCardsSobreNos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    justify-content: space-around;
+    height: auto;    
+    align-items: center;
+}
+
+.divCards{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Por que a GeoHidra */
+.divPorque{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.centralizar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.divCardsPorque{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.divTitulo{
+    margin-bottom: 100px;
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-self: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.divCard1,
+.divCard2,
+.divCard3,
+.divCard4{
+    min-height: 400px;
+    width: 20%;
+    background-color: white;
+    border-radius: 50px;
+    border: solid 2px #1dcdfe;
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imgCardPorque{
+    height: 130px;
+    width: 130px;
+}
+
+/* Como funciona */
+.divTitulo2{
+    margin-top: 150px;
+    margin-bottom: 100px;
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-self: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.divComoFunciona{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divCardsComoFunciona{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.divComoFuncionaCard1,
+.divComoFuncionaCard2,
+.divComoFuncionaCard3,
+.divComoFuncionaCard4{
+    height: 100%;
+    width: 85%;
+    background-color: transparent;
+    border-radius: 50px;
+    border: solid 2px #000000;
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tituloCardComo{
+    font-size: 28px;
+}
+
+.imgComoFunciona{
+    height: 80px;
+    width: 100px;
+}
+
+.divNumeracao{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.divNumero{
+    position: absolute;
+    margin-top: -25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #1dcdfe;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fale Conosco */
+
+
+/* Footer */
+footer{
+   background-color: #6a3e37; 
+   width: 100%;
+   margin-top: 200px;
+   color: white;
+   font-weight: bold;
+   
+}
+
+.footerConteudo .conteudo a {
+    color: white;
+}
+
+.footerConteudo{
+    display: flex;
+    height: 120px;
+    
+    
+    
+}
+.logoFooter img{
+    margin-left: 250px;
+    margin-top: 40px;
+    width: 200px;
+}
+.conteudo{
+    font-size: medium;
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+    margin-right: 190px;
+}
+
+.grafico{
+    height: 20%;
+    width: 50%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-left: 12%;
+    color: #000000;
+    
+}
+
+.box{
+    
+    margin-left: 12%;
+    margin-right: 15%;
+    align-items: center;
+    justify-content:center;
+    background-color: #c5c2bc;
+    width:75%;
+    color:white;
+    border-radius: 20px;
+    padding-bottom: 100px;
+}
+
+.obra{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    align-items: center;
+    background-color: #06BA63;
+    display: flex;
+    justify-content: space-between;
+}
+
+.select{
+    margin-left: 30px;
+    align-items: center;
+    display: flex;
+}
+.select select{
+margin-left:15px;
+width:150px;
+text-align: center;
+color: #ffffff;
+background-color: #06BA63;
+}
+
+.usuario{
+    margin-right: 30px;
+    align-items: center;
+    display: flex;
+}
+.kpi{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height:200px;
+    display: flex;
+    justify-content: space-between;
+}
+.status {
+    padding: 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    display: flex;
+    background-color: #ffffff;
+    color:#000000;
+}
+.ultimosAlertas{
+    flex-direction: column;
+}
+.corAlertasBaixo{
+    color: red;
+}
+.corAlertasIdeal{
+    color: green;
+}
+.corAlertasAlto{
+    color: red;
+}
