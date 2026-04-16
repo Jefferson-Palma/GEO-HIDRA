@@ -65,13 +65,13 @@
 </html>
 <script>
     
-    let login1 = 'brandao@sptech.school';
+    let login1 = 'brandao@sptech.com';
     let senha = 'brandao123@';
     let contador = 3
 
     function login(){
         
-        let selecionar = escolha.value;
+        
         let loginEmpresa = input_emailLogin.value;
         let senhaEmpresa = input_senhaLogin.value;
         
@@ -81,7 +81,6 @@
         if(contador == 0){
             alert("Acesso bloqueado, fale com nossa equipe para resolver esse problema.")
         }
-        if(selecionar == "empresa"){
          if(loginEmpresa != login1 && senhaEmpresa != senha){
             contador -=1
             mensagem.innerHTML = "Email e senha inválidos"
@@ -93,8 +92,12 @@
             mensagem.innerHTML = "Email inválido"
          }
          else{
-             mensagem.innerHTML = "Login realizado"
-         }
+             mensagem.innerHTML = `Login realizado`
+             setTimeout((login) => {
+                 window.location.replace("dashboard.html");
+             }, 3000);
+            
+            exit();
           
         } 
         
