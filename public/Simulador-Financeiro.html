@@ -27,7 +27,7 @@
     <div style="text-align: center;" class="container">
         <div class="simulador-container">
             <div class="card">
-                <div id="div_msg" class="div_msg">
+                <div id="div_msg">
                     <h1>Simulador Financeiro</h1> <br>
                     <input class="input_financeiro" type="text" id="input_valorObra" placeholder="Informe o custo total da obra:"> <br> <br>
                     <input class="input_financeiro" type="text" id="input_tempo" placeholder="Informe o tempo para ser concluída a obra (em meses):">
@@ -55,12 +55,11 @@
 </html>
 <script>
     function calcular() {
-        let msg = document.getElementById('div_msg');
         let valorObra = Number(input_valorObra.value);
         let tempo = Number(input_tempo.value);
         let valorInicio = valorObra * 1.3
         let atraso = tempo + 6;
-        msg.style.display = 'none';
+        div_msg.style.display = 'none';
         div_msg2.innerHTML = `
             <h1>Simulador Financeiro</h1> <br> 
             <div class="container_mensagem">
