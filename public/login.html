@@ -85,15 +85,7 @@
         if (loginEmpresa != login1 && senhaEmpresa != senha) {
             contador -= 1
             mensagem.style.display = "block";
-            mensagem.innerHTML = "Email e senha inválidos"
-        } else if (senhaEmpresa != senha) {
-            contador -= 1
-            mensagem.style.display = "block";
-            mensagem.innerHTML = "Senha inválida"
-        } else if (loginEmpresa != login1) {
-            contador -= 1
-            mensagem.style.display = "block";
-            mensagem.innerHTML = "Email inválido"
+            mensagem.innerHTML = "Email ou senha inválidos"
         }
         else {
             mensagem.style.display = "none";
