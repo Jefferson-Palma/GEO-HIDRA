@@ -84,24 +84,45 @@
         let senha2 = input_confirmarSenha.value;
         let tipoAcesso = input_acesso.value;
         let invalido = 0;
+        let cpfInvalido = 0;
+
         //validação nome
-        for (letra in nome) {
-            if (nome[letra].toLowerCase() == nome[letra].toUpperCase() && !nome[letra].includes(' ')) {
-            invalido++;
-            nomee.innerHTML = `<span style="color:red;">Nome invalido</span>`
-            } else {
-            nomee.innerHTML = '';
+        if (nome !== '') {
+            for (letra in nome) {
+                if (nome[letra].toLowerCase() == nome[letra].toUpperCase() && !nome[letra].includes(' ')) {
+                    invalido++;
+                    nomee.innerHTML = `<span style="color:red;">Nome invalido</span>`
+                } else {
+                    nomee.innerHTML = '';
+                }
+
             }
-        
+        } else {
+            nomee.innerHTML = `<span style="color:red;">Nome invalido</span>`
         }
         //validação cpf
-        for(caracter in numeros){
-        if (cpf.length !== 11) {
-            cpff.innerHTML = `<span style="color:red;">CPF inválido</span>`
-            invalido++
+        if (cpf.length == 11) {
+            for (caracter in cpf) {
+                let certo = 0;
+                for (numero in numeros) {
+                    if (cpf[caracter] == numeros[numero]) {
+                        certo++
+                    }
+                }
+                if (certo <= 0) {
+                    cpfInvalido++
+                }
+            }
+            if (cpfInvalido > 0) {
+                cpff.innerHTML = `<span style="color:red;">CPF inválido</span>`;
+            } else {
+                cpff.innerHTML = '';
+            }
+
+        } else if (cpf.length !== 11) {
+            cpff.innerHTML = `<span style="color:red;">CPF inválido</span>`;
         } else {
             cpff.innerHTML = '';
-        }
         }
         //validação email
         if (!email.endsWith('.com') || !email.includes('@')) {
@@ -111,11 +132,15 @@
             emaill.innerHTML = '';
         }
         //validação senha
-        if (senha != senha2) {
-            senhaa.innerHTML = `<span style="color:red;">Senhas não conferem</span>`
-            invalido++
+        if (senha !== '' || senha2 !== '') {
+            if (senha != senha2) {
+                senhaa.innerHTML = `<span style="color:red;">Senhas não conferem</span>`
+                invalido++
+            } else {
+                senhaa.innerHTML = ''
+            }
         } else {
-            senhaa.innerHTML = ''
+            senhaa.innerHTML = `<span style="color:red;">Senha Inválida</span>`
         }
         // validação tipo acesso
         if (tipoAcessosValidos.includes(tipoAcesso)) {
@@ -124,6 +149,16 @@
             acessoo.innerHTML = `<span style="color:red;">Tipo de Acesso Inválido</span>`
             invalido++
         }
+        if (invalido > 0) {
+            alert('Cadastro não Realizado, Tente Novamente')
+        } else {
+            alert('Cadastro Realizado com sucesso')
+        //     setTimeout((cadastro) => {
+        //         window.location.replace("login.html");
+        //     }, 3000);
+
+        //     exit();
+         }
     }
 
 
