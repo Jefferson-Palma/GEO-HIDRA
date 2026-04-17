@@ -95,8 +95,8 @@
 
         //validação nome
         if (nome !== '') {
-            for (letra in nome) {
-                if (nome[letra].toLowerCase() == nome[letra].toUpperCase() && !nome[letra].includes(' ')) {
+            for (let i=0;i<nome.length;i++) {
+                if (nome[i].toLowerCase() == nome[i].toUpperCase() && !nome[i].includes(' ')) {
                     invalido++;
                     nomee.innerHTML = `Nome inválido`
                 } else {
@@ -108,10 +108,10 @@
         }
         //validação cpf
         if (cpf.length == 11) {
-            for (caracter in cpf) {
+            for (let i=0;i<cpf.length;i++) {//i=caracter
                 let certo = 0;
-                for (numero in numeros) {
-                    if (cpf[caracter] == numeros[numero]) {
+                for (let j=0;j<numeros.length;j++) {//j=numero
+                    if (cpf[i] == numeros[j]) {
                         certo++
                     }
                 }
