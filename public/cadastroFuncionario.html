@@ -15,7 +15,7 @@
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
                 <span><a href="inicial.html">Home</a></span>
-                <span><a href="inicial.html #sobreNos">Sobre Nós</a></span>
+                <span><a href="inicial.html#sobreNos">Sobre Nós</a></span>
                 <span>Contato</span>
                 <span>
                     <a href="login.html">
@@ -31,26 +31,29 @@
             <h1>Cadastrar Funcionário</h1>
             <div class="campo-cadastroFuncionario">
                 <p>Nome</p>
-                <input class="input_base" type="text" id="input_nomeFuncionario" placeholder="Insira seu nome">
-                <div id="nomee"></div>
+                <input class="input_base" type="text" id="input_nomeFuncionario" placeholder="* Insira seu nome">
+                <div class="mensagemDeErro" id="nomee"></div>
                 <p>CPF</p>
-                <input class="input_base" type="text" id="input_cpf" placeholder="Insira seu CPF sem pontos e traços">
-                <div id="cpff"></div>
+                <input class="input_base" type="text" id="input_cpf"
+                    placeholder="* Insira seu CPF - Sem pontos e traços ">
+                <div class="mensagemDeErro" id="cpff"></div>
                 <p>Tipo de acesso</p>
                 <select class="input_base" name="" id="tipoAcesso">
-                    <option selected disabled>Selecione Um tipo De Acesso</option>
-                    <option>Admiministrador</option>
-                    <option>Comum</option>
+                    <option value="none" selected disabled>* Selecione Um tipo De Acesso</option>
+                    <option value="adm">Admiministrador</option>
+                    <option value="comum">Comum</option>
                 </select>
-                <div id="acessoo"></div>
+                <div class="mensagemDeErro" id="acessoo"></div>
+
                 <p>Email</p>
-                <input class="input_base" type="text" id="input_email" placeholder="Insira seu email">
-                <div id="emaill"></div>
+                <input class="input_base" type="text" id="input_email"
+                    placeholder="* Insira seu email - exemple@gmail.com">
+                <div class="mensagemDeErro" id="emaill"></div>
                 <p>Senha</p>
-                <input class="input_base" type="password" id="input_senha" placeholder="Insira sua senha">
+                <input class="input_base" type="password" id="input_senha" placeholder="* Insira sua senha">
                 <p>Confirmar senha</p>
-                <input class="input_base" type="password" id="input_confirmarSenha" placeholder="Confirme sua senha">
-                <div id="senhaa"></div>
+                <input class="input_base" type="password" id="input_confirmarSenha" placeholder="* Confirme sua senha">
+                <div class="mensagemDeErro" id="senhaa"></div>
                 <div class="botaoCadastroFuncionario">
                     <button onclick="cadastro()">Registrar</button>
                 </div>
@@ -68,7 +71,7 @@
             </div>
             <div class="conteudo">
                 <span><a href="inicial.html">Home</a></span>
-                <span><a href="inicial.html #sobreNos">Sobre Nós</a></span>
+                <span><a href="inicial.html#sobreNos">Sobre Nós</a></span>
                 <span>Contato</span>
             </div>
         </div>
@@ -79,37 +82,36 @@
 
 <script>
     function cadastro() {
-        let tipoAcessosValidos = ['Admin', 'admin', 'comum', 'Comum'];
         let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
         let nome = input_nomeFuncionario.value;
         let cpf = input_cpf.value;
+        let acesso = document.getElementById('tipoAcesso');
+        let valorSelecionado = acesso.value;
         let email = input_email.value;
         let senha = input_senha.value;
         let senha2 = input_confirmarSenha.value;
-        let tipoAcesso = input_acesso.value;
         let invalido = 0;
         let cpfInvalido = 0;
 
         //validação nome
         if (nome !== '') {
-            for (letra in nome) {
-                if (nome[letra].toLowerCase() == nome[letra].toUpperCase() && !nome[letra].includes(' ')) {
+            for (let i=0;i<nome.length;i++) {
+                if (nome[i].toLowerCase() == nome[i].toUpperCase() && !nome[i].includes(' ')) {
                     invalido++;
-                    nomee.innerHTML = `<span style="color:red;">Nome invalido</span>`
+                    nomee.innerHTML = `Nome inválido`
                 } else {
                     nomee.innerHTML = '';
                 }
-
             }
         } else {
-            nomee.innerHTML = `<span style="color:red;">Nome invalido</span>`
+            nomee.innerHTML = `Nome inválido`
         }
         //validação cpf
         if (cpf.length == 11) {
-            for (caracter in cpf) {
+            for (let i=0;i<cpf.length;i++) {//i=caracter
                 let certo = 0;
-                for (numero in numeros) {
-                    if (cpf[caracter] == numeros[numero]) {
+                for (let j=0;j<numeros.length;j++) {//j=numero
+                    if (cpf[i] == numeros[j]) {
                         certo++
                     }
                 }
@@ -118,19 +120,26 @@
                 }
             }
             if (cpfInvalido > 0) {
-                cpff.innerHTML = `<span style="color:red;">CPF inválido</span>`;
+                cpff.innerHTML = `CPF inválido`;
             } else {
                 cpff.innerHTML = '';
             }
 
         } else if (cpf.length !== 11) {
-            cpff.innerHTML = `<span style="color:red;">CPF inválido</span>`;
+            cpff.innerHTML = `CPF inválido`;
         } else {
             cpff.innerHTML = '';
         }
+        //validação tipo de acesso
+        if (valorSelecionado !== 'adm' && valorSelecionado !== 'comum') {
+            acessoo.innerHTML = `Tipo de acesso Inválido`;
+            invalido++
+        } else {
+            acessoo.innerHTML = '';
+        }
         //validação email
         if (!email.endsWith('.com') || !email.includes('@')) {
-            emaill.innerHTML = `<span style="color:red;">Email inválido</span>`
+            emaill.innerHTML = `Email inválido`;
             invalido++
         } else {
             emaill.innerHTML = '';
@@ -138,28 +147,21 @@
         //validação senha
         if (senha !== '' || senha2 !== '') {
             if (senha != senha2) {
-                senhaa.innerHTML = `<span style="color:red;">Senhas não conferem</span>`
+                senhaa.innerHTML = `Senhas não conferem`;
                 invalido++
             } else {
-                senhaa.innerHTML = ''
+                senhaa.innerHTML = '';
             }
         } else {
-            senhaa.innerHTML = `<span style="color:red;">Senha Inválida</span>`
-        }
-        // validação tipo acesso
-        if (tipoAcessosValidos.includes(tipoAcesso)) {
-            acessoo.innerHTML = ''
-        } else {
-            acessoo.innerHTML = `<span style="color:red;">Tipo de Acesso Inválido</span>`
-            invalido++
+            senhaa.innerHTML = `Senha Inválida`;
         }
         if (invalido > 0) {
-            alert('Cadastro não Realizado, Tente Novamente')
+            alert('Cadastro não Realizado, Tente Novamente');
         } else {
-            alert('Cadastro Realizado com sucesso')
+            alert('Cadastro Realizado com sucesso');
             setTimeout((cadastro) => {
                 window.location.replace("login.html");
-            }, 3000);
+            }, 750);
 
             exit();
         }

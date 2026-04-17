@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <header>
         <div class="componentes">
@@ -28,14 +30,14 @@
             <div class="select">
                 <p>SELECIONAR OBRA</p>
                 <select id="">
-                    <option >obra 1</option>
-                    <option >obra 2</option>
-                    <option >obra 3</option>
+                    <option>obra 1</option>
+                    <option>obra 2</option>
+                    <option>obra 3</option>
                 </select>
             </div>
             <div class="usuario">
-                 <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
-                 <p>Marcos Silva</p>
+                <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
+                <p>Marcos Silva</p>
             </div>
         </div>
         <div class="kpi">
@@ -48,7 +50,40 @@
                 <p>22,6%</p>
             </div>
             <div class="regiao">
-                <h1>mapaCalor</h1>
+                <div class="tituloRegiao">
+                        <p>SATURAÇÃO POR SETORES</p>
+                    </div>
+                <div class="regiao2">
+                    
+                    <div>
+                        <p>Norte</p>
+                        <div class="alinhamento">
+                            <p>Oeste</p>
+                            <div class="mapaCalor direcao">
+                                <div class="norte direcao orientacao">23%</div>
+                                <div style="display: flex;">
+                                    <div class="oeste direcao orientacao">20%</div>
+                                    <div class="leste direcao orientacao">21%</div>
+                                </div>
+                                <div class="sul direcao orientacao">22%</div>
+
+                            </div>
+                            <p>Leste</p>
+                        </div>
+                        <p>Sul</p>
+                    </div>
+                    <div class="legenda">
+                        <div class="escrita">
+                            <div class="bloco" style="background-color: yellow;"></div> 0-20% baixo
+                        </div>
+                        <div class="escrita">
+                            <div class="bloco" style="background-color: green;"></div> 21-30% ideal
+                        </div>
+                        <div class="escrita">
+                            <div class="bloco" style="background-color: red;"></div> 31-40% alto
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="grafico">
@@ -70,28 +105,28 @@
         </div>
     </footer>
 </body>
+
 </html>
 <script>
-  const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('myChart');
 
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00','20:00','22:00'],
-      datasets: [{
-        label: 'Umidade em porcentagem(%)',
-        data: [0, 22, 34, 41,44, 22,24,30],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+            datasets: [{
+                label: 'Umidade em porcentagem(%)',
+                data: [0, 22, 34, 41, 44, 22, 24, 30],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+
+                }
+            }
         }
-      }
-    }
-  });
+    });
 </script>
- 

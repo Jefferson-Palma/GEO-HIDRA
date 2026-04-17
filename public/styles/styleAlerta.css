@@ -1,15 +1,15 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
-body {
+body{
     background-color: #e2e1df;
 }
 
-header {
+header{
     padding-bottom: 2%;
     padding-top: 2%;
     padding-left: 10%;
@@ -22,13 +22,13 @@ a {
     text-decoration: none;
 }
 
-.componentes {
+.componentes{
     display: flex;
     width: 100%;
     padding: 15px;
     border: solid 1px #6A3E37;
     border-radius: 45px;
-    background-color: white;
+    background-color: white;    
 }
 
 .componentes .divSimulador {
@@ -37,20 +37,19 @@ a {
     padding: 8px;
 }
 
-.logo img {
+.logo img{
     width: 300px;
-
+    
 }
 
-.logo {
-
+.logo{
+        
     display: flex;
     justify-content: left;
     align-items: center;
-
+        
 }
-
-.caminhos {
+.caminhos{
     color: #6A3E37;
     font-size: large;
     justify-content: space-evenly;
@@ -58,58 +57,54 @@ a {
     display: flex;
     width: 100%;
     font-weight: bold;
-
+   
 }
-
-.home {
+.home{
     padding-bottom: 2%;
     padding-left: 10%;
     padding-right: 10%;
     height: 20%;
-
-
+   
+  
 }
-
-.home img {
-    width: 100%;
-    height: 50%;
-
-
+.home img{
+ width: 100%;
+ height: 50%;
+ 
+  
 }
-
-.titulo {
+.titulo{
     color: white;
     align-self: center;
     order: 1;
     font-size: 50px;
     font-weight: bold;
-
-
+    
+    
 }
-
-.subtitulo {
+.subtitulo{
     color: white;
     align-self: center;
     order: 2;
     font-weight: bold;
     font-size: 25px;
     text-shadow: black;
-
-
+    
+    
 }
-
-.container {
+.container{
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url(../assets/imgs/pexels-ygpixeltz-35340757\ 2.png), no-repeat;
+    url(../assets/imgs/pexels-ygpixeltz-35340757\ 2.png),no-repeat;
     display: flex;
     justify-content: center;
     width: 100%;
     height: 938px;
     flex-direction: column;
     border-radius: 12%
+    
 }
 
-.divContaiiner {
+.divContaiiner{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -118,7 +113,7 @@ a {
 }
 
 /* Sobre Nós */
-.titulo2 {
+.titulo2{
     display: flex;
     color: black;
     justify-content: center;
@@ -127,7 +122,6 @@ a {
     font-weight: bold;
     margin-bottom: 60px;
 }
-
 .textCards {
     color: white;
     margin-top: 10px;
@@ -138,39 +132,36 @@ a {
     justify-content: center;
     line-height: 1.7;
 }
-
-.tituloCards {
+.tituloCards{
     color: white;
     align-self: center;
     font-size: 50px;
     font-weight: bold;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-between;    
 }
 
-.imagemCardA {
+.imagemCardA{
     background: url(../assets/imgs/imagemEngenheiro.png) no-repeat;
     border-radius: 20px;
     width: 600px;
     height: 350px;
 }
-
-.imagemCardB {
+.imagemCardB{
     background: url(../assets/imgs/imagemVisao.png) no-repeat;
     border-radius: 20px;
     width: 600px;
     height: 350px;
 }
-
-.imagemCardC {
+.imagemCardC{
     background: url(../assets/imgs/imagemValores.png) no-repeat;
     border-radius: 20px;
     width: 600px;
     height: 350px;
 }
 
-.cardA {
+.cardA{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -179,7 +170,7 @@ a {
     width: 80%;
 }
 
-.cardB {
+.cardB{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -188,7 +179,7 @@ a {
     width: 80%;
 }
 
-.cardC {
+.cardC{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -197,7 +188,7 @@ a {
     width: 80%;
 }
 
-.divConteudoA {
+.divConteudoA{
     width: 850px;
     min-height: 350px;
     background: #06BA63;
@@ -205,7 +196,7 @@ a {
     padding: 30px;
 }
 
-.divConteudoB {
+.divConteudoB{
     width: 850px;
     min-height: 350px;
     background: #06BA63;
@@ -213,52 +204,50 @@ a {
     padding: 30px;
 }
 
-.divConteudoC {
+.divConteudoC{
     width: 850px;
     min-height: 350px;
     background: #06BA63;
     border-radius: 20px;
     padding: 30px;
-}
+} 
 
 .cardA hr {
-    border: none;
-    height: 2px;
-    background-color: #ffffff;
-    width: 100%;
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff;            
+    width: 100%;                
 }
 
 .cardB hr {
-    border: none;
-    height: 2px;
-    background-color: #ffffff;
-    width: 100%;
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff; 
+    width: 100%;                
 }
 
 .cardC hr {
-    border: none;
-    height: 2px;
-    background-color: #ffffff;
-    width: 100%;
+    border: none;              
+    height: 2px;               
+    background-color: #ffffff;            
+    width: 100%;                
 }
 
-.iconeMissao {
+.iconeMissao{
     background-image: url(../assets/imgs/iconeMissao.png);
     border-radius: 20px;
     width: 40px;
     height: 40px;
     margin-top: 5px;
 }
-
-.iconeVisao {
+.iconeVisao{
     background-image: url(../assets/imgs/iconeVisao.png);
     border-radius: 20px;
     width: 40px;
     height: 40px;
     margin-top: 5px;
 }
-
-.iconeValores {
+.iconeValores{
     background-image: url(../assets/imgs/iconeValores.png);
     border-radius: 20px;
     width: 40px;
@@ -266,16 +255,16 @@ a {
     margin-top: 5px;
 }
 
-.divCardsSobreNos {
+.divCardsSobreNos{
     display: flex;
     flex-direction: column;
     margin-top: 100px;
     justify-content: space-around;
-    height: auto;
+    height: auto;    
     align-items: center;
 }
 
-.divCards {
+.divCards{
     height: auto;
     display: flex;
     flex-direction: column;
@@ -283,27 +272,27 @@ a {
 }
 
 /* Por que a GeoHidra */
-.divPorque {
+.divPorque{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 150px;
 }
 
-.centralizar {
+.centralizar{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.divCardsPorque {
+.divCardsPorque{
     width: 90%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.divTitulo {
+.divTitulo{
     margin-bottom: 100px;
     display: flex;
     color: black;
@@ -316,7 +305,7 @@ a {
 .divCard1,
 .divCard2,
 .divCard3,
-.divCard4 {
+.divCard4{
     min-height: 400px;
     width: 20%;
     background-color: white;
@@ -330,13 +319,13 @@ a {
     align-items: center;
 }
 
-.imgCardPorque {
+.imgCardPorque{
     height: 130px;
     width: 130px;
 }
 
 /* Como funciona */
-.divTitulo2 {
+.divTitulo2{
     margin-top: 150px;
     margin-bottom: 100px;
     display: flex;
@@ -347,13 +336,13 @@ a {
     font-weight: bold;
 }
 
-.divComoFunciona {
+.divComoFunciona{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.divCardsComoFunciona {
+.divCardsComoFunciona{
     width: 90%;
     display: flex;
     flex-direction: row;
@@ -363,7 +352,7 @@ a {
 .divComoFuncionaCard1,
 .divComoFuncionaCard2,
 .divComoFuncionaCard3,
-.divComoFuncionaCard4 {
+.divComoFuncionaCard4{
     height: 100%;
     width: 85%;
     background-color: transparent;
@@ -377,22 +366,22 @@ a {
     align-items: center;
 }
 
-.tituloCardComo {
+.tituloCardComo{
     font-size: 28px;
 }
 
-.imgComoFunciona {
+.imgComoFunciona{
     height: 80px;
     width: 100px;
 }
 
-.divNumeracao {
+.divNumeracao{
     position: relative;
     display: flex;
     justify-content: center;
 }
 
-.divNumero {
+.divNumero{
     position: absolute;
     margin-top: -25px;
     width: 50px;
@@ -411,34 +400,32 @@ a {
 
 
 /* Footer */
-footer {
-    background-color: #6a3e37;
-    width: 100%;
-    margin-top: 200px;
-    color: white;
-    font-weight: bold;
-
+footer{
+   background-color: #6a3e37; 
+   width: 100%;
+   margin-top: 200px;
+   color: white;
+   font-weight: bold;
+   
 }
 
 .footerConteudo .conteudo a {
     color: white;
 }
 
-.footerConteudo {
+.footerConteudo{
     display: flex;
     height: 120px;
-
-
-
+    
+    
+    
 }
-
-.logoFooter img {
+.logoFooter img{
     margin-left: 250px;
     margin-top: 40px;
     width: 200px;
 }
-
-.conteudo {
+.conteudo{
     font-size: medium;
     justify-content: space-evenly;
     align-items: center;
@@ -448,31 +435,31 @@ footer {
     margin-right: 190px;
 }
 
-.grafico {
+.grafico{
     height: 20%;
-    width: 75%;
+    width: 50%;
     background-color: white;
     border-radius: 10px;
     padding: 15px;
     margin-left: 12%;
     color: #000000;
-
+    
 }
 
-.box {
-
+.box{
+    
     margin-left: 12%;
     margin-right: 15%;
     align-items: center;
-    justify-content: center;
+    justify-content:center;
     background-color: #c5c2bc;
-    width: 75%;
-    color: white;
+    width:75%;
+    color:white;
     border-radius: 20px;
     padding-bottom: 100px;
 }
 
-.obra {
+.obra{
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     align-items: center;
@@ -481,259 +468,52 @@ footer {
     justify-content: space-between;
 }
 
-.select {
+.select{
     margin-left: 30px;
     align-items: center;
     display: flex;
 }
-
-.select select {
-    margin-left: 15px;
-    width: 150px;
-    text-align: center;
-    color: #ffffff;
-    background-color: #06BA63;
+.select select{
+margin-left:15px;
+width:150px;
+text-align: center;
+color: #ffffff;
+background-color: #06BA63;
 }
 
-.usuario {
+.usuario{
     margin-right: 30px;
     align-items: center;
     display: flex;
 }
-<<<<<<< HEAD
-
-.kpi {
+.kpi{
     margin-left: 15%;
     margin-right: 15%;
     margin-top: 40px;
     margin-bottom: 40px;
-    height: 200px;
-=======
-.kpi{
-    margin-left: 12%;
-    margin-right: 12%;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    height:225px;
->>>>>>> 86e07473fe0febe6808d0f713134b08c5af4e662
+    height:200px;
     display: flex;
     justify-content: space-between;
 }
-
-<<<<<<< HEAD
-.operante {
+.status {
     padding: 30px;
-=======
-.operante{
-    padding: 20px;
->>>>>>> 86e07473fe0febe6808d0f713134b08c5af4e662
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 15px;
     display: flex;
     background-color: #ffffff;
-    color: #000000;
+    color:#000000;
 }
-<<<<<<< HEAD
-
-.media {
-    padding: 30px;
-=======
-.media{
-    padding: 20px;
->>>>>>> 86e07473fe0febe6808d0f713134b08c5af4e662
+.ultimosAlertas{
     flex-direction: column;
-    border-radius: 15px;
-    display: flex;
-    color: #000000;
-    background-color: #ffffff;
-    align-items: center;
-    justify-content: center;
 }
-
-<<<<<<< HEAD
-.regiao {
-    padding: 30px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-=======
-.regiao{
-    padding: 5px;
-    flex-direction: column;
-    border-radius: 15px;
->>>>>>> 86e07473fe0febe6808d0f713134b08c5af4e662
-    display: flex;
-    color: #000000;
-    background-color: #ffffff;
-<<<<<<< HEAD
+.corAlertasBaixo{
+    color: red;
 }
-
-.divFaleConosco {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 36px;
-    text-align: 50px;
+.corAlertasIdeal{
+    color: green;
 }
-
-.button_enviar {
-    background-color: #6a3e37;
-    width: 100px;
-    height: 35px;
-}
-
-.divContainerFormulario {
-    display: flex;
-    justify-content: space-evenly;
-    background-color: white;
-    flex-direction: column;
-    padding: 30px;
-    width: 60%;
-    height: 550px;
-    border-radius: 15px;
-}
-
-.divFormulario {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    height: 300px;
-}
-
-.divInputs1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 50%;
-    height: 100%;
-    font-size: 20px;
-}
-
-.divInputs2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 50%;
-    height: 100%;
-    font-size: 20px;
-}
-
-.divMensagem {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    font-size: 20px;
-    margin-top: 15px;
-}
-
-.faleConoscoMensagem {
-    width: 200px;
-    border-radius: 20px;
-    width: 100%;
-    height: 100px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    padding-left: 15px;
-    font-size: 15px;
-    border: none;
-    background-color: #d9d9d9;
-}
-
-.divButtonFormulario{
-    display: flex;
-    justify-content: center;
-}
-
-.button_enviar {
-    width: 25%;
-    height: 50px;
-    border-radius: 20px;
-    border: none;
-    color: white;
-    font-size: 20px;
-
-}
-
-.dados_pessoais {
-    padding: 15px;
-    width: 100%;
-    border-radius: 15px;
-    background-color: #d9d9d9;
-    border: none;
-}
-
-.divInput{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    gap: 30px;
-=======
-    
-}
-.regiao2{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.direcao{
-    
-    background-color: #06BA63;
-    color: #ffffff;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
- 
-    border: solid 1px black
-}
-.orientacao{
-    padding-top: 10px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-}
-.leste,
-.oeste{
-    width: 50px;
-}
-
-.alinhamento{
-    
-    display: flex;
-    align-items: center;
-}
-.bloco{
-    align-items: center;
-    height: 15px;
-    width: 15px;
-}
-
-.legenda{
-    flex-direction: row;
-    font-size: 15px;
-    display: flex;
-    justify-content: space-between;
-}
-.escrita{
-    display: flex;
-    margin-left: 5px;
-}
-
-.tituloRegiao{
-    text-align: start;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 5px;
->>>>>>> 86e07473fe0febe6808d0f713134b08c5af4e662
+.corAlertasAlto{
+    color: red;
 }
