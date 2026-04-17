@@ -16,8 +16,8 @@
                 <span><a href="inicial.html">Home</a></span>
                 <span><a href="#sobreNos">Sobre Nós</a></span>
                 <span>Contato</span>
-                <div 
-                    class="divSimulador"><span><a style="color: white;" href="Simulador-Financeiro.html">Simule Aqui</a></span>
+                <div class="divSimulador"><span><a style="color: white;" href="Simulador-Financeiro.html">Simule
+                            Aqui</a></span>
                 </div>
                 <span>
                     <a href="login.html">
@@ -180,25 +180,29 @@
 
     <div class="divFaleConosco">
         <div class="divTitulo2">Entre em contato conosco</div>
-        <div class="divFormulario">
-            <div class="divInputs1">
-                <span>Nome</span> <input type="text" id="ipt_nome" placeholder="Digite o seu Nome">
-                <span>Email</span> <input type="text" id="ipt_email" placeholder="meuemail@examplo.com">
-            </div>
-            <div class="divInputs2">
-                <span>Telefone</span> <input type="text" id="ipt_telefone" placeholder="Digite o seu número">
-                <span>Empresa</span> <input type="text" id="ipt_empresa" placeholder="Digite o nome da sua empresa">
+        <div class="divContainerFormulario">
+            <div class="divFormulario">
+                <div class="divInput">
+                    <div class="divInputs1">
+                        <span>Nome</span> <input class="dados_pessoais" type="text" id="ipt_nome" placeholder="Digite o seu Nome">
+                        <span>Email</span> <input class="dados_pessoais" type="text" id="ipt_email" placeholder="meuemail@examplo.com">
+                    </div>
+                    <div class="divInputs2">
+                        <span>Telefone</span> <input class="dados_pessoais" type="text" id="ipt_telefone" placeholder="Digite o seu número">
+                        <span>Empresa</span> <input class="dados_pessoais" type="text" id="ipt_empresa" placeholder="Digite o nome da sua empresa">
+                    </div>
+                </div>
+
             </div>
             <div class="divMensagem">
                 <span>Mensagem</span> <input type="text" class="faleConoscoMensagem"
                     placeholder="Digite a sua mensagem">
             </div>
-        </div>
-        <div class="divBotao">
-            <button>Enviar</button>
+            <div class="divButtonFormulario">
+                <button class="button_enviar">Enviar</button>
+            </div>
         </div>
     </div>
-
     <footer>
         <div class="footerConteudo">
             <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
