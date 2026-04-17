@@ -34,11 +34,12 @@
                 <input class="input_base" type="text" id="input_nomeFuncionario" placeholder="* Insira seu nome">
                 <div class="mensagemDeErro" id="nomee"></div>
                 <p>CPF</p>
-                <input class="input_base" type="text" id="input_cpf" placeholder="* Insira seu CPF - Sem pontos e traços ">
+                <input class="input_base" type="text" id="input_cpf"
+                    placeholder="* Insira seu CPF - Sem pontos e traços ">
                 <div class="mensagemDeErro" id="cpff"></div>
                 <p>Tipo de acesso</p>
                 <select class="input_base" name="" id="tipoAcesso">
-                    <option value= "none" selected disabled>* Selecione Um tipo De Acesso</option>
+                    <option value="none" selected disabled>* Selecione Um tipo De Acesso</option>
                     <option value="adm">Admiministrador</option>
                     <option value="comum">Comum</option>
                 </select>
@@ -130,13 +131,15 @@
             cpff.innerHTML = '';
         }
         //validação tipo de acesso
-        if(valorSelecionado !== 'adm' && valorSelecionado !== 'comum'){
-            acessoo.innerHTML = `Tipo de acesso Inválido`
+        if (valorSelecionado !== 'adm' && valorSelecionado !== 'comum') {
+            acessoo.innerHTML = `Tipo de acesso Inválido`;
             invalido++
-            }
+        } else {
+            acessoo.innerHTML = '';
+        }
         //validação email
         if (!email.endsWith('.com') || !email.includes('@')) {
-            emaill.innerHTML = `Email inválido`
+            emaill.innerHTML = `Email inválido`;
             invalido++
         } else {
             emaill.innerHTML = '';
@@ -144,18 +147,18 @@
         //validação senha
         if (senha !== '' || senha2 !== '') {
             if (senha != senha2) {
-                senhaa.innerHTML = `Senhas não conferem`
+                senhaa.innerHTML = `Senhas não conferem`;
                 invalido++
             } else {
-                senhaa.innerHTML = ''
+                senhaa.innerHTML = '';
             }
         } else {
-            senhaa.innerHTML = `Senha Inválida`
+            senhaa.innerHTML = `Senha Inválida`;
         }
         if (invalido > 0) {
-            alert('Cadastro não Realizado, Tente Novamente')
+            alert('Cadastro não Realizado, Tente Novamente');
         } else {
-            alert('Cadastro Realizado com sucesso')
+            alert('Cadastro Realizado com sucesso');
             setTimeout((cadastro) => {
                 window.location.replace("login.html");
             }, 750);
