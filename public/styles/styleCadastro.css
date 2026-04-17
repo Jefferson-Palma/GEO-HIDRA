@@ -185,7 +185,7 @@ footer{
     font-weight: bold;
     margin-right: 190px;
 }
-.caixa-login #mensagem{
+/* .caixa-login #mensagem{
     
     color: red;
     width: 50%;
@@ -196,7 +196,7 @@ footer{
     text-align: center;
     justify-self: center;
     
-}
+} */
 .container-cadastro{
     display: flex;
     margin-top: 80px;
