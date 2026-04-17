@@ -242,6 +242,7 @@ footer{
     color: red;
     width: 50%;
     background-color: #D0F0C0; 
+    border-radius: 10px;
     font-size: medium;
     text-align: center;
     justify-self: center;

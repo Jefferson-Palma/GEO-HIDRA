@@ -38,10 +38,12 @@
                 <div class="mensagemDeErro" id="cpff"></div>
                 <p>Tipo de acesso</p>
                 <select class="input_base" name="" id="tipoAcesso">
-                    <option selected disabled>* Selecione Um tipo De Acesso</option>
+                    <option value= "none" selected disabled>* Selecione Um tipo De Acesso</option>
                     <option value="adm">Admiministrador</option>
                     <option value="comum">Comum</option>
                 </select>
+                <div class="mensagemDeErro" id="acessoo"></div>
+
                 <p>Email</p>
                 <input class="input_base" type="text" id="input_email"
                     placeholder="* Insira seu email - exemple@gmail.com">
@@ -79,10 +81,11 @@
 
 <script>
     function cadastro() {
-        let tipoAcessosValidos = ['Admin', 'admin', 'comum', 'Comum'];
         let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
         let nome = input_nomeFuncionario.value;
         let cpf = input_cpf.value;
+        let acesso = document.getElementById('tipoAcesso');
+        let valorSelecionado = acesso.value;
         let email = input_email.value;
         let senha = input_senha.value;
         let senha2 = input_confirmarSenha.value;
@@ -98,7 +101,6 @@
                 } else {
                     nomee.innerHTML = '';
                 }
-
             }
         } else {
             nomee.innerHTML = `Nome inválido`
@@ -127,6 +129,12 @@
         } else {
             cpff.innerHTML = '';
         }
+
+        //validação tipo de acesso
+        if(valorSelecionado !== 'adm' && valorSelecionado !== 'comum'){
+            acessoo.innerHTML = `Tipo de acesso Inválido`
+            invalido++
+            }
         //validação email
         if (!email.endsWith('.com') || !email.includes('@')) {
             emaill.innerHTML = `Email inválido`
@@ -151,7 +159,7 @@
             alert('Cadastro Realizado com sucesso')
             setTimeout((cadastro) => {
                 window.location.replace("login.html");
-            }, 3000);
+            }, 750);
 
             exit();
         }
