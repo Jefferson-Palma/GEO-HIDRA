@@ -724,3 +724,16 @@ footer {
     align-items: flex-start;
     margin: 5px;
 }
+.sair{
+    background-color: #06ba63;
+    border-radius: 8px;
+    padding: 8px;
+    width: 5%;
+    text-align: center;
+}
+.funcionarioCadastro{
+    background-color: #06ba63;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+}

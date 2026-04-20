@@ -15,13 +15,15 @@
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
                 <span><a href="inicial.html">Home</a></span>
-                <span><a href="inicial.html #sobreNos">Sobre Nós</a></span>
-                <span>Contato</span>
-                <span>
-                    <a href="login.html">
-                        <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
-                    </a>
-                </span>
+                <span><a href="inicial.html#sobreNos">Sobre Nós</a></span>
+                <span><a href="inicial.html#contato">Contato</a></span>
+                <div class="funcionarioCadastro"><span>
+                        <a href="cadastroFuncionario.html" style="color: white;">Cadastrar Funcionário</a>
+                    </span>
+                </div>
+                <div class="sair"><span><a href="inicial.html" style="color: white;">Sair</a>
+                    </span>
+                </div>
             </div>
         </div>
     </header>
@@ -54,7 +56,7 @@
                     <h4>SATURAÇÃO POR SETORES</h4>
                 </div>
                 <div class="regiao2">
-                    
+
                     <div>
                         <p>Norte</p>
                         <div class="alinhamento">
@@ -108,25 +110,25 @@
 
 </html>
 <script>
-  const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('myChart');
 
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00','20:00','22:00', '00:00', '02:00', '04:00', '06:00', '08:00'],
-      datasets: [{
-        label: 'Umidade em porcentagem (%)',
-        data: [18, 22, 34, 41, 44, 22, 24, 30, 35, 42, 34, 23, 16],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '00:00', '02:00', '04:00', '06:00', '08:00'],
+            datasets: [{
+                label: 'Umidade em porcentagem (%)',
+                data: [18, 22, 34, 41, 44, 22, 24, 30, 35, 42, 34, 23, 16],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+
+                }
+            }
         }
-      }
-    }
-  });
+    });
 </script>
