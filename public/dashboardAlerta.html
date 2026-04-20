@@ -34,19 +34,21 @@
                 </select>
             </div>
             <div class="usuario">
-                 <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
+                 <img src="assets/imgs/Design sem nome.png" alt="" width="40px">
                  <p>Marcos Silva</p>
             </div>
         </div>
         <div class="kpi">
             <div class="status">
-                <h3>STATUS ATUAL DA OPERAÇÃO</h3>
-                <p></p>
+                <h4>STATUS ATUAL DA SATURAÇÃO</h4>
+                <img src="assets/imgs/atencao.png" alt="" width="280px">
             </div>
             <div class="ultimosAlertas">
-                <h3>ÚLTIMOS ALERTAS REGISTRADOS</h3>
-                <p>[2026-09-03]  SN-003  LESTE  <span class="corAlertasAlto">[ALTO]</span></p>
-                <p>[2026-09-03]  SN-003  LESTE  <span class="corAlertasBaixo">[BAIXO]</span></p>
+                <h4>ÚLTIMOS ALERTAS REGISTRADOS</h4>
+                <p>[2026-04-01 16:00] <span class="corAlertasAlto">[ALTO]</span></p>
+                <p>[2026-04-01 14:00] <span class="corAlertasAlto">[ALTO]</span></p>
+                <p>[2026-04-01 12:00] <span class="corAlertasAlto">[ALTO]</span></p>
+                <p>[2026-04-01 08:00] <span class="corAlertasBaixo">[BAIXO]</span></p>
             </div>
         </div>
         <div class="grafico">
@@ -75,10 +77,10 @@
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00','20:00','22:00'],
+      labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00','20:00','22:00', '00:00', '02:00', '04:00', '06:00', '08:00'],
       datasets: [{
-        label: 'Umidade em porcentagem(%)',
-        data: [0, 22, 34, 41,44, 22,24,30],
+        label: 'Umidade em porcentagem (%)',
+        data: [18, 22, 34, 41, 44, 22, 24, 30, 35, 42, 34, 23, 16],
         borderWidth: 1
       }]
     },

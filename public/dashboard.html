@@ -36,23 +36,23 @@
                 </select>
             </div>
             <div class="usuario">
-                <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
+                <img src="assets/imgs/Design sem nome.png" alt="" width="40px">
                 <p>Marcos Silva</p>
             </div>
         </div>
         <div class="kpi">
             <div class="operante">
-                <p>SENSORES OPERANTES</p>
+                <h4>SENSORES OPERANTES</h4>
                 <p>3/4 Ativos</p>
             </div>
             <div class="media">
-                <p>Umidade média atual:</p>
-                <p>22,6%</p>
+                <h4>UMIDADE MÉDIA ATUAL</h4>
+                <p>29,6%</p>
             </div>
             <div class="regiao">
                 <div class="tituloRegiao">
-                        <p>SATURAÇÃO POR SETORES</p>
-                    </div>
+                    <h4>SATURAÇÃO POR SETORES</h4>
+                </div>
                 <div class="regiao2">
                     
                     <div>
@@ -62,7 +62,7 @@
                             <div class="mapaCalor direcao">
                                 <div class="norte direcao orientacao">23%</div>
                                 <div style="display: flex;">
-                                    <div class="oeste direcao orientacao">20%</div>
+                                    <div class="oeste direcao orientacao">21%</div>
                                     <div class="leste direcao orientacao">21%</div>
                                 </div>
                                 <div class="sul direcao orientacao">22%</div>
@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="grafico">
-            <h2>TENDÊNCIA DE UMIDADE(Últimas 24h)</h2>
+            <h3>TENDÊNCIA DE UMIDADE (Últimas 24h)</h3>
             <canvas id="myChart"></canvas>
         </div>
     </div>
@@ -108,25 +108,25 @@
 
 </html>
 <script>
-    const ctx = document.getElementById('myChart');
+  const ctx = document.getElementById('myChart');
 
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-            datasets: [{
-                label: 'Umidade em porcentagem(%)',
-                data: [0, 22, 34, 41, 44, 22, 24, 30],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-
-                }
-            }
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00','20:00','22:00', '00:00', '02:00', '04:00', '06:00', '08:00'],
+      datasets: [{
+        label: 'Umidade em porcentagem (%)',
+        data: [18, 22, 34, 41, 44, 22, 24, 30, 35, 42, 34, 23, 16],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          
         }
-    });
+      }
+    }
+  });
 </script>

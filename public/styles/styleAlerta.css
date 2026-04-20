@@ -437,7 +437,7 @@ footer{
 
 .grafico{
     height: 20%;
-    width: 50%;
+    width: 75%;
     background-color: white;
     border-radius: 10px;
     padding: 15px;
@@ -485,6 +485,7 @@ background-color: #06BA63;
     margin-right: 30px;
     align-items: center;
     display: flex;
+    gap: 5px;
 }
 .kpi{
     margin-left: 15%;
@@ -505,8 +506,22 @@ background-color: #06BA63;
     background-color: #ffffff;
     color:#000000;
 }
+.status img {
+    border-radius: 15px;
+}
 .ultimosAlertas{
+    padding: 30px;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    display: flex;
+    background-color: #ffffff;
+    color:#000000;
+}
+.ultimosAlertas h4{
+    align-self: center;
+    margin-bottom: auto;
 }
 .corAlertasBaixo{
     color: red;

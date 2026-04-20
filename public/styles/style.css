@@ -499,6 +499,7 @@ footer {
     margin-right: 30px;
     align-items: center;
     display: flex;
+    gap: 5px;
 }
 
 .kpi{
@@ -511,6 +512,10 @@ footer {
     justify-content: space-between;
 }
 
+.kpi h4{
+    align-self: center;
+    margin-bottom: auto;
+}
 
 .operante{
     padding: 20px;
@@ -523,6 +528,10 @@ footer {
     color: #000000;
 }
 
+.operante p {
+    padding: 35%;
+    font-size: large;
+}
 
 .media{
     padding: 20px;
@@ -533,6 +542,11 @@ footer {
     background-color: #ffffff;
     align-items: center;
     justify-content: center;
+}
+
+.media p {
+    padding: 35%;
+    font-size: large;
 }
 
 .regiao{
