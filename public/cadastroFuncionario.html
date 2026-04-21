@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Cadastro de Funcionário</title>
     <link rel="stylesheet" href="styles/styleCadastro.css">
 
 </head>
@@ -19,7 +19,7 @@
                 <span><a href="inicial.html#contato">Contato</a></span>
                 <span>
                     <a href="login.html">
-                        <img src="assets/imgs/Design sem nome.png" alt="" width="50px">
+                        <img src="assets/imgs/Design sem nome.png" alt="" width="40px">
                     </a>
                 </span>
             </div>
@@ -33,11 +33,13 @@
                 <p>Nome</p>
                 <input class="input_base" type="text" id="input_nomeFuncionario" placeholder="* Insira seu nome">
                 <div class="mensagemDeErro" id="nomee"></div>
-                <p>CPF</p>
+
+                <p class="p_cpf">CPF</p>
                 <input class="input_base" type="text" id="input_cpf"
                     placeholder="* Insira seu CPF - Sem pontos e traços ">
                 <div class="mensagemDeErro" id="cpff"></div>
-                <p>Tipo de acesso</p>
+
+                <p class="p_tipo_acesso">Tipo de acesso</p>
                 <select class="input_base" name="" id="tipoAcesso">
                     <option value="none" selected disabled>* Selecione Um tipo De Acesso</option>
                     <option value="adm">Admiministrador</option>
@@ -49,19 +51,21 @@
                 <input class="input_base" type="text" id="input_email"
                     placeholder="* Insira seu email - exemple@gmail.com">
                 <div class="mensagemDeErro" id="emaill"></div>
+
                 <p>Senha</p>
                 <input class="input_base" type="password" id="input_senha" placeholder="* Insira sua senha">
-                <p>Confirmar senha</p>
+
+                <p class="p_confirmar_senha">Confirmar senha</p>
                 <input class="input_base" type="password" id="input_confirmarSenha" placeholder="* Confirme sua senha">
                 <div class="mensagemDeErro" id="senhaa"></div>
+
                 <div class="botaoCadastroFuncionario">
                     <button onclick="cadastro()">Registrar</button>
                 </div>
             </div>
-
         </div>
-        <div class="imagem">
-            <img src="assets/imgs/pexels-keat007-32858871 1.png" alt="">
+        <div class="imagemCadastroFuncionario">
+            <img src="assets/imgs/pexels-keat007-32858871 1.png" alt="Imagem Cadastro Funcionario" width="890px">
         </div>
     </div>
 
@@ -95,7 +99,7 @@
 
         //validação nome
         if (nome !== '') {
-            for (let i=0;i<nome.length;i++) {
+            for (let i = 0; i < nome.length; i++) {
                 if (nome[i].toLowerCase() == nome[i].toUpperCase() && !nome[i].includes(' ')) {
                     invalido++;
                     nomee.innerHTML = `Nome inválido`
@@ -108,9 +112,9 @@
         }
         //validação cpf
         if (cpf.length == 11) {
-            for (let i=0;i<cpf.length;i++) {//i=caracter
+            for (let i = 0; i < cpf.length; i++) {//i=caracter
                 let certo = 0;
-                for (let j=0;j<numeros.length;j++) {//j=numero
+                for (let j = 0; j < numeros.length; j++) {//j=numero
                     if (cpf[i] == numeros[j]) {
                         certo++
                     }
@@ -163,7 +167,7 @@
                 window.location.replace("login.html");
             }, 750);
 
-            
+
         }
     }
 
