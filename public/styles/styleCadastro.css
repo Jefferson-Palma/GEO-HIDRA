@@ -267,7 +267,7 @@ button:hover{
     background-color: #06ba63;
     margin-top: 60px;
     width: 35%;
-    height: 950px;
+    height: 910px;
     border-radius: 30px;
     color: white;
     font-weight: bold;
@@ -297,6 +297,7 @@ button:hover{
 }
 
 .campo-cadastroFuncionario .p_confirmar_senha{
+    margin-top: 20px;
     margin-left: -255px;
     font-size: x-large;
     color: #6a3e37;
