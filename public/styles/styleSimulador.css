@@ -9,7 +9,8 @@ body {
     background-color: #e2e1df;
 }
 
-header {
+/* Header */
+header{
     padding-bottom: 2%;
     padding-top: 2%;
     padding-left: 10%;
@@ -17,34 +18,40 @@ header {
     height: 20%;
 }
 
-a {
-    color: #6A3E37;
+header a {
+    color: #6a3e37;
     text-decoration: none;
+    transition: 0.5s;
 }
 
-.componentes {
+header a:hover{
+    font-size: 22px;
+    color: #06BA63;
+}
+
+.componentes{
     display: flex;
     width: 100%;
     padding: 15px;
     border: solid 1px #6A3E37;
-    border-radius: 45px;
-    background-color: white;
+    border-radius: 20px;
+    background-color: white;    
+    box-shadow: 8px 8px 10px gray;
 }
 
-.logo img {
+.logo img{
     width: 300px;
-
+    
 }
 
-.logo {
-
+.logo{
+        
     display: flex;
     justify-content: left;
     align-items: center;
-
+        
 }
-
-.caminhos {
+.caminhos{
     color: #6A3E37;
     font-size: large;
     justify-content: space-evenly;
@@ -52,35 +59,47 @@ a {
     display: flex;
     width: 100%;
     font-weight: bold;
+}
 
+.caminhos img{
+    transition: 0.8s;
+}
+
+.caminhos img:hover{
+    width: 50px;
 }
 
 /* Footer */
-footer {
-    background-color: #6a3e37;
+footer{
+    background-color: #6a3e37; 
     width: 100%;
-    margin-top: 200px;
+    margin-top: 70px;
     color: white;
     font-weight: bold;
-
 }
 
-.footerConteudo {
+.footerConteudo{
     display: flex;
     height: 120px;
 }
-
-.footerConteudo .conteudo a {
-    color: white;
-}
-
-.logoFooter img {
+.logoFooter img{
     margin-left: 250px;
     margin-top: 40px;
     width: 200px;
 }
 
-.conteudo {
+.footerConteudo .conteudo a  {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.footerConteudo .conteudo a:hover{
+    font-size: 22px;
+}
+
+/* Simulador */
+.conteudo{
     font-size: medium;
     justify-content: space-evenly;
     align-items: center;
@@ -88,6 +107,12 @@ footer {
     width: 100%;
     font-weight: bold;
     margin-right: 190px;
+}
+.container-cadastro{
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+
 }
 
 .container {
@@ -99,27 +124,30 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70%;
+    height: 600px;
     width: 70%;
 }
 
 .card {
     background-color: #f5f5f5;
-    padding: 30px;
     border-radius: 15px;
-    width: 80%;
+    width: 70%;
+    height: 80%;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 8px 8px 10px gray;
 }
 
-.div_msg{
+#div_msg{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 80%;
+    justify-content: space-around;
+    text-align: center;
+    height: 70%;
+    width: 70%;
 }
 
 .button_financeiro {
@@ -132,26 +160,48 @@ footer {
     font-size: large;
     cursor: pointer;
     color: white;
+    transition: 1s;
+}
+
+.button_financeiro:hover{
+    background-color: #005a2f;
 }
 
 .input_financeiro {
-    width: 300px;
-    border: none;
+    outline: none;
+    font-size: 16px;
+    color: gray;
+    width: 100%;
+    border: 1px solid #6a3e37;
     border-radius: 15px;
-    width: 115%;
     padding: 15px;
     background-color: #d9d9d9;
+    transition: 1s;
+}
+
+.input_financeiro:hover{
+    width: 102%;
+    padding: 18px;
 }
 
 .container_mensagem{
     margin-bottom: 20px;
     border: 2px solid black;
-    padding: 20px;
+    padding: 15px;
     border-radius: 15px;
+    width: 80%;
+}
+
+.div_msg2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .div_msg2 a{
     color: white;
+    text-decoration: none;
+    transition: 0.5s;
 }
 .sair{
     background-color: #06ba63;

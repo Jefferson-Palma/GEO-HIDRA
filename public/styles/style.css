@@ -663,6 +663,7 @@ footer {
     margin-right: 190px;
 }
 
+/* Dashboard */
 .grafico {
     height: 20%;
     width: 75%;
@@ -671,7 +672,7 @@ footer {
     padding: 15px;
     margin-left: 12%;
     color: #000000;
-
+    box-shadow: 8px 8px 10px gray;
 }
 
 .box {
@@ -685,6 +686,7 @@ footer {
     color: white;
     border-radius: 20px;
     padding-bottom: 100px;
+    box-shadow: 10px 10px 10px gray;
 }
 
 .obra {
@@ -694,6 +696,7 @@ footer {
     background-color: #06BA63;
     display: flex;
     justify-content: space-between;
+    height: 50px;
 }
 
 .select {
@@ -706,8 +709,10 @@ footer {
     margin-left: 15px;
     width: 150px;
     text-align: center;
-    color: #ffffff;
+    color: black;
     background-color: #06BA63;
+    border-radius: 8px;
+    border: 1px solid #000000;
 }
 
 .usuario {
@@ -741,11 +746,14 @@ footer {
     display: flex;
     background-color: #ffffff;
     color: #000000;
+    box-shadow: 8px 8px 10px gray;
 }
 
 .operante p {
     padding: 35%;
-    font-size: large;
+    text-align: center;
+    color: #06ba63;
+    font-size: 30px;
 }
 
 .media{
@@ -754,14 +762,17 @@ footer {
     border-radius: 15px;
     display: flex;
     color: #000000;
-    background-color: #ffffff;
+    background-color: #fff;
     align-items: center;
     justify-content: center;
+    box-shadow: 8px 8px 10px gray;
 }
 
 .media p {
     padding: 35%;
-    font-size: large;
+    text-align: center;
+    color: #06ba63;
+    font-size: 30px;
 }
 
 .regiao{
@@ -771,7 +782,7 @@ footer {
     display: flex;
     color: #000000;
     background-color: #ffffff;
-
+    box-shadow: 8px 8px 10px gray;
 }
 
 .regiao2{
@@ -789,7 +800,6 @@ footer {
     text-align: center;
     align-items: center;
     justify-content: center;
- 
     border: solid 1px black
 }
 .orientacao{
@@ -833,13 +843,8 @@ footer {
     align-items: flex-start;
     margin: 5px;
 }
-.sair{
-    background-color: #06ba63;
-    border-radius: 8px;
-    padding: 8px;
-    width: 5%;
-    text-align: center;
-}
+
+/* Buttons */
 .funcionarioCadastro{
     background-color: #06ba63;
     border-radius: 8px;

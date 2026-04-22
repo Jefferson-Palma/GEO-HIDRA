@@ -227,6 +227,7 @@ button:hover{
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 10px;
+    outline: none;
     transition: 1s;
 }
 
