@@ -696,7 +696,7 @@ footer {
     background-color: #06BA63;
     display: flex;
     justify-content: space-between;
-    height: 50px;
+    height: 70px;
 }
 
 .select {
@@ -720,6 +720,14 @@ footer {
     align-items: center;
     display: flex;
     gap: 5px;
+}
+
+.dashboardAlerta{
+    background-color: #6a3e37;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    transition: 1s;
 }
 
 .kpi{
