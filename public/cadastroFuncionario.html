@@ -100,18 +100,19 @@
         let senha = input_senha.value;
         let senha2 = input_confirmarSenha.value;
         let invalido = 0;
-        let cpfInvalido = 0;
+        let totalInvalido=0;
 
         //validação nome
         if (nome !== '') {
             for (let i = 0; i < nome.length; i++) {
                 if (nome[i].toLowerCase() == nome[i].toUpperCase()) {
-                    invalido++;
                     nomee.innerHTML = `Nome inválido`
+                    invalido++
                 } else {
                     nomee.innerHTML = '';
                 }
             }
+            totalInvalido+=invalido;
         } else {
             nomee.innerHTML = `Nome inválido`
         }
@@ -125,17 +126,20 @@
                     }
                 }
                 if (certo <= 0) {
-                    cpfInvalido++
+                    invalido++
                 }
             }
-            if (cpfInvalido > 0) {
+            if (invalido > 0) {
                 cpff.innerHTML = `CPF inválido`;
+                totalInvalido+=invalido;
+                invalido=0;
             } else {
                 cpff.innerHTML = '';
             }
 
         } else if (cpf.length !== 11) {
             cpff.innerHTML = `CPF inválido`;
+            invalido++
         } else {
             cpff.innerHTML = '';
         }
@@ -162,14 +166,16 @@
                 senhaa.innerHTML = '';
             }
         } else {
-            senhaa.innerHTML = `Senha Inválida`;
+            senhaa.innerHTML = `Senha Inválida`
+            invalido++;
         }
-        if (invalido > 0) {
+        totalInvalido+=invalido;
+        if (totalInvalido > 0) {
             alert('Cadastro não Realizado, Tente Novamente');
         } else {
             alert('Cadastro Realizado com sucesso');
             setTimeout((cadastro) => {
-                window.location.replace("login.html");
+                window.location.replace("dashboard.html");
             }, 750);
 
 

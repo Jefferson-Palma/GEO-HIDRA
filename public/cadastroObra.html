@@ -57,7 +57,7 @@
                 <div class="mensagemDeErro" id="estadoo"></div>
 
                 <p>Cidade</p>
-                <input class="input_base" type="password" id="input_cidade" placeholder="* Digite a cidade">
+                <input class="input_base" type="text" id="input_cidade" placeholder="* Digite a cidade">
                 <div class="mensagemDeErro" id="cidadee"></div>
             </div>
             <div class="botaoCadastroObra">
@@ -95,8 +95,7 @@
         let listaEstado = ['AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO', 'AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE', 'DF', 'GO', 'MT', 'MS', 'ES', 'MG', 'RJ', 'SP', 'PR', 'RS', 'SC'];
         let invalido = 0;
         let cepInvalido = 0;
-        let numInvalido = 0;
-        let estadoInvalido = 0;
+        
 
         //validação rua
         if (rua !== '') {
@@ -109,6 +108,7 @@
                 }
             }
         } else {
+            invalido++;
             ruaa.innerHTML = `Rua inválida`
         }
         //validação cep
@@ -126,6 +126,7 @@
             }
             if (cepInvalido > 0) {
                 cepp.innerHTML = `CEP inválido`;
+                invalido++
             } else {
                 cepp.innerHTML = '';
             }
@@ -140,14 +141,13 @@
             if(numeros[i] == numero[0]){
                 certoNum ++;
             }
-            if(certoNum <= 0){
-                numInvalido ++;
-            }
+            
         }
         if(certoNum > 0){
             numeroo.innerHTML = ``;
         } else{
             numeroo.innerHTML = 'Número Inválido';
+            invalido++;
         }
         //validação estado
         let certoEstado = 0;
@@ -156,23 +156,37 @@
                 if(estado.toUpperCase() == listaEstado[i]){
                     certoEstado ++;
                 }                
-                if(certoEstado <= 0){
-                    estadoInvalido++;
-                }
-                if(certoEstado > 0){
+                
+            }
+            if(certoEstado > 0){
                     estadoo.innerHTML = '';        
                 } else{
                     estadoo.innerHTML = `Estado Inválido`;
+                    invalido++
                 }
-            }
         } else{
+            invalido++
             estadoo.innerHTML = `Estado Inválido`;
         }
         //validação cidade
-        if (cidade == '') {
-            cidadee.innerHTML = `Rua inválida`;
-        } else{
-            cidadee.innerHTML = '';
+        if (cidade !== '') {
+            for (let i = 0; i < cidade.length; i++) {
+                if (cidade[i].toLowerCase() == cidade[i].toUpperCase()) {
+                    invalido++;
+                    cidadee.innerHTML = `Cidade inválida`
+                } else {
+                    cidadee.innerHTML = '';
+                }
+            }
+        } else {
+            invalido++;
+            cidadee.innerHTML = `Cidade inválida`
+        }
+        if(invalido<=0){
+            alert('Cadastro realizado com sucesso');
+            setTimeout((cadastro) => {
+                window.location.replace("dashboard.html");
+            }, 750);
         }
     }   
 </script>
