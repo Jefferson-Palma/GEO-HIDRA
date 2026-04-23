@@ -14,6 +14,11 @@
         <div class="componentes">
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
+                <div class="funcionarioCadastro">
+                <span>
+                    <a href="cadastroObra.html" style="color: white;">Cadastrar obra</a>
+                </span>
+            </div>
                 <div class="funcionarioCadastro"><span>
                         <a href="cadastroFuncionario.html" style="color: white;">Cadastrar Funcionário</a>
                     </span>
@@ -60,6 +65,7 @@
             <div class="box-kpi">
                 <h4>REGIÕES ACIMA DA UMIDADE IDEAL(ÚLTIMO REGISTRO)</h4>
                 <p>NORTE 31%</p>
+                <p>OESTE 32%</p>
                 <h5>UMIDADE IDEAL 21-30%</h5>
             </div>
             <div class="box-kpi">
@@ -75,37 +81,37 @@
         <div class="box-kpi">
             <h4>ÚLTIMOS ALERTAS REGISTRADOS NORTE</h4>
             <div>
-                <h2>[2026-04-01 16:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 14:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 12:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 08:00] <span class="alerta">[BAIXO]</span></h2>
+                <h2>[2026-04-01 6:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 4:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 2:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 0:00] <span class="alerta">[ALTO]</span></h2>
             </div>
         </div>
         <div class="box-kpi">
             <h4>ÚLTIMOS ALERTAS REGISTRADOS LESTE</h4>
             <div>
-                <h2>[2026-04-01 16:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 14:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 12:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 08:00] <span class="alerta">[BAIXO]</span></h2>
+                <h2>[2026-04-01 4:00] <span class="alerta">[BAIXO]</span></h2>
+                <h2>[2026-04-01 2:00] <span class="alerta">[BAIXO]</span></h2>
+                <h2>[2026-04-01 0:00] <span class="alerta">[BAIXO]</span></h2>
+                <h2>[2026-03-31 18:00] <span class="alerta">[BAIXO]</span></h2>
             </div>
         </div>
         <div class="box-kpi">
             <h4>ÚLTIMOS ALERTAS REGISTRADOS OESTE</h4>
             <div>
-                <h2>[2026-04-01 16:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 14:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 12:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 08:00] <span class="alerta">[BAIXO]</span></h2>
+                <h2>[2026-04-01 6:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 4:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 2:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 0:00] <span class="alerta">[ALTO]</span></h2>
             </div>
         </div>
         <div class="box-kpi">
             <h4>ÚLTIMOS ALERTAS REGISTRADOS SUL</h4>
             <div>
-                <h2>[2026-04-01 16:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 14:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 12:00] <span class="alerta">[ALTO]</span></h2>
-                <h2>[2026-04-01 08:00] <span class="alerta">[BAIXO]</span></h2>
+                <h2>[2026-04-01 6:00] <span class="alerta">[INATIVO]</span></h2>
+                <h2>[2026-04-01 4:00] <span class="alerta">[INATIVO]</span></h2>
+                <h2>[2026-04-01 2:00] <span class="alerta">[INATIVO]</span></h2>
+                <h2>[2026-04-01 0:00] <span class="alerta">[INATIVO]</span></h2>
             </div>
         </div>
     </div>
@@ -122,9 +128,9 @@
                         <div class="alinhamento">
                             <p>Oeste</p>
                             <div class="mapaCalor direcao">
-                                <div class="norte direcao orientacao">23%</div>
+                                <div class="norte direcao orientacao">31%</div>
                                 <div style="display: flex;">
-                                    <div class="oeste direcao orientacao">21%</div>
+                                    <div class="oeste direcao orientacao">32%</div>
                                     <div class="leste direcao orientacao">21%</div>
                                 </div>
                                 <div class="sul direcao orientacao">0%</div>
@@ -184,8 +190,31 @@
             labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '00:00', '02:00', '04:00', '06:00'],
             datasets: [{
                 label: 'NORTE',
-                data: [18, 22, 34, 41, 44, 22, 24, 30, 35, 42, 34, 23],
-                borderWidth: 1
+                data: [25, 24, 20, 22, 25, 27, 28, 30, 32, 35, 34, 31],
+                borderWidth: 2,
+                borderColor: 'blue',
+                backgroundColor: 'blue',
+            },
+            {
+                label: 'LESTE',
+                data: [15, 18, 21, 25, 28, 19, 21, 23, 20, 18, 19, 21],
+                borderWidth: 2,
+                borderColor: 'green',
+                backgroundColor: 'green',
+            },
+            {
+                label: 'OESTE',
+                data: [20, 25, 30, 35, 38, 28, 31, 33, 36, 39, 35, 32],
+                borderWidth: 2,
+                borderColor: 'yellow',
+                backgroundColor: 'yellow',
+            },
+            {
+                label: 'SUL',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                borderWidth: 2,
+                borderColor: 'orange',
+                backgroundColor: 'orange',
             }]
         },
         options: {

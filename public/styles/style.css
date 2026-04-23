@@ -797,6 +797,12 @@ footer {
     background-color:yellow;
     color: #000000;
 }
+
+.norte,
+.oeste{
+    background-color: red;
+    color: white;
+}
 .orientacao{
     padding-top: 20px;
     text-align: center;
