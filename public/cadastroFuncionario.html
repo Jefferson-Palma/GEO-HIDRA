@@ -19,7 +19,11 @@
                 <span>
                     <a href="dashboard.html" style="color: white;">Dashboard</a>
                 </span>
-
+            </div>
+            <div class="dashboard">
+                <span>
+                    <a href="cadastroObra.html" style="color: white;">Dashboard</a>
+                </span>
             </div>
             <div class="sair"><span><a href="inicial.html" style="text-align: center; color: #6a3e37;">Sair</a>
                     </span>
@@ -60,10 +64,9 @@
                 <p class="p_confirmar_senha">Confirmar senha</p>
                 <input class="input_base" type="password" id="input_confirmarSenha" placeholder="* Confirme sua senha">
                 <div class="mensagemDeErro" id="senhaa"></div>
-
-                <div class="botaoCadastroFuncionario">
-                    <button onclick="cadastro()">Registrar</button>
-                </div>
+            </div>
+            <div class="botaoCadastroFuncionario">
+                <button onclick="cadastro()">Registrar</button>
             </div>
         </div>
         <div class="imagemCadastroFuncionario">
@@ -102,7 +105,7 @@
         //validação nome
         if (nome !== '') {
             for (let i = 0; i < nome.length; i++) {
-                if (nome[i].toLowerCase() == nome[i].toUpperCase() && !nome[i].includes(' ')) {
+                if (nome[i].toLowerCase() == nome[i].toUpperCase()) {
                     invalido++;
                     nomee.innerHTML = `Nome inválido`
                 } else {

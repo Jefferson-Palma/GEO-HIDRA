@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Obra</title>
+    <link rel="stylesheet" href="styles/styleCadastro.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="componentes">
+            <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
+            <div class="caminhos">
+
+            <div class="dashboard">
+                <span>
+                    <a href="dashboard.html" style="color: white;">Dashboard</a>
+                </span>
+            </div>
+
+            <div class="dashboard">
+                <span>
+                    <a href="dashboard.html" style="color: white;">Cadastro Funcionário</a>
+                </span>
+            </div>
+            <div class="sair"><span><a href="inicial.html" style="text-align: center; color: #6a3e37;">Sair</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-cadastroObra">
+        <div class="caixa-cadastroObra">
+            <h1>Cadastrar Obra</h1>
+            <div class="campo-cadastroObra">
+                <p>Rua</p>
+                <input class="input_base" type="text" id="input_rua" placeholder="* Digite a rua">
+                <div class="mensagemDeErro" id="ruaa"></div>
+
+                <p class="p_cep">CEP</p>
+                <input class="input_base" type="text" id="input_cep"
+                    placeholder="* Digite o CEP - Sem pontos e traços ">
+                <div class="mensagemDeErro" id="cepp"></div>
+
+                <p class="p_tipo_acesso">Número</p>
+                <input class="input_base" type="text" id="input_numero"
+                    placeholder="* Digite o número">
+                <div class="mensagemDeErro" id="numeroo"></div>
+
+                <p>UF Estado</p>
+                <input class="input_base" type="text" id="input_estado"
+                    placeholder="* Digite o UF do estado">
+                <div class="mensagemDeErro" id="estadoo"></div>
+
+                <p>Cidade</p>
+                <input class="input_base" type="password" id="input_cidade" placeholder="* Digite a cidade">
+                <div class="mensagemDeErro" id="cidadee"></div>
+            </div>
+            <div class="botaoCadastroObra">
+                <button onclick="cadastro()">Registrar</button>
+            </div>
+        </div>
+        <div class="imagemCadastroObra">
+            <img src="assets/imgs/pexels-keat007-32858871 1.png" alt="Imagem Cadastro Funcionario" width="760px">
+        </div>
+    </div>
+
+    <footer>
+        <div class="footerConteudo">
+            <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
+            </div>
+            <div class="conteudo">
+                <span><a href="inicial.html">Home</a></span>
+                <span><a href="inicial.html#sobreNos">Sobre Nós</a></span>
+                <span><a href="inicial.html#contato">Contato</a></span>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<script>
+    function cadastro() {
+        let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+        let rua = input_rua.value;
+        let cep = input_cep.value;
+        let numero = input_numero.value;
+        let cidade = input_cidade.value;
+        let estado = input_estado.value;
+        let listaEstado = ['AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO', 'AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE', 'DF', 'GO', 'MT', 'MS', 'ES', 'MG', 'RJ', 'SP', 'PR', 'RS', 'SC'];
+        let invalido = 0;
+        let cepInvalido = 0;
+        let numInvalido = 0;
+        let estadoInvalido = 0;
+
+        //validação rua
+        if (rua !== '') {
+            for (let i = 0; i < rua.length; i++) {
+                if (rua[i].toLowerCase() == rua[i].toUpperCase() && !rua[i].includes(' ')) {
+                    invalido++;
+                    ruaa.innerHTML = `Rua inválida`
+                } else {
+                    ruaa.innerHTML = '';
+                }
+            }
+        } else {
+            ruaa.innerHTML = `Rua inválida`
+        }
+        //validação cep
+        if (cep.length == 8) {
+            for (let i = 0; i < cep.length; i++) {//i=caracter
+                let certo = 0;
+                for (let j = 0; j < numeros.length; j++) {//j=numero
+                    if (cep[i] == numeros[j]) {
+                        certo++
+                    }
+                }
+                if (certo <= 0) {
+                    cepInvalido++
+                }
+            }
+            if (cepInvalido > 0) {
+                cepp.innerHTML = `CEP inválido`;
+            } else {
+                cepp.innerHTML = '';
+            }
+
+        } else{
+            cepp.innerHTML = `CEP inválido`;
+        }
+        //validação número
+        let certoNum = 0;
+        for(let i = 0; i < numeros.length; i++){
+
+            if(numeros[i] == numero[0]){
+                certoNum ++;
+            }
+            if(certoNum <= 0){
+                numInvalido ++;
+            }
+        }
+        if(certoNum > 0){
+            numeroo.innerHTML = ``;
+        } else{
+            numeroo.innerHTML = 'Número Inválido';
+        }
+        //validação estado
+        let certoEstado = 0;
+        if(estado !== ''){
+            for(let i = 0; i < listaEstado.length; i++){
+                if(estado.toUpperCase() == listaEstado[i]){
+                    certoEstado ++;
+                }                
+                if(certoEstado <= 0){
+                    estadoInvalido++;
+                }
+                if(certoEstado > 0){
+                    estadoo.innerHTML = '';        
+                } else{
+                    estadoo.innerHTML = `Estado Inválido`;
+                }
+            }
+        } else{
+            estadoo.innerHTML = `Estado Inválido`;
+        }
+        //validação cidade
+        if (cidade == '') {
+            cidadee.innerHTML = `Rua inválida`;
+        } else{
+            cidadee.innerHTML = '';
+        }
+    }   
+</script>

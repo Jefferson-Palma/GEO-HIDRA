@@ -245,6 +245,10 @@ button:hover{
     background-color: #e2e1df;
 }
 
+.caixa-cadastroFuncionario h1{
+    color: #6A3E37;
+}
+
 .mensagemDeErro{
     color: red;
     width: 50%;
@@ -254,6 +258,7 @@ button:hover{
     text-align: center;
     justify-self: center;
     margin-bottom: 25px;
+    margin-left: 50px;
 }
 
 .botaoCadastro{
@@ -294,32 +299,29 @@ button:hover{
 
 .campo-cadastroFuncionario{
     display: flex;
+    padding-left: 120px;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .campo-cadastroFuncionario p{
-    margin-left: -360px;
     color: #6a3e37;
     font-size: x-large;
 }
 
 .campo-cadastroFuncionario .p_confirmar_senha{
     margin-top: 20px;
-    margin-left: -255px;
     font-size: x-large;
     color: #6a3e37;
 }
 
 .campo-cadastroFuncionario .p_tipo_acesso{
-    margin-left: -270px;
     font-size: x-large;
     color: #6a3e37;
     margin-bottom: 15px;
 }
 
 .campo-cadastroFuncionario .p_cpf{
-    margin-left: -390px;
     font-size: x-large;
     color: #6a3e37;
 }
@@ -341,6 +343,126 @@ button:hover{
 }
 
 .imagemCadastroFuncionario{
+    position: relative;
+    margin-left: -3%;
+}
+
+/* Cadastro Obra */
+.input_base{
+    width: 70%;
+    height: 45px;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: 1s;
+}
+
+.input_base:hover{
+    width: 72%;
+    height: 55px;
+    background-color: #e2e1df;
+}
+
+.caixa-cadastroObra h1{
+    color: #6A3E37;
+}
+
+.mensagemDeErro{
+    color: red;
+    width: 50%;
+    background-color: #fff; 
+    border-radius: 5px;
+    font-size: medium;
+    text-align: center;
+    justify-self: center;
+    margin-bottom: 25px;
+    margin-left: 50px;
+}
+
+.botaoCadastro{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.botaoCadastro button{
+    background-color: #6a3e37;
+    color: white;
+}
+
+.container-cadastroObra{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.caixa-cadastroObra{
+    background-color: #06ba63;
+    margin-top: 60px;
+    width: 35%;
+    height: 800px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    position: relative;
+    box-shadow: -8px 8px 10px gray;
+}
+.container-cadastroObra h1{
+    font-family: "Cal Sans", sans-serif;
+    text-align: center;
+    letter-spacing: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.campo-cadastroObra{
+    display: flex;
+    padding-left: 120px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.campo-cadastroObra p{
+    color: #6a3e37;
+    font-size: x-large;
+}
+
+.campo-cadastroObra .p_confirmar_senha{
+    margin-top: 20px;
+    font-size: x-large;
+    color: #6a3e37;
+}
+
+.campo-cadastroObra .p_tipo_acesso{
+    font-size: x-large;
+    color: #6a3e37;
+    margin-bottom: 15px;
+}
+
+.campo-cadastroObra .p_cpf{
+    font-size: x-large;
+    color: #6a3e37;
+}
+
+.botaoCadastroObra{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.botaoCadastroObra button{
+    background-color: #ffffff;
+    color: #6a3e37;
+}
+
+.botaoCadastroObra button:hover{
+    background-color: #6a3e37;
+    color: #fff;
+}
+
+.imagemCadastroObra{
     position: relative;
     margin-left: -3%;
 }
