@@ -14,9 +14,6 @@
         <div class="componentes">
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
-                <span><a href="inicial.html">Home</a></span>
-                <span><a href="inicial.html#sobreNos">Sobre Nós</a></span>
-                <span><a href="inicial.html#contato">Contato</a></span>
                 <div class="funcionarioCadastro"><span>
                         <a href="cadastroFuncionario.html" style="color: white;">Cadastrar Funcionário</a>
                     </span>
@@ -37,11 +34,11 @@
                     <option>Obra 3</option>
                 </select>
             </div>
-                <div class="dashboardAlerta">
-                    <span>
-                        <a href="dashboardAlerta.html" style="color: white;">Dashboard Alertas</a>
-                    </span>
-                </div>
+            <div class="dashboardAlerta">
+                <span>
+                    <a href="dashboardAlerta.html" style="color: white;">Dashboard Alertas</a>
+                </span>
+            </div>
             <div class="usuario">
                 <img src="assets/imgs/Design sem nome.png" alt="" width="30px">
                 <p>Marcos Silva</p>
@@ -52,52 +49,66 @@
                 <h4>SENSORES OPERANTES</h4>
                 <p>3/4 Ativos</p>
             </div>
-            <div class="media">
-                <h4>UMIDADE MÉDIA ATUAL</h4>
-                <p>29,6%</p>
+            <div class="operante">
+                <h4>REGIÕES ACIMA DA UMIDADE IDEAL</h4>
+                <p>NORTE 29,6%</p>
             </div>
-            <div class="regiao">
-                <div class="tituloRegiao">
-                    <h4>SATURAÇÃO POR SETORES</h4>
-                </div>
-                <div class="regiao2">
+            <div class="operante">
+                <h4>REGIÕES ABAIXO DA UMIDADE IDEAL</h4>
+                <p>SUL 29,6%</p>
+            </div>
 
-                    <div>
-                        <p>Norte</p>
-                        <div class="alinhamento">
-                            <p>Oeste</p>
-                            <div class="mapaCalor direcao">
-                                <div class="norte direcao orientacao">23%</div>
-                                <div style="display: flex;">
-                                    <div class="oeste direcao orientacao">21%</div>
-                                    <div class="leste direcao orientacao">21%</div>
-                                </div>
-                                <div class="sul direcao orientacao">22%</div>
+        </div>
 
+        <div style="display: flex;align-items: center;justify-content: space-around;">
+        <div class="regiao">
+            <div class="tituloRegiao">
+                <h4>SATURAÇÃO POR SETORES (ÚLTIMO REGISTRO)</h4>
+            </div>
+            <div class="regiao2">
+
+                <div>
+                    <p>Norte</p>
+                    <div class="alinhamento">
+                        <p>Oeste</p>
+                        <div class="mapaCalor direcao">
+                            <div class="norte direcao orientacao">23%</div>
+                            <div style="display: flex;">
+                                <div class="oeste direcao orientacao">21%</div>
+                                <div class="leste direcao orientacao">21%</div>
                             </div>
-                            <p>Leste</p>
+                            <div class="sul direcao orientacao">22%</div>
+
                         </div>
-                        <p>Sul</p>
+                        <p>Leste</p>
                     </div>
-                    <div class="legenda">
-                        <div class="escrita">
-                            <div class="bloco" style="background-color: yellow;"></div> 0-20% baixo
-                        </div>
-                        <div class="escrita">
-                            <div class="bloco" style="background-color: green;"></div> 21-30% ideal
-                        </div>
-                        <div class="escrita">
-                            <div class="bloco" style="background-color: red;"></div> 31-40% alto
-                        </div>
+                    <p>Sul</p>
+                </div>
+                <div class="legenda">
+                    <div class="escrita">
+                        <div class="bloco" style="background-color: yellow;"></div> 0-20% baixo
+                    </div>
+                    <div class="escrita">
+                        <div class="bloco" style="background-color: green;"></div> 21-30% ideal
+                    </div>
+                    <div class="escrita">
+                        <div class="bloco" style="background-color: red;"></div> 31-100% alto
                     </div>
                 </div>
             </div>
+
+            
         </div>
         <div class="grafico">
-            <h3>TENDÊNCIA DE UMIDADE (Últimas 24h)</h3>
-            <canvas id="myChart"></canvas>
-        </div>
+                <h3>REGISTROS DE UMIDADE (Últimas 24h)</h3>
+                <canvas id="myChart"></canvas>
+
+            </div>
     </div>
+
+
+    </div>
+    
 
 
     <footer>
@@ -120,10 +131,10 @@
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '00:00', '02:00', '04:00', '06:00', '08:00'],
+            labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '00:00', '02:00', '04:00', '06:00'],
             datasets: [{
-                label: 'Umidade em porcentagem (%)',
-                data: [18, 22, 34, 41, 44, 22, 24, 30, 35, 42, 34, 23, 16],
+                label: 'NORTE',
+                data: [18, 22, 34, 41, 44, 22, 24, 30, 35, 42, 34, 23],
                 borderWidth: 1
             }]
         },
