@@ -738,12 +738,12 @@ footer {
     
 }
 
-.operante{
-    width: 30%;
+.box-kpi{
+    width: 24%;
     padding: 20px;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    align-items:center;
+    justify-content:space-around;
     border-radius: 15px;
     display: flex;
     background-color: #ffffff;
@@ -751,32 +751,18 @@ footer {
     box-shadow: 8px 8px 10px gray;
 }
 
-.operante p {
-    padding: 50px;
+.box-kpi p {
+    padding: 10px;
     justify-content: center;
     text-align: center;
-    color: #06ba63;
-    font-size: 30px;
+    color: red;
+    font-size: 20px;
 }
 
-.media{
-    padding: 20px;
-    flex-direction: column;
-    border-radius: 15px;
-    display: flex;
-    color: #000000;
-    background-color: #fff;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 8px 8px 10px gray;
+.box-kpi h2{
+    font-size: 15px;
 }
 
-.media p {
-    padding: 35%;
-    text-align: center;
-    color: #06ba63;
-    font-size: 30px;
-}
 
 .regiao{
     width: 45%;
@@ -806,6 +792,10 @@ footer {
     align-items: center;
     justify-content: center;
     border: solid 1px black
+}
+.sul{
+    background-color:yellow;
+    color: #000000;
 }
 .orientacao{
     padding-top: 20px;
@@ -840,6 +830,7 @@ footer {
 .escrita{
     display: flex;
     margin-left: 5px;
+    gap: 5px;
 }
 
 .tituloRegiao{
@@ -856,4 +847,11 @@ footer {
     border-radius: 8px;
     padding: 8px;
     text-align: center;
+}
+
+.alerta{
+    color:red
+}
+.funcional{
+    color:#06BA63
 }

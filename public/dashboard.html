@@ -34,81 +34,131 @@
                     <option>Obra 3</option>
                 </select>
             </div>
-            <div class="dashboardAlerta">
-                <span>
-                    <a href="dashboardAlerta.html" style="color: white;">Dashboard Alertas</a>
-                </span>
-            </div>
             <div class="usuario">
                 <img src="assets/imgs/Design sem nome.png" alt="" width="30px">
-                <p>Marcos Silva</p>
+                <p>Nome usuário</p>
             </div>
         </div>
         <div class="kpi">
-            <div class="operante">
-                <h4>SENSORES OPERANTES</h4>
-                <p>3/4 Ativos</p>
-            </div>
-            <div class="operante">
-                <h4>REGIÕES ACIMA DA UMIDADE IDEAL</h4>
-                <p>NORTE 29,6%</p>
-            </div>
-            <div class="operante">
-                <h4>REGIÕES ABAIXO DA UMIDADE IDEAL</h4>
-                <p>SUL 29,6%</p>
-            </div>
-
-        </div>
-
-        <div style="display: flex;align-items: center;justify-content: space-around;">
-        <div class="regiao">
-            <div class="tituloRegiao">
-                <h4>SATURAÇÃO POR SETORES (ÚLTIMO REGISTRO)</h4>
-            </div>
-            <div class="regiao2">
-
-                <div>
-                    <p>Norte</p>
-                    <div class="alinhamento">
-                        <p>Oeste</p>
-                        <div class="mapaCalor direcao">
-                            <div class="norte direcao orientacao">23%</div>
-                            <div style="display: flex;">
-                                <div class="oeste direcao orientacao">21%</div>
-                                <div class="leste direcao orientacao">21%</div>
-                            </div>
-                            <div class="sul direcao orientacao">22%</div>
-
-                        </div>
-                        <p>Leste</p>
-                    </div>
-                    <p>Sul</p>
+            <div class="box-kpi">
+                <h4>STATUS REGIÕES</h4>
+                <div style="text-align: center;">
+                    <h2><span class="funcional">NORTE</span></h2>
+                    <h2><span class="funcional">LESTE</span></h2>
+                    <h2><span class="funcional">OESTE</span></h2>
+                    <h2><span class="alerta">SUL</span></h2>
                 </div>
                 <div class="legenda">
-                    <div class="escrita">
-                        <div class="bloco" style="background-color: yellow;"></div> 0-20% baixo
+                        <div class="escrita">
+                            <div class="bloco" style="background-color: green;"></div> ATIVO
+                        </div>
+                        <div class="escrita">
+                            <div class="bloco" style="background-color: red;"></div> INATIVO
+                        </div>
                     </div>
-                    <div class="escrita">
-                        <div class="bloco" style="background-color: green;"></div> 21-30% ideal
-                    </div>
-                    <div class="escrita">
-                        <div class="bloco" style="background-color: red;"></div> 31-100% alto
-                    </div>
-                </div>
+            </div>
+            <div class="box-kpi">
+                <h4>REGIÕES ACIMA DA UMIDADE IDEAL</h4>
+                <p>NORTE 31%</p>
+                <h5>UMIDADE IDEAL 21-30%</h5>
+            </div>
+            <div class="box-kpi">
+                <h4>REGIÕES ABAIXO DA UMIDADE IDEAL</h4>
+                <p>SUL 0%</p>
+                <h5>UMIDADE IDEAL 21-30%</h5>
             </div>
 
-            
         </div>
-        <div class="grafico">
+
+    
+    <div class="kpi">
+        <div class="box-kpi">
+            <h4>ÚLTIMOS ALERTAS REGISTRADOS NORTE</h4>
+            <div>
+                <h2>[2026-04-01 16:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 14:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 12:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 08:00] <span class="alerta">[BAIXO]</span></h2>
+            </div>
+        </div>
+        <div class="box-kpi">
+            <h4>ÚLTIMOS ALERTAS REGISTRADOS LESTE</h4>
+            <div>
+                <h2>[2026-04-01 16:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 14:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 12:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 08:00] <span class="alerta">[BAIXO]</span></h2>
+            </div>
+        </div>
+        <div class="box-kpi">
+            <h4>ÚLTIMOS ALERTAS REGISTRADOS OESTE</h4>
+            <div>
+                <h2>[2026-04-01 16:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 14:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 12:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 08:00] <span class="alerta">[BAIXO]</span></h2>
+            </div>
+        </div>
+        <div class="box-kpi">
+            <h4>ÚLTIMOS ALERTAS REGISTRADOS SUL</h4>
+            <div>
+                <h2>[2026-04-01 16:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 14:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 12:00] <span class="alerta">[ALTO]</span></h2>
+                <h2>[2026-04-01 08:00] <span class="alerta">[BAIXO]</span></h2>
+            </div>
+        </div>
+    </div>
+
+        <div style="display: flex;align-items: center;justify-content: space-around;">
+            <div class="regiao">
+                <div class="tituloRegiao">
+                    <h4>SATURAÇÃO POR SETORES (ÚLTIMO REGISTRO)</h4>
+                </div>
+                <div class="regiao2">
+
+                    <div>
+                        <p>Norte</p>
+                        <div class="alinhamento">
+                            <p>Oeste</p>
+                            <div class="mapaCalor direcao">
+                                <div class="norte direcao orientacao">23%</div>
+                                <div style="display: flex;">
+                                    <div class="oeste direcao orientacao">21%</div>
+                                    <div class="leste direcao orientacao">21%</div>
+                                </div>
+                                <div class="sul direcao orientacao">0%</div>
+
+                            </div>
+                            <p>Leste</p>
+                        </div>
+                        <p>Sul</p>
+                    </div>
+                    <div class="legenda">
+                        <div class="escrita">
+                            <div class="bloco" style="background-color: yellow;"></div> 0-20% baixo
+                        </div>
+                        <div class="escrita">
+                            <div class="bloco" style="background-color: green;"></div> 21-30% ideal
+                        </div>
+                        <div class="escrita">
+                            <div class="bloco" style="background-color: red;"></div> 31-100% alto
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="grafico">
                 <h3>REGISTROS DE UMIDADE (Últimas 24h)</h3>
                 <canvas id="myChart"></canvas>
 
             </div>
-    </div>
+        </div>
 
 
     </div>
-    
+
 
 
     <footer>
@@ -140,7 +190,17 @@
         },
         options: {
             scales: {
+            x:{
+                title: {
+                            display: true,
+                            text: '(horário)'
+                        }
+            },
                 y: {
+                    title: {
+                            display: true,
+                            text: '(%)'
+                        },
                     beginAtZero: true,
 
                 }
