@@ -15,17 +15,17 @@
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
 
-            <div class="dashboard">
-                <span>
-                    <a href="dashboard.html" style="color: white;">Dashboard</a>
-                </span>
-            </div>
-            <div class="dashboard">
-                <span>
-                    <a href="cadastroObra.html" style="color: white;">Cadastrar obra</a>
-                </span>
-            </div>
-            <div class="sair"><span><a href="inicial.html" style="text-align: center; color: #6a3e37;">Sair</a>
+                <div class="dashboard">
+                    <span>
+                        <a href="dashboard.html" style="color: white;">Dashboard</a>
+                    </span>
+                </div>
+                <div class="dashboard">
+                    <span>
+                        <a href="cadastroObra.html" style="color: white;">Cadastrar obra</a>
+                    </span>
+                </div>
+                <div class="sair"><span><a href="inicial.html" style="text-align: center; color: #6a3e37;">Sair</a>
                     </span>
                 </div>
             </div>
@@ -100,19 +100,25 @@
         let senha = input_senha.value;
         let senha2 = input_confirmarSenha.value;
         let invalido = 0;
-        let totalInvalido=0;
+        let totalInvalido = 0;
 
         //validação nome
         if (nome !== '') {
             for (let i = 0; i < nome.length; i++) {
                 if (nome[i].toLowerCase() == nome[i].toUpperCase()) {
-                    nomee.innerHTML = `Nome inválido`
+                    if (!nome[i].includes(' ')) { 
+
                     invalido++
-                } else {
-                    nomee.innerHTML = '';
+                    }
                 }
             }
-            totalInvalido+=invalido;
+            if (invalido > 0) {
+                nomee.innerHTML = `Nome inválido`
+            } else {
+                nomee.innerHTML = '';
+            }
+
+            totalInvalido += invalido;
         } else {
             nomee.innerHTML = `Nome inválido`
         }
@@ -131,8 +137,8 @@
             }
             if (invalido > 0) {
                 cpff.innerHTML = `CPF inválido`;
-                totalInvalido+=invalido;
-                invalido=0;
+                totalInvalido += invalido;
+                invalido = 0;
             } else {
                 cpff.innerHTML = '';
             }
@@ -169,7 +175,7 @@
             senhaa.innerHTML = `Senha Inválida`
             invalido++;
         }
-        totalInvalido+=invalido;
+        totalInvalido += invalido;
         if (totalInvalido > 0) {
             alert('Cadastro não Realizado, Tente Novamente');
         } else {

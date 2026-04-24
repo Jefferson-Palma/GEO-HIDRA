@@ -15,18 +15,18 @@
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
 
-            <div class="dashboard">
-                <span>
-                    <a href="dashboard.html" style="color: white;">Dashboard</a>
-                </span>
-            </div>
+                <div class="dashboard">
+                    <span>
+                        <a href="dashboard.html" style="color: white;">Dashboard</a>
+                    </span>
+                </div>
 
-            <div class="dashboard">
-                <span>
-                    <a href="cadastroFuncionario.html" style="color: white;">Cadastro Funcionário</a>
-                </span>
-            </div>
-            <div class="sair"><span><a href="inicial.html" style="text-align: center; color: #6a3e37;">Sair</a>
+                <div class="dashboard">
+                    <span>
+                        <a href="cadastroFuncionario.html" style="color: white;">Cadastro Funcionário</a>
+                    </span>
+                </div>
+                <div class="sair"><span><a href="inicial.html" style="text-align: center; color: #6a3e37;">Sair</a>
                     </span>
                 </div>
             </div>
@@ -47,13 +47,11 @@
                 <div class="mensagemDeErro" id="cepp"></div>
 
                 <p class="p_tipo_acesso">Número</p>
-                <input class="input_base" type="text" id="input_numero"
-                    placeholder="* Digite o número">
+                <input class="input_base" type="text" id="input_numero" placeholder="* Digite o número">
                 <div class="mensagemDeErro" id="numeroo"></div>
 
                 <p>UF Estado</p>
-                <input class="input_base" type="text" id="input_estado"
-                    placeholder="* Digite o UF do estado">
+                <input class="input_base" type="text" id="input_estado" placeholder="* Digite o UF do estado">
                 <div class="mensagemDeErro" id="estadoo"></div>
 
                 <p>Cidade</p>
@@ -95,17 +93,22 @@
         let listaEstado = ['AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO', 'AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE', 'DF', 'GO', 'MT', 'MS', 'ES', 'MG', 'RJ', 'SP', 'PR', 'RS', 'SC'];
         let invalido = 0;
         let cepInvalido = 0;
-        
+
 
         //validação rua
         if (rua !== '') {
             for (let i = 0; i < rua.length; i++) {
-                if (rua[i].toLowerCase() == rua[i].toUpperCase() && !rua[i].includes(' ')) {
-                    invalido++;
-                    ruaa.innerHTML = `Rua inválida`
-                } else {
-                    ruaa.innerHTML = '';
+                if (rua[i].toLowerCase() == rua[i].toUpperCase()) {
+                    if (!rua[i].includes(' ')) {
+                        invalido++;
+                    }
+
                 }
+            }
+            if (invalido > 0) {
+                ruaa.innerHTML = `Rua inválida`
+            } else {
+                ruaa.innerHTML = '';
             }
         } else {
             invalido++;
@@ -131,62 +134,70 @@
                 cepp.innerHTML = '';
             }
 
-        } else{
+        } else {
             cepp.innerHTML = `CEP inválido`;
         }
         //validação número
         let certoNum = 0;
-        for(let i = 0; i < numeros.length; i++){
+        for (let i = 0; i < numeros.length; i++) {
 
-            if(numeros[i] == numero[0]){
-                certoNum ++;
+            if (numeros[i] == numero[0]) {
+                certoNum++;
             }
-            
+
         }
-        if(certoNum > 0){
+        if (certoNum > 0) {
             numeroo.innerHTML = ``;
-        } else{
+        } else {
             numeroo.innerHTML = 'Número Inválido';
             invalido++;
         }
         //validação estado
         let certoEstado = 0;
-        if(estado !== ''){
-            for(let i = 0; i < listaEstado.length; i++){
-                if(estado.toUpperCase() == listaEstado[i]){
-                    certoEstado ++;
-                }                
-                
-            }
-            if(certoEstado > 0){
-                    estadoo.innerHTML = '';        
-                } else{
-                    estadoo.innerHTML = `Estado Inválido`;
-                    invalido++
+        if (estado !== '') {
+            for (let i = 0; i < listaEstado.length; i++) {
+                if (estado.toUpperCase() == listaEstado[i]) {
+                    certoEstado++;
                 }
-        } else{
+
+            }
+            if (certoEstado > 0) {
+                estadoo.innerHTML = '';
+            } else {
+                estadoo.innerHTML = `Estado Inválido`;
+                invalido++
+            }
+        } else {
             invalido++
             estadoo.innerHTML = `Estado Inválido`;
         }
         //validação cidade
         if (cidade !== '') {
+            let cidadeErrada = 0;
             for (let i = 0; i < cidade.length; i++) {
                 if (cidade[i].toLowerCase() == cidade[i].toUpperCase()) {
-                    invalido++;
-                    cidadee.innerHTML = `Cidade inválida`
-                } else {
-                    cidadee.innerHTML = '';
+                    if (!cidade[i].includes(' ')) {
+                        invalido++;
+                        cidadeErrada++
+                    }
+
                 }
+            }
+            if (cidadeErrada > 0) {
+                cidadee.innerHTML = `Cidade inválida`
+            } else {
+                cidadee.innerHTML = '';
             }
         } else {
             invalido++;
             cidadee.innerHTML = `Cidade inválida`
         }
-        if(invalido<=0){
+        if (invalido <= 0) {
             alert('Cadastro realizado com sucesso');
             setTimeout((cadastro) => {
                 window.location.replace("dashboard.html");
             }, 750);
         }
+
     }   
 </script>
