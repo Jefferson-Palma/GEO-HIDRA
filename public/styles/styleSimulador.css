@@ -39,6 +39,27 @@ header a:hover{
     box-shadow: 8px 8px 10px gray;
 }
 
+.componentes{
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    border: solid 1px #6A3E37;
+    border-radius: 20px;
+    background-color: white;    
+    box-shadow: 8px 8px 10px gray;
+}
+
+.componentes .divSimulador {
+    background-color: #06BA63;
+    border-radius: 8px;
+    padding: 8px;
+    transition: 1s;
+}
+
+.componentes .divSimulador:hover{
+    background-color: #005a2f;
+}
+
 .logo img{
     width: 300px;
     
