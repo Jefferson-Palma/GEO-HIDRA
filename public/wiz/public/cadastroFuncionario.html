@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Funcionário</title>
     <link rel="stylesheet" href="styles/styleCadastro.css">
+    <script src="./js/sessao.js"></script>
 
 </head>
 
@@ -101,12 +102,13 @@
         let senha2 = input_confirmarSenha.value;
         let invalido = 0;
         let totalInvalido = 0;
+        let fkFuncionario = sessionStorage.idEmpresa;
 
         //validação nome
         if (nome !== '') {
             for (let i = 0; i < nome.length; i++) {
                 if (nome[i].toLowerCase() == nome[i].toUpperCase()) {
-                    if (!nome[i].includes(' ')) { 
+                    if (nome[i].includes(numeros)) { 
 
                     invalido++
                     }
@@ -176,19 +178,49 @@
             invalido++;
         }
         totalInvalido += invalido;
-        if (totalInvalido > 0) {
-            alert('Cadastro não Realizado, Tente Novamente');
-        } else {
-            alert('Cadastro Realizado com sucesso');
-            setTimeout((cadastro) => {
-                window.location.replace("dashboard.html");
-            }, 750);
+       
+    
+     fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeServer: nome,
+                cpfServer: cpf,
+                senhaServer: senha,
+                tipoDeAcessoServer: valorSelecionado,
+                emailServer: email
+                
 
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-        }
+                if (resposta.ok) {
+                    
+                    alert("Cadastro realizado com sucesso")
+
+                    setTimeout(() => {
+                        window.location = "dashboard.html";
+                    }, 2000);
+
+                 
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+             
+            });
+
+        return false;
+
+       
+
     }
-
-
 
 
 </script>
