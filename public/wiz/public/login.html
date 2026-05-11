@@ -69,41 +69,86 @@
     function login() {
 
 
-        let loginEmpresa = input_emailLogin.value;
-        let senhaEmpresa = input_senhaLogin.value;
+        let email = input_emailLogin.value;
+        let senha = input_senhaLogin.value;
 
 
 
 
-        if (contador == 0) {
-            alert("Acesso bloqueado, fale com nossa equipe para resolver esse problema.")
-        }else if (loginEmpresa != login1 || senhaEmpresa != senha) {
-            contador -= 1
-            mensagem.style.display = "block";
-            mensagem.innerHTML = "Email ou senha inválidos"
-        }
-        else {
-            mensagem.style.display = "none";
-            alert("Login realizado");
-            login_mensagem.style.display = "block";
-            login_mensagem.innerHTML = `<img src="./assets/imgs/fe_da_silva-loading-7528.gif" alt="" width="10%" margin-left="5px">`
-            setTimeout((login) => {
-                window.location.replace("dashboard.html");
-            }, 1000);
+        // if (contador == 0) {
+        //     alert("Acesso bloqueado, fale com nossa equipe para resolver esse problema.")
+        // }else if (loginEmpresa != login1 || senhaEmpresa != senha) {
+        //     contador -= 1
+        //     mensagem.style.display = "block";
+        //     mensagem.innerHTML = "Email ou senha inválidos"
+        // }
+        // else {
+        //     mensagem.style.display = "none";
+        //     alert("Login realizado");
+        //     login_mensagem.style.display = "block";
+        //     login_mensagem.innerHTML = `<img src="./assets/imgs/fe_da_silva-loading-7528.gif" alt="" width="10%" margin-left="5px">`
+        //     setTimeout((login) => {
+        //         window.location.replace("dashboard.html");
+        //     }, 1000);
 
             
 
-        }
+        // }
 
         
 
+            fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
+            if (resposta.ok) {
+                console.log(resposta);
 
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    //  sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                   // apenas para exibir o loading
 
+                });
+                 setTimeout(function () {
+                        window.location = "dashboard.html";
+                    }, 750); 
+            } else {
+                 mensagem.style.display = "block";
+                 mensagem.innerHTML = "Email ou senha inválidos"
 
+                console.log("Houve um erro ao tentar realizar o login!");
 
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
 
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
+
+
+
+
+
+    
 
 
 </script>
