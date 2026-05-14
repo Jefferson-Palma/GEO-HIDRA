@@ -90,6 +90,7 @@
         let numero = input_numero.value;
         let cidade = input_cidade.value;
         let estado = input_estado.value;
+        let fkEmpresa = sessionStorage.FK_FUNCIONARIO;
         let listaEstado = ['AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO', 'AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE', 'DF', 'GO', 'MT', 'MS', 'ES', 'MG', 'RJ', 'SP', 'PR', 'RS', 'SC'];
         let invalido = 0;
         let cepInvalido = 0;
@@ -203,7 +204,8 @@
                 cepServer: cep,
                 numeroServer: numero,
                 cidadeServer: cidade,
-                estadoServer: estado
+                estadoServer: estado,
+                fkEmpresaServer: fkEmpresa
                 
 
             }),

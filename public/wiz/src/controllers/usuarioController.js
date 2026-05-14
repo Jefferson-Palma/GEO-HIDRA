@@ -23,11 +23,11 @@ function autenticar(req, res) {
                             .then((resultadoAquarios) => {
                                 if (resultadoAquarios.length > 0) { */
                                     res.json({
-                                        id: resultadoAutenticar[0].id,
+                                        idFuncionario: resultadoAutenticar[0].idFuncionario,
                                         email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
+                                        nomeFuncionario: resultadoAutenticar[0].nomeFuncionario,
                                         senha: resultadoAutenticar[0].senha,
-                                        
+                                        fkFuncionario: resultadoAutenticar[0].fkFuncionario
                                     });
                                /*  } else {
                                     res.status(204).json({ aquarios: [] });

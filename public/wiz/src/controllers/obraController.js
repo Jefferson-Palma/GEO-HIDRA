@@ -8,6 +8,7 @@ function cadastrar(req, res) {
     var numero = req.body.numeroServer;    
     var cidade = req.body.cidadeServer;
     var estado = req.body.estadoServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
    
     
 
@@ -22,11 +23,13 @@ function cadastrar(req, res) {
         res.status(400).send("Sua cidade está undefined!");
     } else if (estado == undefined) {
         res.status(400).send("Seu estado está undefined!");
+    } else if (estado == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
     } 
     else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        obraModel.cadastrar(rua,cep,numero,cidade,estado)
+        obraModel.cadastrar(rua,cep,numero,cidade,estado,fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
