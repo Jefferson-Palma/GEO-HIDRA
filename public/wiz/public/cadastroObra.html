@@ -193,10 +193,41 @@
             cidadee.innerHTML = `Cidade inválida`
         }
         if (invalido <= 0) {
-            alert('Cadastro realizado com sucesso');
-            setTimeout((cadastro) => {
-                window.location.replace("dashboard.html");
-            }, 750);
+            fetch("/obra/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ruaServer: rua,
+                cepServer: cep,
+                numeroServer: numero,
+                cidadeServer: cidade,
+                estadoServer: estado
+                
+
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    
+                    alert("Cadastro de Obra realizado com sucesso")
+
+                    setTimeout(() => {
+                        window.location = "dashboard.html";
+                    }, 750);
+
+                 
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+             
+            });
         }
 
     }   
