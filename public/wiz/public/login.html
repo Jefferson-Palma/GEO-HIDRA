@@ -118,14 +118,12 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nomeFuncionario;
                     sessionStorage.ID_USUARIO = json.idFuncionario;
-                    sessionStorage.FK_FUNCIONARIO = json.fkFuncionario;
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
                     //  sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
                    // apenas para exibir o loading
-
+                    window.location = "dashboard.html";
                 });
-                 setTimeout(function () {
-                        window.location = "dashboard.html";
-                    }, 750); 
+                 
             } else {
                  mensagem.style.display = "block";
                  mensagem.innerHTML = "Email ou senha inválidos"

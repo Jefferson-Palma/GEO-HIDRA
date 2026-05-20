@@ -7,6 +7,11 @@ var obraController = require("../controllers/obraController");
 router.post("/cadastrar", function (req, res) {
     obraController.cadastrar(req, res);
 })
+router.get("/dashboard/:fkEmpresa", function (req, res){
+    obraController.dashboard(req, res);
+
+});
+
 
 
 module.exports = router;

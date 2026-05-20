@@ -102,7 +102,7 @@
         let senha2 = input_confirmarSenha.value;
         let invalido = 0;
         let totalInvalido = 0;
-        let fkFuncionario = sessionStorage.idEmpresa;
+        let fkEmpresa = sessionStorage.FK_EMPRESA;
 
         //validação nome
         if (nome !== '') {
@@ -190,7 +190,8 @@
                 cpfServer: cpf,
                 senhaServer: senha,
                 tipoDeAcessoServer: valorSelecionado,
-                emailServer: email
+                emailServer: email,
+                fkEmpresa: fkEmpresa
                 
 
             }),

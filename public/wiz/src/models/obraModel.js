@@ -1,3 +1,4 @@
+
 var database = require("../database/config")
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
@@ -12,7 +13,21 @@ function cadastrar(rua,cep,numero,cidade,estado, fkEmpresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function dashboard(fkEmpresa){
+
+    var instrucaoSql = `SELECT area, umidade, dtRegistro
+FROM registroSensor
+  JOIN sensor ON idSensor=fkSensor
+  JOIN obra ON idObra=fkObra
+ JOIN empresa ON idEmpresa=fkEmpresa
+ WHERE idEmpresa = ${fkEmpresa};`
+ console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
 
 module.exports = {
-    cadastrar
+    cadastrar,
+    dashboard
 };

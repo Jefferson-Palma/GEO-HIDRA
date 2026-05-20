@@ -27,7 +27,7 @@ function autenticar(req, res) {
                                         email: resultadoAutenticar[0].email,
                                         nomeFuncionario: resultadoAutenticar[0].nomeFuncionario,
                                         senha: resultadoAutenticar[0].senha,
-                                        fkFuncionario: resultadoAutenticar[0].fkFuncionario
+                                        fkEmpresa: resultadoAutenticar[0].fkEmpresa
                                     });
                                /*  } else {
                                     res.status(204).json({ aquarios: [] });
@@ -57,6 +57,7 @@ function cadastrar(req, res) {
     var senha = req.body.senhaServer;    
     var tipoDeAcesso = req.body.tipoDeAcessoServer;
     var email = req.body.emailServer;
+    var fkEmpresa = req.body.fkEmpresa
    
     
 
@@ -71,11 +72,13 @@ function cadastrar(req, res) {
         res.status(400).send("Sua tipoDeAcesso está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } 
+    } else if(fkEmpresa == undefined){
+         res.status(400).send("Sua empresa está undefined!");
+    }
     else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome,cpf,senha,tipoDeAcesso,email)
+        usuarioModel.cadastrar(nome,cpf,senha,tipoDeAcesso,email,fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);

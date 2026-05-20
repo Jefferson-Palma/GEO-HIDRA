@@ -182,7 +182,8 @@
 
 </html>
 <script>
-    const ctx = document.getElementById('myChart');
+   let myChart;
+    /* const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
         type: 'line',
@@ -236,4 +237,127 @@
             }
         }
     });
+ */
+
+    window.onload = exibirGrafico;
+    function exibirGrafico() {
+       let fkEmpresa = sessionStorage.FK_EMPRESA;
+
+        dashboard(fkEmpresa);
+
+    }
+    function dashboard(fkEmpresa) {
+
+
+
+
+
+        fetch(`/obra/dashboard/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, fkEmpresa);
+                   
+
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    function plotarGrafico(resposta, fkEmpresa) {
+
+
+
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Umidade',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(255, 100, 10)',
+                tension: 0.1
+            },
+
+            ]
+            
+    
+        };
+
+
+
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            if (labels.length >= 10) {
+                labels.shift();
+                dados.datasets[0].data.shift();
+            }
+            labels.push(registro.dtRegistro);
+            dados.datasets[0].data.push(registro.umidade);
+
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+            options: {
+
+                scales: {
+                    y: {
+                        beginAtZero: true,
+
+
+
+                        max: 101,
+                        ticks: {
+                            stepSize: 10,
+
+
+                        }
+                    }
+                }
+            }
+        };
+
+        // Adicionando gráfico criado em div na tela
+
+
+       myChart = new Chart(
+            document.getElementById(`myChart`),
+            config
+        );
+
+    }
 </script>
