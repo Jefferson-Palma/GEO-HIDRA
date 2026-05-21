@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/styleDashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="janela">
+        <div class="header-left">
+            <div class="logo">
+                <a href="index.html"><img src="assets/imgs/Group 10.png" alt=""></a>
+            </div>
+            <div class="menu">
+                <div class="menuNome">
+                    MENU
+                </div>
+                <hr>
+                <div class="paginas">
+                    <img src="../assets/imgs/chart-line-white.svg" alt="">
+                    Dashboard Geral
+                </div>
+                <div class="paginas">
+                    <a href="questionario.html"><img src="../assets/imgs/clipboard-list.svg" alt="">Dashboard
+                        Específica</a>
+                </div>
+                <!-- <div class="paginas">
+                    <a href="aporte.html"><img src="../assets/imgs/house.svg" alt="">Aporte</a>
+                </div>
+                <div class="paginas">
+                    <a href="../index.html"><img src="../assets/imgs/log-out.svg" alt="">Sair</a>
+                </div> -->
+            </div>
+            <div class="footer">
+                <hr>
+                <img src="assets/imgs/Design sem nome.png" alt="">
+
+                <div class="informacoes-usuario">
+                    <div class="nome-usuario" id="b_usuario">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash">
+                    <div class="dash">
+            <div class="header">
+                Olá, <span class="cinza" id="b_usuario"></span>
+            </div>
+            <div class="kpis">
+                <div class="kpi1">
+                    <div class="projecao">
+                        OBRAS MONITORADAS
+                    </div>
+                    8
+                    <div class="juros">
+                        Rendeu 84% acima do dinheiro investido
+                    </div>
+                </div>
+                <div class="kpi2">
+                    <div class="projecao">
+                        OBRAS EM ALERTA
+                    </div>
+                    2
+                    <div class="juros">
+                       +10% da umidade recomendada
+                    </div>
+                </div>
+                <div class="kpi3">
+                    <div class="projecao">
+                        OBRAS COM UMIDADE CRÍTICA
+                    </div>
+                    5
+                    <div class="juros">
+                        +20% da umidade recomendada
+                    </div>
+                </div>
+                <!-- <div class="kpi4">
+                    <div class="projecao">
+                        TOTAL INVESTIDO
+                    </div>
+                    R$ 60.000
+                    <div class="juros">
+                        + R$ 6.000 em relação ao ano anterior
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="graficos">
+                <!-- <div class="grafico-card grafico-grande">
+                    <h3 class="tituloGraficos">Evolução do Patrimônio</h3>
+                    <canvas id="graficoEvolucao"></canvas>
+                </div> -->
+                <div class="grafico-menor">
+                    <div class="grafico-card2">
+                        <h3 class="tituloGraficos">Juros Gerados por Ano</h3>
+                        <canvas id="graficoJuros"></canvas>
+                    </div>
+                    <div class="grafico-card2">
+                        <h3 class="tituloGraficos">Estado das Obras</h3>
+                        <canvas id="graficoComposicao"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+</body>
+
+</html>
+<script>
+    new Chart(document.getElementById('graficoComposicao'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Normal', 'Alerta', 'Crítico'],
+            datasets: [{
+                label: 'Patrimônio Total',
+                data: [1, 2, 5],
+                // backgroundColor: rgb(255, 255, 255),
+                // borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
