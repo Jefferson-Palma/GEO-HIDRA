@@ -7,6 +7,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/sessao.js"></script>
 </head>
 
 <body>
@@ -14,16 +15,16 @@
         <div class="componentes">
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
-                <div class="funcionarioCadastro">
+                <div id="cadastro1" class="funcionarioCadastro">
                 <span>
                     <a href="cadastroObra.html" style="color: white;">Cadastrar obra</a>
                 </span>
             </div>
-                <div class="funcionarioCadastro"><span>
+                <div id="cadastro2" class="funcionarioCadastro"><span>
                         <a href="cadastroFuncionario.html" style="color: white;">Cadastrar Funcionário</a>
                     </span>
                 </div>
-                <div class="sair"><span><a href="inicial.html" style="text-align: center; color: #6a3e37;">Sair</a>
+                <div class="sair"><span> <button onclick="limparSessao()" style="text-align: center; color: #6a3e37;">Sair</button>
                     </span>
                 </div>
             </div>
@@ -172,9 +173,9 @@
             <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
             </div>
             <div class="conteudo">
-                <span><a href="inicial.html">Home</a></span>
-                <span><a href="inicial.html #sobreNos">Sobre Nós</a></span>
-                <span><a href="inicial.html#contato">Contato</a></span>
+                <span><a href="index.html">Home</a></span>
+                <span><a href="index.html #sobreNos">Sobre Nós</a></span>
+                <span><a href="index.html#contato">Contato</a></span>
             </div>
         </div>
     </footer>
@@ -182,6 +183,7 @@
 
 </html>
 <script>
+ 
    let myChart;
     /* const ctx = document.getElementById('myChart');
 
@@ -238,7 +240,19 @@
         }
     });
  */
+    window.onload=validarTipoUser();
 
+    function validarTipoUser(){
+    var tipoUser = sessionStorage.TIPO_ACESSO;
+    if(tipoUser!="adm"){
+        cadastro1.style.display="none";
+        cadastro2.style.display="none";
+        
+    }else{
+        cadastro1.style.display="flex";
+        cadastro2.style.display="flex";
+    }
+}
     window.onload = exibirGrafico;
     function exibirGrafico() {
        let fkEmpresa = sessionStorage.FK_EMPRESA;

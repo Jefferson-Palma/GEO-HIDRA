@@ -27,7 +27,8 @@ function autenticar(req, res) {
                                         email: resultadoAutenticar[0].email,
                                         nomeFuncionario: resultadoAutenticar[0].nomeFuncionario,
                                         senha: resultadoAutenticar[0].senha,
-                                        fkEmpresa: resultadoAutenticar[0].fkEmpresa
+                                        fkEmpresa: resultadoAutenticar[0].fkEmpresa,
+                                        tipoDeAcesso: resultadoAutenticar[0].tipoDeAcesso
                                     });
                                /*  } else {
                                     res.status(204).json({ aquarios: [] });

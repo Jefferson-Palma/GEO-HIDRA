@@ -13,13 +13,9 @@
         <div class="componentes">
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
-                <span><a href="inicial.html">Home</a></span>
-                <span><a href="inicial.html#sobreNos">Sobre Nós</a></span>
-                <span><a href="inicial.html#contato">Contato</a></span>
-                
-                
-                <!-- <div class="divSimulador"><span><a style="color: white;" href="login.html">Login</a></span>
-                </div> -->
+                <span><a href="index.html">Home</a></span>
+                <span><a href="index.html#sobreNos">Sobre Nós</a></span>
+                <span><a href="index.html#contato">Contato</a></span>
             </div>
         </div>
     </header>
@@ -50,9 +46,9 @@
             <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
             </div>
             <div class="conteudo">
-                <span><a href="inicial.html">Home</a></span>
-                <span><a href="inicial.html#sobreNos">Sobre Nós</a></span>
-                <span><a href="inicial.html#contato">Contato</a></span>
+                <span><a href="index.html">Home</a></span>
+                <span><a href="index.html#sobreNos">Sobre Nós</a></span>
+                <span><a href="index.html#contato">Contato</a></span>
             </div>
         </div>
     </footer>
@@ -119,6 +115,7 @@
                     sessionStorage.NOME_USUARIO = json.nomeFuncionario;
                     sessionStorage.ID_USUARIO = json.idFuncionario;
                     sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                    sessionStorage.TIPO_ACESSO = json.tipoDeAcesso;
                     //  sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
                    // apenas para exibir o loading
                     window.location = "dashboard.html";

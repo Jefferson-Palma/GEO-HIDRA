@@ -72,6 +72,21 @@ a:hover{
     width: 100%;
     font-weight: bold;
 }
+.caminhos button{
+    background-color: white;
+    border: 0px;
+    color: #6A3E37;
+    font-size: large;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    font-weight: bold;
+    transition: 1.8s;
+}
+.caminhos button:hover{
+    
+    transform: scale(1.5); 
+}
 
 .caminhos img{
     transition: 1.8s;
