@@ -11,6 +11,10 @@ router.get("/dashboard/:fkEmpresa", function (req, res){
     obraController.dashboard(req, res);
 
 });
+router.get("/tempoReal/:fkEmpresa", function (req, res) {
+    obraController.tempoReal(req, res);
+})
+
 
 
 

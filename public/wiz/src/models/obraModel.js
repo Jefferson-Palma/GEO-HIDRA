@@ -25,9 +25,22 @@ FROM registroSensor
     return database.executar(instrucaoSql);
 
 }
+function tempoReal(fkEmpresa) {
+
+     var instrucaoSql = `SELECT fkSensor,area, umidade, DATE_FORMAT(dtRegistro, '%d/%m/%Y %H:%i:%s') AS dtRegistro
+FROM registroSensor
+  JOIN sensor ON idSensor=fkSensor
+  JOIN obra ON idObra=fkObra
+ JOIN empresa ON idEmpresa=fkEmpresa
+ WHERE idEmpresa = ${fkEmpresa};`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 
 module.exports = {
     cadastrar,
-    dashboard
+    dashboard,
+    tempoReal
 };

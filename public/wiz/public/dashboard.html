@@ -254,6 +254,8 @@
             cadastro2.style.display = "flex";
         }
     }
+
+     let proximaAtualizacao;
     window.onload = exibirGrafico;
     function exibirGrafico() {
         let fkEmpresa = sessionStorage.FK_EMPRESA;
@@ -264,7 +266,9 @@
     function dashboard(fkEmpresa) {
 
 
-
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
 
 
         fetch(`/obra/dashboard/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
@@ -347,11 +351,21 @@
 
             // No console o valor da umidade tava vindo como string, ent precisamos transformar em number para aparecer no gráfico
             let umidade = Number(registro.umidade);
-
+                  
+             // se tiver mais de 10 dados tira o ultimo e coloca o novo
+            if(labels.length >= 10){
+                labels.shift();
+                dados.datasets[0].data.shift();
+                dados.datasets[1].data.shift();
+                dados.datasets[2].data.shift();
+                dados.datasets[3].data.shift();
+            }
             // evita que apareça mais de um registro na mesma data no eixo X
             if (!labels.includes(registro.dtRegistro)) {
                 labels.push(registro.dtRegistro);
             }
+           
+          
 
 
             // pega os registro do sensor que ta na fk 1 pelo indice e plota no grafico
@@ -415,6 +429,66 @@
             document.getElementById(`myChart`),
             config
         );
+          setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 2000);
 
     }
+    function atualizarGrafico(fkEmpresa, dados, myChart) {
+
+
+
+        fetch(`obra/tempoReal/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    
+                    // alertar(novoRegistro, fkEmpresa);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                 
+
+
+                    if (novoRegistro[0].dtRegistro == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].dtRegistro)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].dtRegistro); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+                         dados.datasets[1].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[1].data.push(novoRegistro[0].umidade * 1.5); // incluir uma nova medida de umidade
+                         dados.datasets[2].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[2].data.push(novoRegistro[0].umidade * 1.2); // incluir uma nova medida de umidade
+                         dados.datasets[3].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[3].data.push(novoRegistro[0].umidade * 0); // incluir uma nova medida de umidade
+                       
+
+                        myChart.update();
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+    
 </script>
