@@ -66,6 +66,27 @@ function dashboard(req, res){
     });
 
 }
+
+function historico(req, res){
+    
+    var fkEmpresa = req.params.fkEmpresa;
+
+    
+    obraModel.historico(fkEmpresa).then(function (resultado){
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+
+        }else{
+            res.status(204).send("Nenhum resultado encontado")
+        }
+    }).catch(function (erro){
+        console.log(erro);
+        console.log("House um erro ao buscar as ultimas medidas", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    
+    });
+
+}
 function tempoReal(req, res) {
 
     var fkEmpresa = req.params.fkEmpresa;
@@ -89,5 +110,6 @@ module.exports = {
     // autenticar,
     cadastrar,
     dashboard,
-    tempoReal
+    tempoReal,
+    historico
 }

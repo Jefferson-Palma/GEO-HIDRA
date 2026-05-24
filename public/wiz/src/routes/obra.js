@@ -15,6 +15,11 @@ router.get("/tempoReal/:fkEmpresa", function (req, res) {
     obraController.tempoReal(req, res);
 })
 
+router.get("/historico/:fkEmpresa", function (req, res){
+    obraController.historico(req, res);
+
+});
+
 
 
 

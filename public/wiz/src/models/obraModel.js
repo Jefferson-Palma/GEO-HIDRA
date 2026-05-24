@@ -25,6 +25,16 @@ FROM registroSensor
     return database.executar(instrucaoSql);
 
 }
+
+function historico(fkEmpresa){
+
+    var instrucaoSql = `SELECT * FROM kpis_alertas
+WHERE area='LESTE' AND idEmpresa=${fkEmpresa} AND idObra=1;`
+ console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
 function tempoReal(fkEmpresa) {
 
      var instrucaoSql = `SELECT fkSensor,area, umidade, DATE_FORMAT(dtRegistro, '%d/%m/%Y %H:%i:%s') AS dtRegistro
@@ -42,5 +52,6 @@ FROM registroSensor
 module.exports = {
     cadastrar,
     dashboard,
-    tempoReal
+    tempoReal,
+    historico
 };

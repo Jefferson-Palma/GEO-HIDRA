@@ -82,38 +82,26 @@
         <div class="kpi">
             <div class="box-kpi">
                 <h4>ÚLTIMOS ALERTAS REGISTRADOS NORTE</h4>
-                <div>
-                    <h2>[2026-04-01 6:00] <span class="alerta">[ALTO-31%]</span></h2>
-                    <h2>[2026-04-01 4:00] <span class="alerta">[ALTO-34%]</span></h2>
-                    <h2>[2026-04-01 2:00] <span class="alerta">[ALTO-35%]</span></h2>
-                    <h2>[2026-04-01 0:00] <span class="alerta">[ALTO-32%]</span></h2>
+                <div id="kpiNorte">
+
                 </div>
             </div>
             <div class="box-kpi">
                 <h4>ÚLTIMOS ALERTAS REGISTRADOS LESTE</h4>
-                <div>
-                    <h2>[2026-04-01 4:00] <span class="alerta">[BAIXO-19%]</span></h2>
-                    <h2>[2026-04-01 2:00] <span class="alerta">[BAIXO-18%]</span></h2>
-                    <h2>[2026-04-01 0:00] <span class="alerta">[BAIXO-20%]</span></h2>
-                    <h2>[2026-03-31 18:00] <span class="alerta">[BAIXO-19%]</span></h2>
+                <div id="kpiLeste">
+
                 </div>
             </div>
             <div class="box-kpi">
                 <h4>ÚLTIMOS ALERTAS REGISTRADOS OESTE</h4>
-                <div>
-                    <h2>[2026-04-01 6:00] <span class="alerta">[ALTO-32%]</span></h2>
-                    <h2>[2026-04-01 4:00] <span class="alerta">[ALTO-35%]</span></h2>
-                    <h2>[2026-04-01 2:00] <span class="alerta">[ALTO-39%]</span></h2>
-                    <h2>[2026-04-01 0:00] <span class="alerta">[ALTO-36%]</span></h2>
+                <div id="kpiOeste">
+
                 </div>
             </div>
             <div class="box-kpi">
                 <h4>ÚLTIMOS ALERTAS REGISTRADOS SUL</h4>
-                <div>
-                    <h2>[2026-04-01 6:00] <span class="alerta">[INATIVO]</span></h2>
-                    <h2>[2026-04-01 4:00] <span class="alerta">[INATIVO]</span></h2>
-                    <h2>[2026-04-01 2:00] <span class="alerta">[INATIVO]</span></h2>
-                    <h2>[2026-04-01 0:00] <span class="alerta">[INATIVO]</span></h2>
+                <div id="kpiSul">
+
                 </div>
             </div>
         </div>
@@ -255,11 +243,33 @@
         }
     }
 
-     let proximaAtualizacao;
+    function buscarHistoricoNorte(fkEmpresa) {
+        fetch(`/obra/historico/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    for (let i = 0; i < resposta.length; i++) {
+                        kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+                        kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+                        kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+                        kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+
+    let proximaAtualizacao;
     window.onload = exibirGrafico;
     function exibirGrafico() {
         let fkEmpresa = sessionStorage.FK_EMPRESA;
-
+        buscarHistoricoNorte(fkEmpresa)
         dashboard(fkEmpresa);
 
     }
@@ -351,9 +361,9 @@
 
             // No console o valor da umidade tava vindo como string, ent precisamos transformar em number para aparecer no gráfico
             let umidade = Number(registro.umidade);
-                  
-             // se tiver mais de 10 dados tira o ultimo e coloca o novo
-            if(labels.length >= 10){
+
+            // se tiver mais de 10 dados tira o ultimo e coloca o novo
+            if (labels.length >= 10) {
                 labels.shift();
                 dados.datasets[0].data.shift();
                 dados.datasets[1].data.shift();
@@ -364,14 +374,14 @@
             if (!labels.includes(registro.dtRegistro)) {
                 labels.push(registro.dtRegistro);
             }
-           
-          
+
+
 
 
             // pega os registro do sensor que ta na fk 1 pelo indice e plota no grafico
             if (registro.fkSensor == 1) {
-                
-               // utiliza o valor capturado da umidade la variavel e puxa ele pro indice 0 que seria o primeiro sensor
+
+                // utiliza o valor capturado da umidade la variavel e puxa ele pro indice 0 que seria o primeiro sensor
                 dados.datasets[0].data.push(umidade);
 
                 // usa como base o valor capturado na fkSensor 1 para multiplicar por x o dado encontrado e manda ele
@@ -429,7 +439,7 @@
             document.getElementById(`myChart`),
             config
         );
-          setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 2000);
 
     }
     function atualizarGrafico(fkEmpresa, dados, myChart) {
@@ -440,19 +450,19 @@
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    
+
                     // alertar(novoRegistro, fkEmpresa);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                 
+
 
 
                     if (novoRegistro[0].dtRegistro == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        
+
                         console.log("Horário do novo dado capturado:")
                         console.log(novoRegistro[0].dtRegistro)
                         console.log("Horário do último dado capturado:")
@@ -465,13 +475,13 @@
 
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                         dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-                         dados.datasets[1].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[1].data.shift();  // apagar o primeiro de umidade
                         dados.datasets[1].data.push(novoRegistro[0].umidade * 1.5); // incluir uma nova medida de umidade
-                         dados.datasets[2].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[2].data.shift();  // apagar o primeiro de umidade
                         dados.datasets[2].data.push(novoRegistro[0].umidade * 1.2); // incluir uma nova medida de umidade
-                         dados.datasets[3].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[3].data.shift();  // apagar o primeiro de umidade
                         dados.datasets[3].data.push(novoRegistro[0].umidade * 0); // incluir uma nova medida de umidade
-                       
+
 
                         myChart.update();
                     }
@@ -490,5 +500,5 @@
             });
 
     }
-    
+
 </script>
