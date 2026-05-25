@@ -249,10 +249,10 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     for (let i = 0; i < resposta.length; i++) {
-                        kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] % `
-                        kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] %`
-                        kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] %`
-                        kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] %`
+                       kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+                        kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+                        kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+                        kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
                     }
                 });
             } else {
@@ -507,46 +507,49 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    
-                        leste.innerHTML += `<h3>${resposta[0].umidade} %`
-                         norte.innerHTML += `<h3>${resposta[1].umidade} %`
-                         oeste.innerHTML += `<h3>${resposta[2].umidade} %`
-                         sul.innerHTML += `<h3>${resposta[3].umidade} %`
+                    let registro1=resposta[0].umidade;
+                    let registro2=resposta[0].umidade*0.25;
+                    let registro3=resposta[0].umidade*0.4;
+                    let registro4=resposta[0].umidade*0;
+                        leste.innerHTML += `<h3>${registro1} %`
+                         norte.innerHTML += `<h3>${registro2} %`
+                         oeste.innerHTML += `<h3>${registro3} %`
+                         sul.innerHTML += `<h3>${registro4} %`
 
-                            if(Number(resposta[0].umidade) <= 20){
+                            if(Number(registro1) <= 20){
                                 leste.style.backgroundColor = "yellow"
                                 leste.style.color = "black"
-                            }else if(Number(resposta[0].umidade) <= 30){
+                            }else if(Number(registro1) <= 30){
                                 leste.style.backgroundColor = "green"
                                 leste.style.color = "white"
                             }else{
                                 leste.style.backgroundColor = "red"
                                 leste.style.color = "white"
                         }
-                            if(Number(resposta[1].umidade) <= 20){
+                            if(Number(registro2) <= 20){
                                 norte.style.backgroundColor = "yellow"
                                 norte.style.color = "black"
-                            }else if(Number(resposta[1].umidade) <= 30){
+                            }else if(Number(registro2) <= 30){
                                 norte.style.backgroundColor = "green"
                                 norte.style.color = "white"
                             }else{
                                 norte.style.backgroundColor = "red"
                                 norte.style.color = "white"
                         }
-                            if(Number(resposta[2].umidade) <= 20){
+                            if(Number(registro3) <= 20){
                                 oeste.style.backgroundColor = "yellow"
                                 oeste.style.color = "black"
-                            }else if(Number(resposta[2].umidade) <= 30){
+                            }else if(Number(registro3) <= 30){
                                 oeste.style.backgroundColor = "green"
                                 oeste.style.color = "white"
                             }else{
                                 oeste.style.backgroundColor = "red"
                                 oeste.style.color = "white"
                         }
-                            if(Number(resposta[3].umidade) <= 20){
+                            if(Number(registro4) <= 20){
                                 sul.style.backgroundColor = "yellow"
                                 sul.style.color = "black"
-                            }else if(Number(resposta[3].umidade) <= 30){
+                            }else if(Number(registro4) <= 30){
                                 sul.style.backgroundColor = "green"
                                 sul.style.color = "white"
                             }else{
