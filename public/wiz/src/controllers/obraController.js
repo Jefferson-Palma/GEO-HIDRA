@@ -87,6 +87,27 @@ function historico(req, res){
     });
 
 }
+
+function saturacao(req, res){
+    
+    var fkEmpresa = req.params.fkEmpresa;
+
+    
+    obraModel.saturacao(fkEmpresa).then(function (resultado){
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+
+        }else{
+            res.status(204).send("Nenhum resultado encontado")
+        }
+    }).catch(function (erro){
+        console.log(erro);
+        console.log("House um erro ao buscar os ultimos registros de saturacao", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    
+    });
+
+}
 function tempoReal(req, res) {
 
     var fkEmpresa = req.params.fkEmpresa;
@@ -111,5 +132,6 @@ module.exports = {
     cadastrar,
     dashboard,
     tempoReal,
-    historico
+    historico,
+    saturacao
 }

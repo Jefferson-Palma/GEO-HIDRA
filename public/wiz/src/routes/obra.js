@@ -14,6 +14,9 @@ router.get("/dashboard/:fkEmpresa", function (req, res){
 router.get("/tempoReal/:fkEmpresa", function (req, res) {
     obraController.tempoReal(req, res);
 })
+router.get("/saturacao/:fkEmpresa", function (req, res) {
+    obraController.saturacao(req, res);
+})
 
 router.get("/historico/:fkEmpresa", function (req, res){
     obraController.historico(req, res);

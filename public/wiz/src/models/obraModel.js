@@ -34,6 +34,14 @@ WHERE area='LESTE' AND idEmpresa=${fkEmpresa} AND idObra=1;`
     return database.executar(instrucaoSql);
 
 }
+function saturacao(fkEmpresa){
+
+    var instrucaoSql = `SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor  
+where dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = 1 order by area; `
+ console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
 
 function tempoReal(fkEmpresa) {
 
@@ -53,5 +61,6 @@ module.exports = {
     cadastrar,
     dashboard,
     tempoReal,
-    historico
+    historico,
+    saturacao
 };

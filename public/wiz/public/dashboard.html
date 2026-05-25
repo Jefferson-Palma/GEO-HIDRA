@@ -107,9 +107,9 @@
         </div>
 
         <div style="display: flex;align-items: center;justify-content: space-around;">
-            <div class="regiao">
+            <div class="regiao" onload="buscarSaturacaoPorSensores()">
                 <div class="tituloRegiao">
-                    <h4>SATURAÇÃO POR SETORES (ÚLTIMO REGISTRO)</h4>
+                    <h4>UMIDADE POR ÁREA (ÚLTIMO REGISTRO)</h4>
                 </div>
                 <div class="regiao2">
 
@@ -118,12 +118,12 @@
                         <div class="alinhamento">
                             <p>Oeste</p>
                             <div class="mapaCalor direcao">
-                                <div class="norte direcao orientacao">31%</div>
+                                <div class="norte direcao orientacao" id="norte"></div>
                                 <div style="display: flex;">
-                                    <div class="oeste direcao orientacao">32%</div>
-                                    <div class="leste direcao orientacao">21%</div>
+                                    <div class="oeste direcao orientacao" id="oeste"></div>
+                                    <div class="leste direcao orientacao" id="leste"></div>
                                 </div>
-                                <div class="sul direcao orientacao">0%</div>
+                                <div class="sul direcao orientacao" id="sul"></div>
 
                             </div>
                             <p>Leste</p>
@@ -249,10 +249,10 @@
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     for (let i = 0; i < resposta.length; i++) {
-                        kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
-                        kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
-                        kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
-                        kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+                        kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] % `
+                        kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] %`
+                        kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] %`
+                        kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] %`
                     }
                 });
             } else {
@@ -269,6 +269,7 @@
     window.onload = exibirGrafico;
     function exibirGrafico() {
         let fkEmpresa = sessionStorage.FK_EMPRESA;
+        buscarSaturacaoPorSensores(fkEmpresa)
         buscarHistoricoNorte(fkEmpresa)
         dashboard(fkEmpresa);
 
@@ -499,6 +500,67 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
+    }
+
+    function buscarSaturacaoPorSensores(fkEmpresa) {
+        fetch(`/obra/saturacao/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    
+                        leste.innerHTML += `<h3>${resposta[0].umidade} %`
+                         norte.innerHTML += `<h3>${resposta[1].umidade} %`
+                         oeste.innerHTML += `<h3>${resposta[2].umidade} %`
+                         sul.innerHTML += `<h3>${resposta[3].umidade} %`
+
+                            if(Number(resposta[0].umidade) <= 20){
+                                leste.style.backgroundColor = "yellow"
+                                leste.style.color = "black"
+                            }else if(Number(resposta[0].umidade) <= 30){
+                                leste.style.backgroundColor = "green"
+                                leste.style.color = "white"
+                            }else{
+                                leste.style.backgroundColor = "red"
+                                leste.style.color = "white"
+                        }
+                            if(Number(resposta[1].umidade) <= 20){
+                                norte.style.backgroundColor = "yellow"
+                                norte.style.color = "black"
+                            }else if(Number(resposta[1].umidade) <= 30){
+                                norte.style.backgroundColor = "green"
+                                norte.style.color = "white"
+                            }else{
+                                norte.style.backgroundColor = "red"
+                                norte.style.color = "white"
+                        }
+                            if(Number(resposta[2].umidade) <= 20){
+                                oeste.style.backgroundColor = "yellow"
+                                oeste.style.color = "black"
+                            }else if(Number(resposta[2].umidade) <= 30){
+                                oeste.style.backgroundColor = "green"
+                                oeste.style.color = "white"
+                            }else{
+                                oeste.style.backgroundColor = "red"
+                                oeste.style.color = "white"
+                        }
+                            if(Number(resposta[3].umidade) <= 20){
+                                sul.style.backgroundColor = "yellow"
+                                sul.style.color = "black"
+                            }else if(Number(resposta[3].umidade) <= 30){
+                                sul.style.backgroundColor = "green"
+                                sul.style.color = "white"
+                            }else{
+                                sul.style.backgroundColor = "red"
+                                sul.style.color = "white"
+                        }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
     }
 
 </script>
