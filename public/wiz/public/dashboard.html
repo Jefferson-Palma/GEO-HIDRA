@@ -239,7 +239,7 @@
             }
         });
      */
-        window.onload = validarTipoUser();
+        window.onload = validarTipoUser;
 
         function validarTipoUser() {
             var tipoUser = sessionStorage.TIPO_ACESSO;
@@ -248,8 +248,8 @@
                 cadastro2.style.display = "none";
 
             } else {
-                cadastro1.style.display = "flex";
-                cadastro2.style.display = "flex";
+                cadastro1.style.display = "block";
+                cadastro2.style.display = "block";
             }
         }
 
@@ -259,7 +259,14 @@
                     response.json().then(function (resposta) {
                         console.log(`Dados das Kpi de busca recebidos: ${JSON.stringify(resposta)}`);
                         for (let i = 0; i < resposta.length; i++) {
-                            kpiRegistroAcima.innerHTML += `<p>${resposta[i].area} ${resposta[i].umidade}</p>`
+                            let registro1 = resposta[0].umidade;
+                            let registro2 = resposta[0].umidade * 1.5;
+                            let registro3 = resposta[0].umidade * 1.2;
+                            let registro4 = resposta[0].umidade * 0;
+                            kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro1}%</span> <br>`
+                            kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro2}%</span> <br>`
+                            kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro3}%</span> <br>`
+                            kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro4}%</span> <br>`
                         }
                     });
                 } else {
@@ -277,7 +284,14 @@
                     response.json().then(function (resposta) {
                         console.log(`Dados das Kpi de busca recebidos: ${JSON.stringify(resposta)}`);
                         for (let i = 0; i < resposta.length; i++) {
-                            kpiRegistroAbaixo.innerHTML += `<p>${resposta[i].area} ${resposta[i].umidade}</p>`
+                            let registro1 = resposta[0].umidade;
+                            let registro2 = resposta[0].umidade * 1.5;
+                            let registro3 = resposta[0].umidade * 1.2;
+                            let registro4 = resposta[0].umidade * 0;
+                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro1}%</span> <br>`
+                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro2}%</span> <br>`
+                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro3}%</span> <br>`
+                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro4}%</span> <br>`
                         }
                     });
                 } else {
