@@ -43,6 +43,9 @@ CONSTRAINT chFkEmp1
 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
 
+ALTER TABLE funcionario ADD CONSTRAINT conTipoAcesso 
+CHECK(tipoDeAcesso IN('adm', 'comum', 'suporte'));
+
 CREATE TABLE sensor(
 idSensor INT PRIMARY KEY AUTO_INCREMENT,
 modelo VARCHAR(45),
@@ -89,6 +92,9 @@ INSERT INTO sensor (modelo,dtInstalacao,area,status,fkObra) VALUES
 INSERT INTO sensor (modelo,dtInstalacao,area,status,fkObra) VALUES
 ('Sensor de Umidade de Solo Capacitivo','2026-03-30','NORTE','Ativo', 1),
 ('Sensor de Umidade de Solo Capacitivo','2026-03-30','SUL','Ativo', 1);
+
+INSERT INTO funcionario (nomeFuncionario,cpf,senha,tipoDeAcesso,email,fkEmpresa)VALUES
+('Matheus','98309812323','123456Matheus','suporte','matheus@matheus.com',1);
 
 INSERT INTO registroSensor(umidade,fkSensor)VALUES
 (24,1),

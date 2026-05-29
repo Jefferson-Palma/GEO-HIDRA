@@ -58,42 +58,18 @@
 </html>
 <script>
 
-    let login1 = 'brandao@sptech.com';
-    let senha = 'brandao123@';
     let contador = 3
 
     function login() {
-
-
         let email = input_emailLogin.value;
         let senha = input_senhaLogin.value;
 
+        if (contador == 0) {
+            alert("Acesso Bloqueado para resolver esse problema abra um chamado.")
+            return false;
+        }
 
-
-
-        // if (contador == 0) {
-        //     alert("Acesso bloqueado, fale com nossa equipe para resolver esse problema.")
-        // }else if (loginEmpresa != login1 || senhaEmpresa != senha) {
-        //     contador -= 1
-        //     mensagem.style.display = "block";
-        //     mensagem.innerHTML = "Email ou senha inválidos"
-        // }
-        // else {
-        //     mensagem.style.display = "none";
-        //     alert("Login realizado");
-        //     login_mensagem.style.display = "block";
-        //     login_mensagem.innerHTML = `<img src="./assets/imgs/fe_da_silva-loading-7528.gif" alt="" width="10%" margin-left="5px">`
-        //     setTimeout((login) => {
-        //         window.location.replace("dashboard.html");
-        //     }, 1000);
-
-            
-
-        // }
-
-        
-
-            fetch("/usuarios/autenticar", {
+        fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -101,7 +77,7 @@
             body: JSON.stringify({
                 emailServer: email,
                 senhaServer: senha,
-                
+
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
@@ -118,18 +94,21 @@
                     sessionStorage.FK_EMPRESA = json.fkEmpresa;
                     sessionStorage.TIPO_ACESSO = json.tipoDeAcesso;
 
-                    if(sessionStorage.TIPO_ACESSO == "suporte"){
+                    if (sessionStorage.TIPO_ACESSO == "suporte") {
                         window.location = "bobia.html"
-                    } else{
+                    } else {
                         window.location = "dashboard.html";
                     }
                     //  sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-                   // apenas para exibir o loading
+                    // apenas para exibir o loading
                 });
-                 
+
             } else {
-                 mensagem.style.display = "block";
-                 mensagem.innerHTML = "Email ou senha inválidos"
+                mensagem.style.display = "block";
+                mensagem.innerHTML = "Email ou senha inválidos"
+                contador--;
+
+
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
@@ -145,12 +124,4 @@
 
         return false;
     }
-
-
-
-
-
-    
-
-
 </script>
