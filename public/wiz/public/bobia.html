@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BobIA</title>
     <link rel="stylesheet" href="styles/bobia.css">
 </head>
+
 <body>
 
     <div id="container">
@@ -16,12 +18,16 @@
         <h3>Resposta da IA:</h3>
         <div id="resposta"></div>
     </div>
-    
+
 </body>
+
 </html>
 
 <script>
-        
+
+    if (sessionStorage.TIPO_ACESSO != "suporte") {
+        window.location = "dashboard.html"
+    } else {
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
 
@@ -38,5 +44,6 @@
             resposta.style.display = 'block';
             document.getElementById('resposta').innerText = data.resultado;
         }
+    }
 
-    </script>
+</script>

@@ -100,7 +100,8 @@
             },
             body: JSON.stringify({
                 emailServer: email,
-                senhaServer: senha
+                senhaServer: senha,
+                
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
@@ -116,9 +117,14 @@
                     sessionStorage.ID_USUARIO = json.idFuncionario;
                     sessionStorage.FK_EMPRESA = json.fkEmpresa;
                     sessionStorage.TIPO_ACESSO = json.tipoDeAcesso;
+
+                    if(sessionStorage.TIPO_ACESSO == "suporte"){
+                        window.location = "bobia.html"
+                    } else{
+                        window.location = "dashboard.html";
+                    }
                     //  sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
                    // apenas para exibir o loading
-                    window.location = "dashboard.html";
                 });
                  
             } else {
