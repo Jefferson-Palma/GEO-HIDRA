@@ -70,13 +70,17 @@
             </div>
             <div class="box-kpi">
                 <h4>REGIÕES ACIMA DA UMIDADE IDEAL(ÚLTIMO REGISTRO)</h4>
-                <p>NORTE 31%</p>
-                <p>OESTE 32%</p>
+                <div id="kpiRegistroAcima">
+
+                </div>
+
                 <h5>UMIDADE IDEAL 21-30%</h5>
             </div>
             <div class="box-kpi">
                 <h4>REGIÕES ABAIXO DA UMIDADE IDEAL(ÚLTIMO REGISTRO)</h4>
-                <p>SUL 0%</p>
+                <div id="kpiRegistroAbaixo">
+
+                </div>
                 <h5>UMIDADE IDEAL 21-30%</h5>
             </div>
 
@@ -249,6 +253,42 @@
             }
         }
 
+        function buscarRegioesAcima(fkEmpresa) {
+            fetch(`/obra/regioesAcima/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados das Kpi de busca recebidos: ${JSON.stringify(resposta)}`);
+                        for (let i = 0; i < resposta.length; i++) {
+                            kpiRegistroAcima.innerHTML += `<p>${resposta[i].area} ${resposta[i].umidade}</p>`
+                        }
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
+        }
+
+        function buscarRegioesAbaixo(fkEmpresa) {
+            fetch(`/obra/regioesAbaixo/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados das Kpi de busca recebidos: ${JSON.stringify(resposta)}`);
+                        for (let i = 0; i < resposta.length; i++) {
+                            kpiRegistroAbaixo.innerHTML += `<p>${resposta[i].area} ${resposta[i].umidade}</p>`
+                        }
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
+        }
+
         function buscarHistoricoNorte(fkEmpresa) {
             fetch(`/obra/historico/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
@@ -278,7 +318,8 @@
             buscarSaturacaoPorSensores(fkEmpresa)
             buscarHistoricoNorte(fkEmpresa)
             dashboard(fkEmpresa);
-
+            buscarRegioesAbaixo(fkEmpresa);
+            buscarRegioesAcima(fkEmpresa);
         }
         function dashboard(fkEmpresa) {
 

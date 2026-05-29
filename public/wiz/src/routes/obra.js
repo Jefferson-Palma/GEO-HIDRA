@@ -23,7 +23,14 @@ router.get("/historico/:fkEmpresa", function (req, res){
 
 });
 
+router.get("/regioesAcima/:fkEmpresa", function (req, res){
+    obraController.buscarRegioesAcima(req, res);
 
+});
 
+router.get("/regioesAbaixo/:fkEmpresa", function (req, res){
+    obraController.buscarRegioesAbaixo(req, res);
+
+});
 
 module.exports = router;

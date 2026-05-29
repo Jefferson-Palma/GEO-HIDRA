@@ -1,4 +1,3 @@
-
 var database = require("../database/config")
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
@@ -34,6 +33,20 @@ WHERE area='LESTE' AND idEmpresa=${fkEmpresa} AND idObra=1;`
     return database.executar(instrucaoSql);
 
 }
+function buscarRegioesAcima(fkEmpresa){
+
+    var instrucaoSql = `SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor WHERE dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = 1 AND umidade > 30 order by dtRegistro desc; `
+ console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+function buscarRegioesAbaixo(fkEmpresa){
+
+    var instrucaoSql = `SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor WHERE dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = 1 AND umidade < 21 order by dtRegistro desc; `
+ console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
 function saturacao(fkEmpresa){
 
     var instrucaoSql = `SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor  
@@ -62,5 +75,7 @@ module.exports = {
     dashboard,
     tempoReal,
     historico,
-    saturacao
+    saturacao,
+    buscarRegioesAcima,
+    buscarRegioesAbaixo
 };
