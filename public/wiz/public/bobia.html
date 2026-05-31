@@ -6,9 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BobIA</title>
     <link rel="stylesheet" href="styles/bobia.css">
+    <script src="/js/sessao.js"></script>
 </head>
 
 <body>
+       <header>
+        <div class="componentes">
+            <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
+            <div class="caminhos">
+
+                <div class="dashboard" >
+                    <span>
+                       <a id="tickets" href="https://sptech-team-hst2y1fq.atlassian.net/jira/servicedesk/projects/GH/queues/custom/49" style="color: white;">Tickets</a>
+                    </span>
+                </div>
+                <button class="dashboard" onclick="limparSessao()" style="text-align: center">Sair</button>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
 
     <div id="container">
         <h1>BobIA</h1>
@@ -24,10 +42,16 @@
 </html>
 
 <script>
+   
+    let tickets = document.getElementById("tickets");
 
     if (sessionStorage.TIPO_ACESSO != "suporte") {
         window.location = "dashboard.html"
-    } else {
+    }
+    if(sessionStorage.FK_EMPRESA != 1){
+
+       tickets.href = "https://sptech-team-hst2y1fq.atlassian.net/servicedesk/customer/portal/36/create/64"
+    }
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
 
@@ -44,6 +68,6 @@
             resposta.style.display = 'block';
             document.getElementById('resposta').innerText = data.resultado;
         }
-    }
+    
 
 </script>
