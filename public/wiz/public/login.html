@@ -95,10 +95,17 @@
                     sessionStorage.TIPO_ACESSO = json.tipoDeAcesso;
 
                     if (sessionStorage.TIPO_ACESSO == "suporte") {
-                        window.location = "bobia.html"
+                       alert("Login realizado com sucesso!");
+                         setTimeout(() => {
+                        window.location = "bobia.html";
+                    }, 2000);
                     } else {
+                        alert("Login realizado com sucesso!");
+                         setTimeout(() => {
                         window.location = "dashboard.html";
+                    }, 2000);
                     }
+                    
                     //  sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
                     // apenas para exibir o loading
                 });
