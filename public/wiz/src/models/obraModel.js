@@ -63,7 +63,8 @@ FROM registroSensor
   JOIN sensor ON idSensor=fkSensor
   JOIN obra ON idObra=fkObra
  JOIN empresa ON idEmpresa=fkEmpresa
- WHERE idEmpresa = ${fkEmpresa};`
+ WHERE idEmpresa = ${fkEmpresa}
+ ORDER BY dtRegistro DESC;`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
