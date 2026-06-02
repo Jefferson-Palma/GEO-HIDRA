@@ -38,14 +38,6 @@
     </header>
     <div class="box">
         <div class="obra">
-            <div class="select">
-                <p>SELECIONAR OBRA</p>
-                <select id="">
-                    <option>Obra 1</option>
-                    <option>Obra 2</option>
-                    <option>Obra 3</option>
-                </select>
-            </div>
             <div class="usuario">
                 <img src="assets/imgs/Design sem nome.png" alt="" width="30px">
                 <p>Nome usuário</p>
@@ -160,11 +152,7 @@
 
             </div>
         </div>
-
-
     </div>
-
-
 
     <footer>
         <div class="footerConteudo">
@@ -265,9 +253,9 @@
                             let registro3 = resposta[0].umidade * 1.2;
                             let registro4 = resposta[0].umidade * 0;
                             kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro1}%</span> <br>`
-                            kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro2}%</span> <br>`
-                            kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro3}%</span> <br>`
-                            kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro4}%</span> <br>`
+                            kpiRegistroAcima.innerHTML += `<span style="color: red;">NORTE ${registro2.toFixed(2)}%</span> <br>`
+                            kpiRegistroAcima.innerHTML += `<span style="color: red;">LESTE ${registro3.toFixed(2)}%</span> <br>`
+                            kpiRegistroAcima.innerHTML += `<span style="color: red;">OESTE ${registro4.toFixed(2)}%</span> <br>`
                         }
                     });
                 } else {
@@ -290,9 +278,9 @@
                             let registro3 = resposta[0].umidade * 1.2;
                             let registro4 = resposta[0].umidade * 0;
                             kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro1}%</span> <br>`
-                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro2}%</span> <br>`
-                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro3}%</span> <br>`
-                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro4}%</span> <br>`
+                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">LESTE ${registro2.toFixed(2)}%</span> <br>`
+                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">SUL ${registro3.toFixed(2)}%</span> <br>`
+                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">NORTE ${registro4.toFixed(2)}%</span> <br>`
                         }
                     });
                 } else {
