@@ -37,7 +37,6 @@
     </header>
 
     <div class="boxGeral">
-        <div class="dashGeral">
             <div class="kpisGeral">
                 <div class="kpiGeral1">
                     <h4>OBRAS MONITORADAS</h4>
@@ -51,45 +50,34 @@
                         <span class="textoKpiProblema">2</span>
                     </div>
                 </div>
-                <div class="kpiGeral3">
-                    <h4>OBRAS COM UMIDADE CRÍTICA</h4>
-                    <div class="projecao">
-                        <span class="textoKpiProblema">5</span>
-                    </div>
-                </div>
             </div>
-
-            <div class="divGeral">
+        <div class="tabelaDash">
                 <div class="graficoGeral">
                     <div class="grafico-geral">
                         <h3 class="tituloGraficosGeral">Estado das Obras</h3>
                         <canvas class="graficoDashGeral" id="graficoComposicao"></canvas>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="tabelaDash">
+
             <div class="obras-card">
                 <div class="obras-header">
                     <div class="obras-title">Status de Umidade por Obra</div>
                     <div class="filter-badges">
                         <span class="fb" onclick="filterTableAll()">Todas</span>
-                        <span class="fb" onclick="filterTableCritico()">Crítico</span>
                         <span class="fb" onclick="filterTableAlerta()">Alerta</span>
                         <span class="fb" onclick="filterTableNormal()">Normal</span>
                     </div>
                 </div>
-                <table id="obrasTable">
-                    <thead>
-                        <tr>
-                            <th>Obra</th>
-                            <th>Sensores</th>
-                            <th>Status</th>
-                            <th>Último Registro</th>
-                        </tr>
-                    </thead>
-                    <tbody id="obrasBody"></tbody>
-                </table>
+                <div id="obrasTable">
+                    <div>
+                        <div class="headerTable">
+                            <span>Obra</span>
+                            <span>Status</span>
+                            <span>Último Registro</span>
+                        </div>
+                    </div>
+                    <div id="obrasBody"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -110,77 +98,49 @@
 </html>
 <script>
     const obras = [
-        { nome: "Res. Beira Rio", addr: "Av. Beira Rio, 400 — SP", sens: 4, st: "Crítico", ts: "18/05 00:39" },
-        { nome: "Cond. Arvoredo", addr: "R. das Palmeiras, 201", sens: 4, st: "Crítico", ts: "18/05 00:40" },
-        { nome: "Ed. Vitor Meireles", addr: "R. Vitor Meireles, 88", sens: 4, st: "Alerta", ts: "18/05 00:42" },
-        { nome: "Torre Marítima", addr: "Av. do Porto, 1200", sens: 4, st: "Alerta", ts: "18/05 00:41" },
-        { nome: "Galpão Industrial 3", addr: "Rodovia Anhang., km 32", sens: 4, st: "OK", ts: "18/05 00:43" },
-        { nome: "Shopping Norte", addr: "Av. Norte, 3000 — SP", sens: 4, st: "OK", ts: "18/05 00:44" },
-        { nome: "Centro Log. SP", addr: "Dist. Industrial, Q3", sens: 4, st: "OK", ts: "18/05 00:45" },
-        { nome: "Col. Nova Geração", addr: "R. Escolar, 75 — SP", sens: 4, st: "OK", ts: "18/05 00:44" },
+        { nome: "Res. Beira Rio", addr: "Av. Beira Rio, 400 — SP", st: "Crítico", ts: "18/05 00:39" },
+        { nome: "Cond. Arvoredo", addr: "R. das Palmeiras, 201", st: "Crítico", ts: "18/05 00:40" },
+        { nome: "Ed. Vitor Meireles", addr: "R. Vitor Meireles, 88", st: "Alerta", ts: "18/05 00:42" },
+        { nome: "Torre Marítima", addr: "Av. do Porto, 1200", st: "Alerta", ts: "18/05 00:41" },
+        { nome: "Galpão Industrial 3", addr: "Rodovia Anhang., km 32", st: "OK", ts: "18/05 00:43" },
+        { nome: "Shopping Norte", addr: "Av. Norte, 3000 — SP", st: "OK", ts: "18/05 00:44" },
+        { nome: "Centro Log. SP", addr: "Dist. Industrial, Q3", st: "OK", ts: "18/05 00:45" },
+        { nome: "Col. Nova Geração", addr: "R. Escolar, 75 — SP", st: "OK", ts: "18/05 00:44" },
     ];
     function filterTableAll() {
         obrasBody.innerHTML = "";
         for (let i = 0; i < obras.length; i++) {
             obrasBody.innerHTML += `
-                <tr>
-                    <td>
+                <div class="dadosGerais">
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
-                    </td>
-                    <td>
-                        <span class="dadosTabelas">${obras[i].sens} sensores</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].st}</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].ts}</span>
-                    </td>
-                </tr>`;
+                    </div>
+                </div>`;
         }
     }
 
-    function filterTableCritico(){
-        obrasBody.innerHTML = "";
-            for (let i = 0; i < obras.length; i++) {
-                if(obras[i].st == "Crítico"){
-                    obrasBody.innerHTML += `
-                <tr>
-                    <td>
-                        <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
-                    </td>
-                    <td>
-                        <span class="dadosTabelas">${obras[i].sens} sensores</span>
-                    </td>
-                    <td>
-                        <span class="dadosTabelas">${obras[i].st}</span>
-                    </td>
-                    <td>
-                        <span class="dadosTabelas">${obras[i].ts}</span>
-                    </td>
-                </tr>`;
-                }
-            }
-    }
     function filterTableAlerta(){
         obrasBody.innerHTML = "";
             for (let i = 0; i < obras.length; i++) {
                 if(obras[i].st == "Alerta"){
                     obrasBody.innerHTML += `
-                <tr>
-                    <td>
+                        <div class="dadosGerais">
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
-                    </td>
-                    <td>
-                        <span class="dadosTabelas">${obras[i].sens} sensores</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].st}</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].ts}</span>
-                    </td>
-                </tr>`;
+                    </div>
+                </div>`;
                 }
             }
     }
@@ -189,20 +149,17 @@
             for (let i = 0; i < obras.length; i++) {
                 if(obras[i].st == "OK"){
                     obrasBody.innerHTML += `
-                <tr>
-                    <td>
+                        <div class="dadosGerais">
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
-                    </td>
-                    <td>
-                        <span class="dadosTabelas">${obras[i].sens} sensores</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].st}</span>
-                    </td>
-                    <td>
+                    </div>
+                    <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].ts}</span>
-                    </td>
-                </tr>`;
+                    </div>
+                </div>`;
                 }
             }
     }
