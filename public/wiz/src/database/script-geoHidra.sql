@@ -43,6 +43,8 @@ CONSTRAINT chFkEmp1
 FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
 
+ALTER TABLE funcionario DROP CONSTRAINT conTipoAcesso;
+
 ALTER TABLE funcionario ADD CONSTRAINT conTipoAcesso 
 CHECK(tipoDeAcesso IN('adm', 'comum', 'suporte'));
 
@@ -94,13 +96,14 @@ INSERT INTO sensor (modelo,dtInstalacao,area,status,fkObra) VALUES
 ('Sensor de Umidade de Solo Capacitivo','2026-03-30','SUL','Ativo', 1);
 
 INSERT INTO funcionario (nomeFuncionario,cpf,senha,tipoDeAcesso,email,fkEmpresa)VALUES
-('Matheus','98309812323','123456Matheus','suporte','matheus@matheus.com',1);
+('Matheus','98309812323','123456','suporte','matheus@matheus.com',1);
+
+INSERT INTO funcionario (nomeFuncionario,cpf,senha,tipoDeAcesso,email,fkEmpresa)VALUES
+('Matheus','98309812323','123456','suporte','matheus@gmail.com',2);
 
 INSERT INTO registroSensor(umidade,fkSensor)VALUES
-(24,1),
-(20,5),
-(33,2),
-(10,6);
+(20,1);
+
 
 SELECT e.nomeEmpresa,o.rua,o.cep,o.numero,o.estado,o.cidade,
 s.modelo,s.dtInstalacao,s.area,s.status,r.dtRegistro,
@@ -143,16 +146,18 @@ WHERE dtRegistro BETWEEN
 SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor  
 where dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = 1  order by area; 
 
-INSERT INTO registroSensor(dtRegistro,umidade,fkSensor)VALUES
-('2026-05-23 09:52:00',100,1);
+INSERT INTO registroSensor(umidade,fkSensor)VALUES
+(60,1);
 
 SELECT * FROM funcionario;
 
 SELECT * FROM registroSensor;
 
+USE geoHidra;
+
 SELECT * FROM sensor;
 CREATE VIEW kpis_alertas AS
-SELECT DATE_FORMAT(dtRegistro, '%d/%m/%Y-%h:%m') as dtFormatada,idObra, area, idEmpresa,umidade,
+SELECT DATE_FORMAT(dtRegistro, '%d/%m/%Y-%H:%i:%s') as dtFormatada,idObra, area, idEmpresa,umidade,
 CASE 
 WHEN umidade <=0 THEN 'INATIVO' 
 WHEN umidade<= 20 AND umidade> 0 THEN 'BAIXO'
@@ -162,9 +167,13 @@ END AS alerta FROM registroSensor
 JOIN sensor ON idSensor=fkSensor
 JOIN obra ON idObra=fkObra
 JOIN empresa ON idEmpresa=fkEmpresa
+ORDER BY dtRegistro DESC
 LIMIT 4;
 
-SELECT * FROM kpis_alertas
+
+TRUNCATE registroSensor;
+ DROP VIEW kpis_alertas;
+SELECT * FROM kpis_alertas 
 WHERE area='LESTE' AND idEmpresa=1 AND idObra=1;
 
 SELECT * FROM kpis_alertas
