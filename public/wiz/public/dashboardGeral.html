@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body onload="filterTableAll()">
     <header>
         <div class="componentes">
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
@@ -37,47 +37,176 @@
     </header>
 
     <div class="boxGeral">
-        <div class="obra">
-            <div class="usuario">
-                <img src="assets/imgs/Design sem nome.png" alt="" width="30px">
-                <p>Nome usuário</p>
-            </div>
-        </div>
-        <div class="kpi">
-            <div class="box-kpi">
-                <h4>OBRAS MONITORADAS</h4>
-                <div class="projecao">
-                    <span class="textoKpi">8</span>
+        <div class="dashGeral">
+            <div class="kpisGeral">
+                <div class="kpiGeral1">
+                    <h4>OBRAS MONITORADAS</h4>
+                    <div class="projecao">
+                        <span class="textoKpi">8</span>
+                    </div>
+                </div>
+                <div class="kpiGeral2">
+                    <h4>OBRAS EM ALERTA</h4>
+                    <div class="projecao">
+                        <span class="textoKpiProblema">2</span>
+                    </div>
+                </div>
+                <div class="kpiGeral3">
+                    <h4>OBRAS COM UMIDADE CRÍTICA</h4>
+                    <div class="projecao">
+                        <span class="textoKpiProblema">5</span>
+                    </div>
                 </div>
             </div>
-            <div class="box-kpi">
-                <h4>OBRAS EM ALERTA</h4>
-                <div class="projecao">
-                    <span class="textoKpiProblema">2</span>
-                </div>
-            </div>
-            <div class="box-kpi">
-                <h4>OBRAS COM UMIDADE CRÍTICA</h4>
-                <div class="projecao">
-                    <span class="textoKpiProblema">5</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="divGeral">
-            <div class="graficoGeral">
-                <div class="grafico-geral">
-                    <h3 class="tituloGraficosGeral">Estado das Obras</h3>
-                    <canvas class="graficoDashGeral" id="graficoComposicao"></canvas>
+            <div class="divGeral">
+                <div class="graficoGeral">
+                    <div class="grafico-geral">
+                        <h3 class="tituloGraficosGeral">Estado das Obras</h3>
+                        <canvas class="graficoDashGeral" id="graficoComposicao"></canvas>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="tabelaDash">
+            <div class="obras-card">
+                <div class="obras-header">
+                    <div class="obras-title">Status de Umidade por Obra</div>
+                    <div class="filter-badges">
+                        <span class="fb" onclick="filterTableAll()">Todas</span>
+                        <span class="fb" onclick="filterTableCritico()">Crítico</span>
+                        <span class="fb" onclick="filterTableAlerta()">Alerta</span>
+                        <span class="fb" onclick="filterTableNormal()">Normal</span>
+                    </div>
+                </div>
+                <table id="obrasTable">
+                    <thead>
+                        <tr>
+                            <th>Obra</th>
+                            <th>Sensores</th>
+                            <th>Status</th>
+                            <th>Último Registro</th>
+                        </tr>
+                    </thead>
+                    <tbody id="obrasBody"></tbody>
+                </table>
             </div>
         </div>
     </div>
 
+    <footer>
+        <div class="footerConteudo">
+            <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
+            </div>
+            <div class="conteudo">
+                <span><a href="index.html">Home</a></span>
+                <span><a href="index.html #sobreNos">Sobre Nós</a></span>
+                <span><a href="index.html#contato">Contato</a></span>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
 <script>
+    const obras = [
+        { nome: "Res. Beira Rio", addr: "Av. Beira Rio, 400 — SP", sens: 4, st: "Crítico", ts: "18/05 00:39" },
+        { nome: "Cond. Arvoredo", addr: "R. das Palmeiras, 201", sens: 4, st: "Crítico", ts: "18/05 00:40" },
+        { nome: "Ed. Vitor Meireles", addr: "R. Vitor Meireles, 88", sens: 4, st: "Alerta", ts: "18/05 00:42" },
+        { nome: "Torre Marítima", addr: "Av. do Porto, 1200", sens: 4, st: "Alerta", ts: "18/05 00:41" },
+        { nome: "Galpão Industrial 3", addr: "Rodovia Anhang., km 32", sens: 4, st: "OK", ts: "18/05 00:43" },
+        { nome: "Shopping Norte", addr: "Av. Norte, 3000 — SP", sens: 4, st: "OK", ts: "18/05 00:44" },
+        { nome: "Centro Log. SP", addr: "Dist. Industrial, Q3", sens: 4, st: "OK", ts: "18/05 00:45" },
+        { nome: "Col. Nova Geração", addr: "R. Escolar, 75 — SP", sens: 4, st: "OK", ts: "18/05 00:44" },
+    ];
+    function filterTableAll() {
+        obrasBody.innerHTML = "";
+        for (let i = 0; i < obras.length; i++) {
+            obrasBody.innerHTML += `
+                <tr>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].sens} sensores</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].st}</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].ts}</span>
+                    </td>
+                </tr>`;
+        }
+    }
+
+    function filterTableCritico(){
+        obrasBody.innerHTML = "";
+            for (let i = 0; i < obras.length; i++) {
+                if(obras[i].st == "Crítico"){
+                    obrasBody.innerHTML += `
+                <tr>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].sens} sensores</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].st}</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].ts}</span>
+                    </td>
+                </tr>`;
+                }
+            }
+    }
+    function filterTableAlerta(){
+        obrasBody.innerHTML = "";
+            for (let i = 0; i < obras.length; i++) {
+                if(obras[i].st == "Alerta"){
+                    obrasBody.innerHTML += `
+                <tr>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].sens} sensores</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].st}</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].ts}</span>
+                    </td>
+                </tr>`;
+                }
+            }
+    }
+    function filterTableNormal(){
+        obrasBody.innerHTML = "";
+            for (let i = 0; i < obras.length; i++) {
+                if(obras[i].st == "OK"){
+                    obrasBody.innerHTML += `
+                <tr>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].sens} sensores</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].st}</span>
+                    </td>
+                    <td>
+                        <span class="dadosTabelas">${obras[i].ts}</span>
+                    </td>
+                </tr>`;
+                }
+            }
+    }
+
     Chart.defaults.color = "#000"
     new Chart(document.getElementById('graficoComposicao'), {
         type: 'doughnut',
@@ -95,4 +224,5 @@
         },
         options: {}
     });
+
 </script>

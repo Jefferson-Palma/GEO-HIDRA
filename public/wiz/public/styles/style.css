@@ -644,7 +644,6 @@ a:hover{
 footer {
     background-color: #6a3e37;
     width: 100%;
-    margin-top: 200px;
     color: white;
     font-weight: bold;
 
@@ -684,7 +683,6 @@ footer {
     background-color: white;
     border-radius: 10px;
     padding: 15px;
-    
     color: #000000;
     box-shadow: 8px 8px 10px gray;
 }
@@ -693,17 +691,12 @@ footer {
 }
 
 .box {
-
-    margin-left: 12%;
-    margin-right: 15%;
     align-items: center;
     justify-content: center;
-    background-color: #c5c2bc;
-    width: 75%;
+    width: 100%;
     color: white;
     border-radius: 20px;
     padding-bottom: 100px;
-    box-shadow: 10px 10px 10px gray;
 }
 
 .obra {
@@ -878,17 +871,23 @@ footer {
 }
 
 .boxGeral{
-    margin-left: 12%;
-    margin-right: 15%;
     margin-bottom: 20px;
     align-items: center;
     justify-content: center;
-    background-color: #c5c2bc;
-    width: 75%;
+    /* background-color: #c5c2bc; */
+    width: 100%;
     color: white;
     border-radius: 20px;
     padding-bottom: 100px;
-    box-shadow: 10px 10px 10px gray;
+    /* box-shadow: 10px 10px 10px gray; */
+}
+
+.dashGeral{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80vh;
 }
 
 .divGeral{
@@ -901,11 +900,27 @@ footer {
 
 .kpisGeral{
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    gap: 170px;
-    height: 120px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    height: 95%;
+}
+
+.kpiGeral1,
+.kpiGeral2,
+.kpiGeral3{
+    width: 50%;
+    height: 25%;
+    padding: 20px;
+    flex-direction: column;
+    align-items:center;
+    justify-content:space-around;
+    border-radius: 15px;
+    display: flex;
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 8px 8px 10px gray;
 }
 
 .kpiGeral1,
@@ -914,6 +929,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: space-around;
 }
 
@@ -929,21 +945,91 @@ footer {
     font-weight: bold;
 }
 
-.graficoGeral{
-    height: 400px;
-    width: 400px;
+.graficoGeral {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    color: #000000;
+    box-shadow: 8px 8px 10px gray;
+    height: 70vh;
+    width: 70vh;
 }
 
-.graficoDashGeral{
-    height: 100px;
-    width: 100px;
-}
 .grafico-geral{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 90%;
+    width: 90%;
 }
 
 .tituloGraficosGeral{
     color: #000000;
+}
+
+.tabelaDash{
+    display: flex;
+    justify-content: center;
+}
+
+.obras-card{
+    width: 85%;
+    border-radius: 10px;
+    box-shadow: 8px 8px 10px gray;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.obras-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.obras-title{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.filter-badges{
+    display: flex;
+    gap: 30px;
+}
+
+.fb{
+    border: 2px solid #000000;
+    border-radius: 20px;
+    padding: 10px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.fb:hover{
+    transform: scale(1.05);
+}
+
+.active-all{
+    background-color: #1dcdfe;
+    color: #000000;
+}
+
+.obrasTable th{
+    display: flex;
+    justify-content: left;
+}
+
+.dadosTabelas{
+    display: flex;
+    justify-content: left;
+    margin-left: 10 0px;
 }
