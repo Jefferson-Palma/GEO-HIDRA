@@ -246,6 +246,10 @@
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados das Kpi de busca recebidos: ${JSON.stringify(resposta)}`);
+                            kpiRegistroAcima.innerHTML = ``;
+                            kpiRegistroAcima.innerHTML = ``;
+                            kpiRegistroAcima.innerHTML = ``;
+                            kpiRegistroAcima.innerHTML = ``;
                         for (let i = 0; i < resposta.length; i++) {
                             let registro1 = resposta[0].umidade;
                             let registro2 = resposta[0].umidade * 1.5;
@@ -271,6 +275,10 @@
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados das Kpi de busca recebidos: ${JSON.stringify(resposta)}`);
+                            kpiRegistroAbaixo.innerHTML = ``
+                            kpiRegistroAbaixo.innerHTML = ``
+                            kpiRegistroAbaixo.innerHTML = ``
+                            kpiRegistroAbaixo.innerHTML = `` 
                         for (let i = 0; i < resposta.length; i++) {
                             let registro1 = resposta[0].umidade;
                             let registro2 = resposta[0].umidade * 1.5;
@@ -296,11 +304,21 @@
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                            kpiNorte.innerHTML = ``;
+                            kpiLeste.innerHTML = ``;
+                            kpiOeste.innerHTML = ``;
+                            kpiSul.innerHTML = ``;
                         for (let i = 0; i < resposta.length; i++) {
-                            kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
-                            kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
-                            kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
-                            kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta[i].umidade}%]</span></h2>`
+
+                            let resposta1 = Number(resposta[i].umidade) ;
+                            let resposta2 = Number(resposta[i].umidade) * 1.5;
+                            let resposta3 = Number(resposta[i].umidade) * 1.2;
+                            let resposta4 = Number(resposta[i].umidade) * 0;
+                            
+                            kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta1.toFixed(2)}%]</span></h2>`
+                            kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta2.toFixed(2)}%]</span></h2>`
+                            kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta3.toFixed(2)}%]</span></h2>`
+                            kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta4.toFixed(2)}%]</span></h2>`
                         }
                     });
                 } else {
@@ -313,15 +331,25 @@
         }
 
 
-        let proximaAtualizacao;
         window.onload = exibirGrafico;
+        
+        let proximaAtualizacao;
+        let fkEmpresa = sessionStorage.FK_EMPRESA;
         function exibirGrafico() {
-            let fkEmpresa = sessionStorage.FK_EMPRESA;
+            dashboard(fkEmpresa); 
             buscarSaturacaoPorSensores(fkEmpresa)
             buscarHistoricoNorte(fkEmpresa)
-            dashboard(fkEmpresa);
             buscarRegioesAbaixo(fkEmpresa);
             buscarRegioesAcima(fkEmpresa);
+
+        }
+        function atualizarKpis() {
+            
+            buscarSaturacaoPorSensores(fkEmpresa)
+            buscarHistoricoNorte(fkEmpresa)
+            buscarRegioesAbaixo(fkEmpresa);
+            buscarRegioesAcima(fkEmpresa);
+
         }
         function dashboard(fkEmpresa) {
 
@@ -489,7 +517,8 @@
                 document.getElementById(`myChart`),
                 config
             );
-            setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 2000);
+            
+            setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
 
         }
         function atualizarGrafico(fkEmpresa, dados, myChart) {
@@ -534,15 +563,19 @@
 
 
                             myChart.update();
+                            setTimeout(() => atualizarKpis(), 880);
+                            
                         }
 
                         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                        proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 2000);
+                        //  setTimeout(() => exibirGrafico(), 900);
+                        proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
                     });
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 2000);
+                    // setTimeout(() => exibirGrafico(), 900);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
                 }
             })
                 .catch(function (error) {
@@ -556,14 +589,18 @@
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        let registro1 = resposta[0].umidade;
-                        let registro2 = resposta[0].umidade * 0.25;
-                        let registro3 = resposta[0].umidade * 0.4;
-                        let registro4 = resposta[0].umidade * 0;
-                        leste.innerHTML += `<h3>${registro1} %`
-                        norte.innerHTML += `<h3>${registro2} %`
-                        oeste.innerHTML += `<h3>${registro3} %`
-                        sul.innerHTML += `<h3>${registro4} %`
+                        leste.innerHTML = ``
+                        norte.innerHTML = ``
+                        oeste.innerHTML = ``
+                        sul.innerHTML = ``
+                        let registro1 = Number(resposta[0].umidade);
+                        let registro2 = Number(resposta[0].umidade) * 1.5;
+                        let registro3 = Number(resposta[0].umidade) * 1.2;
+                        let registro4 = Number(resposta[0].umidade) * 0;
+                        leste.innerHTML += `<h3>${registro1.toFixed(2)} %`
+                        oeste.innerHTML += `<h3>${registro2.toFixed(2)} %`
+                        norte.innerHTML += `<h3>${registro3.toFixed(2)} %`
+                        sul.innerHTML += `<h3>${registro4.toFixed(2)} %`
 
                         if (Number(registro1) <= 20) {
                             leste.style.backgroundColor = "yellow"
