@@ -900,12 +900,14 @@ footer {
 .kpiGeral1,
 .kpiGeral2,
 .kpiGeral3{
-    width: 20%;
-    height: 150px;
+    width: 30%;
+    height: 200px;
     padding: 20px;
+    display: flex;
     flex-direction: column;
     align-items:center;
     justify-content:space-around;
+    text-align: center;
     border-radius: 15px;
     display: flex;
     background-color: #06BA63;
@@ -913,14 +915,16 @@ footer {
     box-shadow: 8px 8px 10px gray;
 }
 
-.kpiGeral1,
-.kpiGeral2,
-.kpiGeral3{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: space-around;
+.kpiGeral1 h4,
+.kpiGeral2 h4,
+.kpiGeral3 h4{
+    font-size: 25px;
+}
+
+.kpiGeral1 p,
+.kpiGeral2 p,
+.kpiGeral3 p{
+    font-size: 20px;
 }
 
 .textoKpi{
@@ -944,7 +948,7 @@ footer {
     border-radius: 10px;
     color: #000000;
     box-shadow: 8px 8px 10px gray;
-    height: 100%;
+    height: auto;
     width: 40%;
 }
 
@@ -962,11 +966,16 @@ footer {
 .tabelaDash{
     display: flex;
     justify-content: space-around;
-    height: 65vh;
+    height: auto;
+}
+
+#obrasTable{
+    margin-top: 20px;
 }
 
 .obras-card{
     border-radius: 10px;
+    padding: 20px;
     box-shadow: 8px 8px 10px gray;
     display: flex;
     flex-direction: column;
@@ -978,7 +987,7 @@ footer {
 .obras-header{
     display: flex;
     justify-content: space-around;
-        padding: 20px;
+    align-items: center;
 }
 
 .obras-title{
@@ -1019,7 +1028,7 @@ footer {
 
 .dadosTabelas{
     display: flex;
-    justify-content: center;
+    text-align: center;
 }
 
 .headerTable{
@@ -1037,4 +1046,12 @@ footer {
 .dadosGerais{
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.divDadosTabela{
+    display: flex;
+    justify-content: center;
+    width: 50%;
 }

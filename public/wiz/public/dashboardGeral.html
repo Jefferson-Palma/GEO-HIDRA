@@ -63,18 +63,15 @@
                 <div class="obras-header">
                     <div class="obras-title">Status de Umidade por Obra</div>
                     <div class="filter-badges">
-                        <span class="fb" onclick="filterTableAll()">Todas</span>
-                        <span class="fb" onclick="filterTableAlerta()">Alerta</span>
-                        <span class="fb" onclick="filterTableNormal()">Normal</span>
+                        <span id="span1" class="fb" onclick="filterTableAll()">Todas</span>
+                        <span id="span2" class="fb" onclick="filterTableAlerta()">Alerta</span>
+                        <span id="span3" class="fb" onclick="filterTableNormal()">Normal</span>
                     </div>
                 </div>
                 <div id="obrasTable">
-                    <div>
-                        <div class="headerTable">
-                            <span>Obra</span>
-                            <span>Status</span>
-                            <span>Último Registro</span>
-                        </div>
+                    <div class="headerTable">
+                        <span>Obra</span>
+                        <span>Status</span>
                     </div>
                     <div id="obrasBody"></div>
                 </div>
@@ -106,6 +103,16 @@
         { nome: "Col. Nova Geração", addr: "R. Escolar, 75 — SP", st: "OK", ts: "18/05 00:44" },
     ];
     function filterTableAll() {
+        document.getElementById("span1");
+        document.getElementById("span2");
+        document.getElementById("span3");
+        span1.style.backgroundColor = "#06BA63"
+        span2.style.backgroundColor = "#fff"
+        span3.style.backgroundColor = "#fff"
+        span1.style.color = "#fff"
+        span2.style.color = "#000"
+        span3.style.color = "#000"
+
         obrasBody.innerHTML = "";
         for (let i = 0; i < obras.length; i++) {
             obrasBody.innerHTML += `
@@ -116,50 +123,64 @@
                     <div class="divDadosTabela">
                         <span class="dadosTabelas">${obras[i].st}</span>
                     </div>
-                    <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].ts}</span>
-                    </div>
-                </div>`;
+                </div> 
+                <hr>`;
         }
     }
 
     function filterTableAlerta(){
+        document.getElementById("span1");
+        document.getElementById("span2");
+        document.getElementById("span3");
+        span1.style.backgroundColor = "#fff"
+        span2.style.backgroundColor = "#06BA63"
+        span3.style.backgroundColor = "#fff"
+        span1.style.color = "#000"
+        span2.style.color = "#fff"
+        span3.style.color = "#000"
+
         obrasBody.innerHTML = "";
-            for (let i = 0; i < obras.length; i++) {
-                if(obras[i].st == "Alerta"){
-                    obrasBody.innerHTML += `
-                        <div class="dadosGerais">
-                    <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
-                    </div>
-                    <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].st}</span>
-                    </div>
-                    <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].ts}</span>
-                    </div>
-                </div>`;
-                }
+        for (let i = 0; i < obras.length; i++) {
+            if(obras[i].st == "Alerta"){
+                obrasBody.innerHTML += `
+                    <div class="dadosGerais">
+                        <div class="divDadosTabela">
+                            <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                        </div>
+                        <div class="divDadosTabela">
+                            <span class="dadosTabelas">${obras[i].st}</span>
+                        </div>
+                    </div> 
+                    <hr>`;
             }
+        }
     }
     function filterTableNormal(){
+        document.getElementById("span1");
+        document.getElementById("span2");
+        document.getElementById("span3");
+        span1.style.backgroundColor = "#fff"
+        span2.style.backgroundColor = "#fff"
+        span3.style.backgroundColor = "#06BA63"
+        span1.style.color = "#000"
+        span2.style.color = "#000"
+        span3.style.color = "#fff"
+
         obrasBody.innerHTML = "";
-            for (let i = 0; i < obras.length; i++) {
-                if(obras[i].st == "OK"){
-                    obrasBody.innerHTML += `
-                        <div class="dadosGerais">
-                    <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
-                    </div>
-                    <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].st}</span>
-                    </div>
-                    <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].ts}</span>
-                    </div>
-                </div>`;
-                }
+        for (let i = 0; i < obras.length; i++) {
+            if(obras[i].st == "OK"){
+                obrasBody.innerHTML += `
+                    <div class="dadosGerais">
+                        <div class="divDadosTabela">
+                            <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                        </div>
+                        <div class="divDadosTabela">
+                            <span class="dadosTabelas">${obras[i].st}</span>
+                        </div>
+                    </div> 
+                    <hr>`;
             }
+        }
     }
 
     Chart.defaults.color = "#000"
