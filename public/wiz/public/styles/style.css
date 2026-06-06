@@ -72,6 +72,7 @@ a:hover{
     width: 100%;
     font-weight: bold;
 }
+
 .caminhos button{
     background-color: white;
     border: 0px;
@@ -82,18 +83,10 @@ a:hover{
     width: 100%;
     font-weight: bold;
     transition: 1.8s;
+    cursor: pointer;
 }
 .caminhos button:hover{
-    
     transform: scale(1.5); 
-}
-
-.caminhos img{
-    transition: 1.8s;
-}
-
-.caminhos img:hover{
-    width: 50px;
 }
 
 /* home */
@@ -679,7 +672,7 @@ footer {
 
 /* Dashboard */
 .grafico {
-    width: 50%;
+    width: 89%;
     background-color: white;
     border-radius: 10px;
     padding: 15px;
@@ -688,6 +681,11 @@ footer {
 }
 .grafico canvas{
     width:50%;
+}
+
+.olaUsuario{
+    text-align: center;
+    color: #000000;
 }
 
 .box {
@@ -738,7 +736,8 @@ footer {
     margin-bottom: 40px;
     height:225px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 50px;
 }
 
 .kpi h4{
@@ -746,17 +745,29 @@ footer {
     
 }
 
+.kpi2{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height:auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.kpi2 h4{
+    text-align: center;
+    
+}
+
 .box-kpi{
-    width: 24%;
+    width: 20%;
     padding: 20px;
     flex-direction: column;
+    display: flex;
     align-items:center;
     justify-content:space-around;
-    border-radius: 15px;
-    display: flex;
-    background-color: #ffffff;
+    border-radius: 10px;
+    background-color: #06BA63;
     color: #000000;
-    box-shadow: 8px 8px 10px gray;
 }
 
 .box-kpi p {
@@ -771,9 +782,34 @@ footer {
     font-size: 15px;
 }
 
+.box-kpi2{
+    width: 35%;
+    padding: 10px;
+    flex-direction: column;
+    align-items:center;
+    justify-content:space-between;
+    border-radius: 15px;
+    display: flex;
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 8px 8px 10px gray;
+}
+
+.box-kpi2 p {
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+.box-kpi2 h4{
+    font-size: 24px;
+}
+
 
 .regiao{
-    width: 45%;
+    width: 43%;
     height: 325px;
     padding: 5px;
     flex-direction: column;
@@ -839,8 +875,10 @@ footer {
     flex-direction: row;
     font-size: 15px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
 }
+
 .escrita{
     display: flex;
     margin-left: 5px;
@@ -855,19 +893,17 @@ footer {
     margin: 5px;
 }
 
-/* Buttons */
-.funcionarioCadastro{
-    background-color: #06ba63;
-    border-radius: 8px;
-    padding: 8px;
-    text-align: center;
-}
-
 .alerta{
-    color:red
+    color: red;
+    font-size: 15px;
+}
+.alerta2{
+    color: red;
+    font-size: 20px;
 }
 .funcional{
-    color:#06BA63
+    color: #06BA63;
+    font-size: 20px;
 }
 
 /* Dashboar Geral */

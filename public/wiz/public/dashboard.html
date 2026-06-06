@@ -16,40 +16,71 @@
         <div class="componentes">
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
-                <div id="cadastro1" class="funcionarioCadastro">
+                <div id="cadastro">
                     <span>
-                        <a href="dashboardGeral.html" style="color: white;">Dashboard Geral</a>
+                        <a href="dashboardGeral.html" style="color: #06ba63;">Dashboard Geral</a>
                     </span>
                 </div>
-                <div id="cadastro1" class="funcionarioCadastro">
+                <div id="cadastro1">
                     <span>
-                        <a href="cadastroObra.html" style="color: white;">Cadastrar obra</a>
+                        <a href="cadastroObra.html" style="color: #06ba63;">Cadastrar obra</a>
                     </span>
                 </div>
-                <div id="cadastro2" class="funcionarioCadastro"><span>
-                        <a href="cadastroFuncionario.html" style="color: white;">Cadastrar Funcionário</a>
+                <div id="cadastro2"><span>
+                        <a href="cadastroFuncionario.html" style="color: #06ba63;">Cadastrar Funcionário</a>
                     </span>
                 </div>
-                <div id="cadastro2" class="funcionarioCadastro"><span>
-                        <a href="https://sptech-team-hst2y1fq.atlassian.net/servicedesk/customer/portal/36/create/64" style="color: white;">Suporte</a>
+                <div id="cadastro"><span>
+                        <a href="https://sptech-team-hst2y1fq.atlassian.net/servicedesk/customer/portal/36/create/64"
+                            style="color: #06ba63;">Suporte</a>
                     </span>
                 </div>
-                <div class="sair"><span> <button onclick="limparSessao()"
-                            style="text-align: center; color: #6a3e37;">Sair</button>
+                <div class="sair">
+                    <span>
+                        <button onclick="limparSessao()" style="text-align: center; color: #6a3e37;">Sair</button>
                     </span>
                 </div>
             </div>
         </div>
     </header>
     <div class="box">
+        <div class="olaUsuario">
+            <h2>Olá <span id="b_usuario"></span></h2>
+        </div>
         <div class="kpi">
             <div class="box-kpi">
+                <h4 style="color: white;">ÚLTIMOS ALERTAS REGISTRADOS NORTE</h4>
+                <div id="kpiNorte" style="color: white;">
+
+                </div>
+            </div>
+            <div class="box-kpi">
+                <h4 style="color: white;">ÚLTIMOS ALERTAS REGISTRADOS LESTE</h4>
+                <div id="kpiLeste" style="color: white;">
+
+                </div>
+            </div>
+            <div class="box-kpi">
+                <h4 style="color: white;">ÚLTIMOS ALERTAS REGISTRADOS OESTE</h4>
+                <div id="kpiOeste" style="color: white;">
+
+                </div>
+            </div>
+            <div class="box-kpi">
+                <h4 style="color: white;">ÚLTIMOS ALERTAS REGISTRADOS SUL</h4>
+                <div id="kpiSul" style="color: white;">
+
+                </div>
+            </div>
+        </div>
+        <div class="kpi2">
+            <div class="box-kpi2">
                 <h4>STATUS REGIÕES</h4>
                 <div style="text-align: center;">
                     <h2><span class="funcional">NORTE</span></h2>
                     <h2><span class="funcional">LESTE</span></h2>
                     <h2><span class="funcional">OESTE</span></h2>
-                    <h2><span class="alerta">SUL</span></h2>
+                    <h2><span class="alerta2">SUL</span></h2>
                 </div>
                 <div class="legenda">
                     <div class="escrita">
@@ -60,53 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="box-kpi">
-                <h4>REGIÕES ACIMA DA UMIDADE IDEAL(ÚLTIMO REGISTRO)</h4>
-                <div id="kpiRegistroAcima">
 
-                </div>
-
-                <h5>UMIDADE IDEAL 21-30%</h5>
-            </div>
-            <div class="box-kpi">
-                <h4>REGIÕES ABAIXO DA UMIDADE IDEAL(ÚLTIMO REGISTRO)</h4>
-                <div id="kpiRegistroAbaixo">
-
-                </div>
-                <h5>UMIDADE IDEAL 21-30%</h5>
-            </div>
-
-        </div>
-
-
-        <div class="kpi">
-            <div class="box-kpi">
-                <h4>ÚLTIMOS ALERTAS REGISTRADOS NORTE</h4>
-                <div id="kpiNorte">
-
-                </div>
-            </div>
-            <div class="box-kpi">
-                <h4>ÚLTIMOS ALERTAS REGISTRADOS LESTE</h4>
-                <div id="kpiLeste">
-
-                </div>
-            </div>
-            <div class="box-kpi">
-                <h4>ÚLTIMOS ALERTAS REGISTRADOS OESTE</h4>
-                <div id="kpiOeste">
-
-                </div>
-            </div>
-            <div class="box-kpi">
-                <h4>ÚLTIMOS ALERTAS REGISTRADOS SUL</h4>
-                <div id="kpiSul">
-
-                </div>
-            </div>
-        </div>
-
-        <div style="display: flex;align-items: center;justify-content: space-around;">
             <div class="regiao" onload="buscarSaturacaoPorSensores()">
                 <div class="tituloRegiao">
                     <h4>UMIDADE POR ÁREA (ÚLTIMO REGISTRO)</h4>
@@ -142,9 +127,10 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
+        </div>
+
+        <div style="display: flex;align-items: center;justify-content: space-around;">
             <div class="grafico">
                 <h3>REGISTROS DE UMIDADE (Últimas 24h)</h3>
                 <canvas id="myChart"></canvas>
@@ -168,70 +154,36 @@
 
 </html>
 <script>
+    let fkEmpresa = sessionStorage.FK_EMPRESA;
+
+    let proximaAtualizacao;
+
+    window.onload = validarSessao();
+
+    window.onload = validarTipoUser();
+
+    window.onload = exibirGrafico();
+
     if (sessionStorage.TIPO_ACESSO == "suporte") {
         window.location = "bobia.html"
-    } else {
+    } 
         let myChart;
-        /* const ctx = document.getElementById('myChart');
-    
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '00:00', '02:00', '04:00', '06:00'],
-                datasets: [{
-                    label: 'NORTE',
-                    data: [25, 24, 20, 22, 25, 27, 28, 30, 32, 35, 34, 31],
-                    borderWidth: 2,
-                    borderColor: 'blue',
-                    backgroundColor: 'blue',
-                },
-                {
-                    label: 'LESTE',
-                    data: [15, 18, 21, 25, 28, 19, 21, 23, 20, 18, 19, 21],
-                    borderWidth: 2,
-                    borderColor: 'green',
-                    backgroundColor: 'green',
-                },
-                {
-                    label: 'OESTE',
-                    data: [20, 25, 30, 35, 38, 28, 31, 33, 36, 39, 35, 32],
-                    borderWidth: 2,
-                    borderColor: 'yellow',
-                    backgroundColor: 'yellow',
-                },
-                {
-                    label: 'SUL',
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    borderWidth: 2,
-                    borderColor: 'orange',
-                    backgroundColor: 'orange',
-                }]
-            },
-            options: {
-                scales: {
-                x:{
-                    title: {
-                                display: true,
-                                text: '(horário)'
-                            }
-                },
-                    y: {
-                        title: {
-                                display: true,
-                                text: '(%)'
-                            },
-                        beginAtZero: true,
-    
-                    }
-                }
-            }
-        });
-     */
-        window.onload = validarTipoUser;
+
+
+    function validarSessao() {
+        var nome = sessionStorage.NOME_USUARIO;
+
+        if (nome != null) {
+            b_usuario.innerHTML = nome;
+
+        } else {
+            window.location = "../login.html";
+        }
+    }
 
         function validarTipoUser() {
             var tipoUser = sessionStorage.TIPO_ACESSO;
-            if (tipoUser != "adm") {
+            if (tipoUser == "comum" || tipoUser == "suporte") {
                 cadastro1.style.display = "none";
                 cadastro2.style.display = "none";
 
@@ -241,80 +193,22 @@
             }
         }
 
-        function buscarRegioesAcima(fkEmpresa) {
-            fetch(`/obra/regioesAcima/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (resposta) {
-                        console.log(`Dados das Kpi de busca recebidos: ${JSON.stringify(resposta)}`);
-                            kpiRegistroAcima.innerHTML = ``;
-                            kpiRegistroAcima.innerHTML = ``;
-                            kpiRegistroAcima.innerHTML = ``;
-                            kpiRegistroAcima.innerHTML = ``;
-                        for (let i = 0; i < resposta.length; i++) {
-                            let registro1 = resposta[0].umidade;
-                            let registro2 = resposta[0].umidade * 1.5;
-                            let registro3 = resposta[0].umidade * 1.2;
-                            let registro4 = resposta[0].umidade * 0;
-                            kpiRegistroAcima.innerHTML += `<span style="color: red;">${resposta[i].area} ${registro1}%</span> <br>`
-                            kpiRegistroAcima.innerHTML += `<span style="color: red;">NORTE ${registro2.toFixed(2)}%</span> <br>`
-                            kpiRegistroAcima.innerHTML += `<span style="color: red;">LESTE ${registro3.toFixed(2)}%</span> <br>`
-                            kpiRegistroAcima.innerHTML += `<span style="color: red;">OESTE ${registro4.toFixed(2)}%</span> <br>`
-                        }
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-                .catch(function (error) {
-                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                });
-        }
-
-        function buscarRegioesAbaixo(fkEmpresa) {
-            fetch(`/obra/regioesAbaixo/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (resposta) {
-                        console.log(`Dados das Kpi de busca recebidos: ${JSON.stringify(resposta)}`);
-                            kpiRegistroAbaixo.innerHTML = ``
-                            kpiRegistroAbaixo.innerHTML = ``
-                            kpiRegistroAbaixo.innerHTML = ``
-                            kpiRegistroAbaixo.innerHTML = `` 
-                        for (let i = 0; i < resposta.length; i++) {
-                            let registro1 = resposta[0].umidade;
-                            let registro2 = resposta[0].umidade * 1.5;
-                            let registro3 = resposta[0].umidade * 1.2;
-                            let registro4 = resposta[0].umidade * 0;
-                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">${resposta[i].area} ${registro1}%</span> <br>`
-                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">LESTE ${registro2.toFixed(2)}%</span> <br>`
-                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">SUL ${registro3.toFixed(2)}%</span> <br>`
-                            kpiRegistroAbaixo.innerHTML += `<span style="color: red">NORTE ${registro4.toFixed(2)}%</span> <br>`
-                        }
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-                .catch(function (error) {
-                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                });
-        }
-
         function buscarHistoricoNorte(fkEmpresa) {
             fetch(`/obra/historico/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                            kpiNorte.innerHTML = ``;
-                            kpiLeste.innerHTML = ``;
-                            kpiOeste.innerHTML = ``;
-                            kpiSul.innerHTML = ``;
+                        kpiNorte.innerHTML = ``;
+                        kpiLeste.innerHTML = ``;
+                        kpiOeste.innerHTML = ``;
+                        kpiSul.innerHTML = ``;
                         for (let i = 0; i < resposta.length; i++) {
 
-                            let resposta1 = Number(resposta[i].umidade) ;
+                            let resposta1 = Number(resposta[i].umidade);
                             let resposta2 = Number(resposta[i].umidade) * 1.5;
                             let resposta3 = Number(resposta[i].umidade) * 1.2;
                             let resposta4 = Number(resposta[i].umidade) * 0;
-                            
+
                             kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta1.toFixed(2)}%]</span></h2>`
                             kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta2.toFixed(2)}%]</span></h2>`
                             kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta3.toFixed(2)}%]</span></h2>`
@@ -330,25 +224,15 @@
                 });
         }
 
-
-        window.onload = exibirGrafico;
-        
-        let proximaAtualizacao;
-        let fkEmpresa = sessionStorage.FK_EMPRESA;
         function exibirGrafico() {
-            dashboard(fkEmpresa); 
+            dashboard(fkEmpresa);
             buscarSaturacaoPorSensores(fkEmpresa)
             buscarHistoricoNorte(fkEmpresa)
-            buscarRegioesAbaixo(fkEmpresa);
-            buscarRegioesAcima(fkEmpresa);
 
         }
         function atualizarKpis() {
-            
             buscarSaturacaoPorSensores(fkEmpresa)
             buscarHistoricoNorte(fkEmpresa)
-            buscarRegioesAbaixo(fkEmpresa);
-            buscarRegioesAcima(fkEmpresa);
 
         }
         function dashboard(fkEmpresa) {
@@ -363,7 +247,7 @@
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        
+
 
                         plotarGrafico(resposta, fkEmpresa);
 
@@ -517,7 +401,7 @@
                 document.getElementById(`myChart`),
                 config
             );
-            
+
             setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
 
         }
@@ -529,7 +413,7 @@
                 if (response.ok) {
                     response.json().then(function (novoRegistro) {
 
-                        
+
                         // alertar(novoRegistro, fkEmpresa);
                         console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                         console.log(`Dados atuais do gráfico:`);
@@ -564,7 +448,7 @@
 
                             myChart.update();
                             setTimeout(() => atualizarKpis(), 880);
-                            
+
                         }
 
                         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
@@ -651,6 +535,5 @@
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                 });
         }
-    }
 
 </script>
