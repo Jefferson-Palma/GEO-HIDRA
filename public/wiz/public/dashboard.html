@@ -409,64 +409,72 @@
 
 
 
-            fetch(`obra/tempoReal/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (novoRegistro) {
+        fetch(`obra/tempoReal/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
 
 
-                        // alertar(novoRegistro, fkEmpresa);
-                        console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                        console.log(`Dados atuais do gráfico:`);
-                        console.log(dados);
+                    // alertar(novoRegistro, fkEmpresa);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
 
 
 
 
-                        if (novoRegistro[0].dtRegistro == dados.labels[dados.labels.length - 1]) {
-                            console.log("---------------------------------------------------------------")
-                            console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    if (novoRegistro[0].dtRegistro == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
-                            console.log("Horário do novo dado capturado:")
-                            console.log(novoRegistro[0].dtRegistro)
-                            console.log("Horário do último dado capturado:")
-                            console.log(dados.labels[dados.labels.length - 1])
-                            console.log("---------------------------------------------------------------")
-                        } else {
-                            // tirando e colocando valores no gráfico
-                            dados.labels.shift(); // apagar o primeiro
-                            dados.labels.push(novoRegistro[0].dtRegistro); // incluir um novo momento
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].dtRegistro)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
 
-                            dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                            dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-                            dados.datasets[1].data.shift();  // apagar o primeiro de umidade
-                            dados.datasets[1].data.push(novoRegistro[0].umidade * 1.5); // incluir uma nova medida de umidade
-                            dados.datasets[2].data.shift();  // apagar o primeiro de umidade
-                            dados.datasets[2].data.push(novoRegistro[0].umidade * 1.2); // incluir uma nova medida de umidade
-                            dados.datasets[3].data.shift();  // apagar o primeiro de umidade
-                            dados.datasets[3].data.push(novoRegistro[0].umidade * 0); // incluir uma nova medida de umidade
+                        // tirando e colocando valores no gráfico
+                        
+                        dados.labels.push(novoRegistro[0].dtRegistro); // incluir um novo momento
 
 
-                            myChart.update();
-                            setTimeout(() => atualizarKpis(), 880);
+                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
 
+                        dados.datasets[1].data.push(novoRegistro[0].umidade * 1.5); // incluir uma nova medida de umidade
+
+                        dados.datasets[2].data.push(novoRegistro[0].umidade * 1.2); // incluir uma nova medida de umidade
+
+                        dados.datasets[3].data.push(novoRegistro[0].umidade * 0); // incluir uma nova medida de umidade
+
+                        if (dados.labels.length >= 10) {
+                            dados.labels.shift();
+                            dados.datasets[0].data.shift();
+                            dados.datasets[1].data.shift();
+                            dados.datasets[2].data.shift();
+                            dados.datasets[3].data.shift();
                         }
 
-                        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                        //  setTimeout(() => exibirGrafico(), 900);
-                        proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    // setTimeout(() => exibirGrafico(), 900);
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
-                }
-            })
-                .catch(function (error) {
-                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                });
+                        myChart.update();
+                        setTimeout(() => atualizarKpis(), 880);
 
-        }
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    //  setTimeout(() => exibirGrafico(), 900);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                // setTimeout(() => exibirGrafico(), 900);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
 
         function buscarSaturacaoPorSensores(fkEmpresa) {
             fetch(`/obra/saturacao/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
