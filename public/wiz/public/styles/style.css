@@ -387,11 +387,8 @@ a:hover{
     width: 70%;
     height: 300px;
     margin: 20px auto;
-    /* background: white; */
-     /* border: 3px solid black;  */
+
 }
-
-
 
 .beneficio-texto{
     width: 45%;
@@ -402,14 +399,14 @@ a:hover{
 }
 
 .beneficio-texto h3{
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
     color: #0c4f25;
     margin-bottom: 15px;
 }
 
 .beneficio-texto p{
-    font-size: 20px;
+    font-size: 25px;
     line-height: 1;
     text-align: justify;
 }
@@ -423,11 +420,9 @@ a:hover{
     width: 100%;
     height: 100%;
     object-fit: contain;
-    /* display: block; */
 }
 
 .beneficio-card{
-    /* border: 5px solid rgb(5, 5, 5); */
     margin-top: 40px;
 }
 
