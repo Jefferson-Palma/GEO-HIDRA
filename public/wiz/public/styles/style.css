@@ -358,10 +358,10 @@ a:hover{
 }
 
 .divCardsPorque {
-    width: 90%;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .divTitulo {
@@ -380,42 +380,55 @@ a:hover{
     color: #6a3e37;
 }
 
-.divCardsPorques{
+
+.beneficio-card{
     display: flex;
+    align-items: center;
+    width: 70%;
+    height: 300px;
+    margin: 20px auto;
+    /* background: white; */
+     /* border: 3px solid black;  */
+}
+
+
+
+.beneficio-texto{
+    width: 45%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
-.divCard1,
-.divCard2,
-.divCard3,
-.divCard4 {
-    height: 350px;
-    width: 85%;
-    background-color: white;
-    border-radius: 50px;
-    border: solid 2px #1dcdfe;
-    padding: 25px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 8px 8px 10px gray;
-    transition: 1s;
+.beneficio-texto h3{
+    font-size: 24px;
+    font-weight: 700;
+    color: #0c4f25;
+    margin-bottom: 15px;
 }
 
-.divCard1:hover,
-.divCard2:hover,
-.divCard3:hover,
-.divCard4:hover {
-    height: 380px;
-    width: 88%;
-    margin-bottom: -30px;
+.beneficio-texto p{
+    font-size: 20px;
+    line-height: 1;
+    text-align: justify;
 }
 
-.imgCardPorque {
-    height: 130px;
-    width: 130px;
+.beneficio-imagem{
+    width: 55%;
+    height: 100%;
+}
+
+.beneficio-imagem img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* display: block; */
+}
+
+.beneficio-card{
+    /* border: 5px solid rgb(5, 5, 5); */
+    margin-top: 40px;
 }
 
 /* Como funciona */
