@@ -1,3 +1,4 @@
+
 var database = require("../database/config")
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
@@ -70,6 +71,32 @@ FROM registroSensor
     return database.executar(instrucaoSql);
 }
 
+function dashboardGeral(fkEmpresa){
+
+    var instrucaoSql = `SELECT 
+    idObra,
+    CONCAT(rua, ', ', numero, ' - ', cidade) AS endereco,
+    DATE_FORMAT(dtRegistro, '%d/%m %H:%i') AS ultimoRegistro,
+    CASE 
+    WHEN umidade <= 20 OR umidade >=31 THEN "Alerta"
+    ELSE "Normal"
+    END AS status
+    FROM obra
+    JOIN sensor ON fkObra = idObra
+    JOIN registroSensor ON fkSensor = idSensor
+    WHERE fkEmpresa = ${fkEmpresa}
+    AND idRegistro = (
+    SELECT r2.idRegistro
+    FROM registroSensor r2
+    JOIN sensor s2 ON s2.idSensor = r2.fkSensor
+    WHERE s2.fkObra = idObra
+    ORDER BY r2.dtRegistro DESC
+    LIMIT 1)
+    ORDER BY idObra DESC;`
+
+ console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     cadastrar,
@@ -78,5 +105,6 @@ module.exports = {
     historico,
     saturacao,
     buscarRegioesAcima,
-    buscarRegioesAbaixo
+    buscarRegioesAbaixo,
+    dashboardGeral
 };

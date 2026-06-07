@@ -32,5 +32,8 @@ router.get("/regioesAbaixo/:fkEmpresa", function (req, res){
     obraController.buscarRegioesAbaixo(req, res);
 
 });
+router.get("/dashboardGeral/:fkEmpresa", function(req, res){
+    obraController.dashboardGeral(req, res);
+})
 
 module.exports = router;

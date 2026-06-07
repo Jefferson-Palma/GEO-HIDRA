@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Geral</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="assets/imgs/logo.PNG" width="0.01px">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/sessao.js"></script>
 </head>
 
-<body onload="filterTableAll()">
+<body>
     <header>
         <div class="componentes">
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
-                <div id="cadastro1" class="funcionarioCadastro">
+                <div id="cadastro" class="funcionarioCadastro">
                     <span>
-                        <a href="cadastroObra.html" style="color: white;">Cadastrar obra</a>
+                        <a href="cadastroObra.html" style="color: #06ba63;">Cadastrar obra</a>
                     </span>
                 </div>
-                <div id="cadastro2" class="funcionarioCadastro"><span>
+                <div id="cadastro1" class="funcionarioCadastro"><span>
                         <a href="cadastroFuncionario.html" style="color: white;">Cadastrar Funcionário</a>
                     </span>
                 </div>
@@ -41,13 +43,13 @@
                 <div class="kpiGeral1">
                     <h4>OBRAS MONITORADAS</h4>
                     <div class="projecao">
-                        <span class="textoKpi">8</span>
+                        <span class="textoKpi" id="totalObras">8</span>
                     </div>
                 </div>
                 <div class="kpiGeral2">
                     <h4>OBRAS EM ALERTA</h4>
                     <div class="projecao">
-                        <span class="textoKpiProblema">2</span>
+                        <span class="textoKpiProblema" id="totalAlerta">2</span>
                     </div>
                 </div>
             </div>
@@ -63,15 +65,16 @@
                 <div class="obras-header">
                     <div class="obras-title">Status de Umidade por Obra</div>
                     <div class="filter-badges">
-                        <span id="span1" class="fb" onclick="filterTableAll()">Todas</span>
-                        <span id="span2" class="fb" onclick="filterTableAlerta()">Alerta</span>
-                        <span id="span3" class="fb" onclick="filterTableNormal()">Normal</span>
+                        <span id="span1" class="fb" onclick="todasObras()">Todas</span>
+                        <span id="span2" class="fb" onclick="apenasAlerta()">Alerta</span>
+                        <span id="span3" class="fb" onclick="apenasNormal()">Normal</span>
                     </div>
                 </div>
                 <div id="obrasTable">
                     <div class="headerTable">
                         <span>Obra</span>
                         <span>Status</span>
+                        <span>Último Registro</span>
                     </div>
                     <div id="obrasBody"></div>
                 </div>
@@ -94,15 +97,177 @@
 
 </html>
 <script>
-    const obras = [
-        { nome: "Ed. Vitor Meireles", addr: "R. Vitor Meireles, 88", st: "Alerta", ts: "18/05 00:42" },
-        { nome: "Torre Marítima", addr: "Av. do Porto, 1200", st: "Alerta", ts: "18/05 00:41" },
-        { nome: "Galpão Industrial 3", addr: "Rodovia Anhang., km 32", st: "OK", ts: "18/05 00:43" },
-        { nome: "Shopping Norte", addr: "Av. Norte, 3000 — SP", st: "OK", ts: "18/05 00:44" },
-        { nome: "Centro Log. SP", addr: "Dist. Industrial, Q3", st: "OK", ts: "18/05 00:45" },
-        { nome: "Col. Nova Geração", addr: "R. Escolar, 75 — SP", st: "OK", ts: "18/05 00:44" },
-    ];
-    function filterTableAll() {
+    let fkEmpresa = sessionStorage.FK_EMPRESA;
+
+    let proximaAtualizacao;
+
+    let listaObras = [];
+
+    window.onload = validarSessao();
+
+    window.onload = validarTipoUser();
+
+    window.onload = exibirGrafico();
+
+    if (sessionStorage.TIPO_ACESSO == "suporte") {
+        window.location = "bobia.html"
+    } 
+        let myChart;
+
+
+    function validarSessao() {
+        var nome = sessionStorage.NOME_USUARIO;
+
+        if (nome != null) {
+            // b_usuario.innerHTML = nome;
+
+        } else {
+            window.location = "../login.html";
+        }
+    }
+
+    function validarTipoUser() {
+        var tipoUser = sessionStorage.TIPO_ACESSO;
+        if (tipoUser == "comum" || tipoUser == "suporte") {
+            cadastro1.style.display = "none";
+            cadastro2.style.display = "none";
+
+        } else {
+            cadastro1.style.display = "block";
+         cadastro2.style.display = "block";
+        }
+    }
+
+    function exibirGrafico(){
+        dashboardGeral(fkEmpresa);
+    }
+
+
+        function dashboardGeral(fkEmpresa) {
+            fetch(`/obra/dashboardGeral/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        listaObras = resposta;
+
+                        atualizarKPIs();
+                        plotarGrafico(resposta, fkEmpresa);
+                        todasObras(resposta, fkEmpresa)
+
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
+        }
+
+        function atualizarKPIs() {
+            let total = listaObras.length;
+            let alerta = 0;
+            for(let i = 0; i < listaObras.length; i++) {
+                if(listaObras[i].status == "Alerta") {
+                    alerta++;
+                }
+            }
+            totalObras.innerHTML = total;
+            totalAlerta.innerHTML = alerta;
+        }
+
+        function plotarGrafico(resposta, fkEmpresa) {
+            console.log('iniciando plotagem do gráfico...');
+
+            let normal = 0;
+            let alerta = 0;
+            for(let i = 0; i < resposta.length; i++){
+                if(resposta[i].status == "Normal"){
+                    normal++;
+                } else if(resposta[i].status == "Alerta"){
+                    alerta++;
+                }
+            }
+
+            // Criando estrutura para plotar gráfico - labels
+            // let labels = [];
+
+            // Criando estrutura para plotar gráfico - dados
+            let dados = {
+                labels: ['Normal', 'Alerta'],
+                datasets: [{
+                    data: [normal, alerta],
+                    backgroundColor: ['#06BA63', 'red'],
+                    tension: 0.1
+                }
+                    // {
+                    //     label: 'Alerta',
+                    //     data: [],
+                    //     backgroundColor: 'red',
+                    //     tension: 0.1
+                    // },
+                    // {
+                    //     label: 'Normal',
+                    //     data: [],
+                    //     backgroundColor: 'blue',
+                    //     tension: 0.1
+                    // },
+                    
+                ]
+
+
+            };
+
+            console.log('----------------------------------------------')
+            console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+            console.log(resposta)
+
+            // Inserindo valores recebidos em estrutura para plotar o gráfico
+            // for (let i = 0; i < resposta.length; i++) {
+
+            //     let registro = resposta[i];
+
+            //     labels.push(registro.Situacao)
+            //     // No console o valor da umidade tava vindo como string, ent precisamos transformar em number para aparecer no gráfico
+            //     dados.datasets[0].data.push(Number(registro.Total))
+            // }
+
+            console.log('----------------------------------------------')
+            console.log('O gráfico será plotado com os respectivos valores:')
+            // console.log('Labels:')
+            // console.log(labels)
+            console.log('Dados:')
+            console.log(dados.datasets)
+            console.log('----------------------------------------------')
+
+            // Criando estrutura para plotar gráfico - config
+            const config = {
+                type: 'doughnut',
+                data: dados,
+            };
+
+            // Adicionando gráfico criado em div na tela
+
+
+            myChart = new Chart(
+                document.getElementById(`graficoComposicao`),
+                config
+            );
+
+            // setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
+
+        }
+
+    // const obras = [
+    //     { nome: "Ed. Vitor Meireles", addr: "R. Vitor Meireles, 88", st: "Alerta", ts: "18/05 00:42" },
+    //     { nome: "Torre Marítima", addr: "Av. do Porto, 1200", st: "Alerta", ts: "18/05 00:41" },
+    //     { nome: "Galpão Industrial 3", addr: "Rodovia Anhang., km 32", st: "OK", ts: "18/05 00:43" },
+    //     { nome: "Shopping Norte", addr: "Av. Norte, 3000 — SP", st: "OK", ts: "18/05 00:44" },
+    //     { nome: "Centro Log. SP", addr: "Dist. Industrial, Q3", st: "OK", ts: "18/05 00:45" },
+    //     { nome: "Col. Nova Geração", addr: "R. Escolar, 75 — SP", st: "OK", ts: "18/05 00:44" },
+    // ];
+    function todasObras() {
         document.getElementById("span1");
         document.getElementById("span2");
         document.getElementById("span3");
@@ -114,21 +279,24 @@
         span3.style.color = "#000"
 
         obrasBody.innerHTML = "";
-        for (let i = 0; i < obras.length; i++) {
+        for (let i = 0; i < listaObras.length; i++) {
             obrasBody.innerHTML += `
-                <div class="dadosGerais">
+                <div class="dadosGerais" style="cursor:pointer" onclick="irParaObra(${listaObras[i].idObra})">
                     <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                        <span class="dadosTabelas">${listaObras[i].endereco}</span>
                     </div>
                     <div class="divDadosTabela">
-                        <span class="dadosTabelas">${obras[i].st}</span>
+                        <span class="dadosTabelas">${listaObras[i].status}</span>
+                    </div>
+                    <div class="divDadosTabela">
+                        <span class="dadosTabelas">${listaObras[i].ultimoRegistro}</span>
                     </div>
                 </div> 
                 <hr>`;
         }
     }
 
-    function filterTableAlerta(){
+    function apenasAlerta(){
         document.getElementById("span1");
         document.getElementById("span2");
         document.getElementById("span3");
@@ -140,22 +308,25 @@
         span3.style.color = "#000"
 
         obrasBody.innerHTML = "";
-        for (let i = 0; i < obras.length; i++) {
-            if(obras[i].st == "Alerta"){
+        for (let i = 0; i < listaObras.length; i++) {
+            if(listaObras[i].status == "Alerta"){
                 obrasBody.innerHTML += `
-                    <div class="dadosGerais">
+                    <div class="dadosGerais" style="cursor:pointer" onclick="irParaObra(${listaObras[i].idObra})">
                         <div class="divDadosTabela">
-                            <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                            <span class="dadosTabelas">${listaObras[i].endereco}</span>
                         </div>
                         <div class="divDadosTabela">
-                            <span class="dadosTabelas">${obras[i].st}</span>
+                            <span class="dadosTabelas">${listaObras[i].status}</span>
+                        </div>
+                        <div class="divDadosTabela">
+                            <span class="dadosTabelas">${listaObras[i].ultimoRegistro}</span>
                         </div>
                     </div> 
                     <hr>`;
             }
         }
     }
-    function filterTableNormal(){
+    function apenasNormal(){
         document.getElementById("span1");
         document.getElementById("span2");
         document.getElementById("span3");
@@ -167,38 +338,45 @@
         span3.style.color = "#fff"
 
         obrasBody.innerHTML = "";
-        for (let i = 0; i < obras.length; i++) {
-            if(obras[i].st == "OK"){
+        for (let i = 0; i < listaObras.length; i++) {
+            if(listaObras[i].status == "Normal"){
                 obrasBody.innerHTML += `
-                    <div class="dadosGerais">
+                    <div class="dadosGerais" style="cursor:pointer" onclick="irParaObra(${listaObras[i].idObra})">
                         <div class="divDadosTabela">
-                            <span class="dadosTabelas">${obras[i].nome} <br> ${obras[i].addr}</span>
+                            <span class="dadosTabelas">${listaObras[i].endereco}</span>
                         </div>
                         <div class="divDadosTabela">
-                            <span class="dadosTabelas">${obras[i].st}</span>
+                            <span class="dadosTabelas">${listaObras[i].status}</span>
+                        </div>
+                        <div class="divDadosTabela">
+                            <span class="dadosTabelas">${listaObras[i].ultimoRegistro}</span>
                         </div>
                     </div> 
                     <hr>`;
             }
         }
     }
+    function irParaObra(idObra) {
+        sessionStorage.ID_OBRA = idObra;
+        window.location = "dashboard.html";
+    }
 
-    Chart.defaults.color = "#000"
-    new Chart(document.getElementById('graficoComposicao'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Normal', 'Alerta', 'Crítico'],
-            datasets: [{
-                data: [1, 2, 5],
-                backgroundColor: [
-                    'rgb(106, 62, 55)',
-                    'rgb(6, 186, 99)',
-                    'rgb(29, 205, 254)'
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {}
-    });
-
+    // Chart.defaults.color = "#000"
+    // new Chart(document.getElementById('graficoComposicao'), {
+    //     type: 'doughnut',
+    //     data: {
+    //         labels: ['Normal', 'Alerta', 'Crítico'],
+    //         datasets: [{
+    //             data: [1, 2, 5],
+    //             backgroundColor: [
+    //                 'rgb(106, 62, 55)',
+    //                 'rgb(6, 186, 99)',
+    //                 'rgb(29, 205, 254)'
+    //             ],
+    //             borderWidth: 0
+    //         }]
+    //     },
+    //     options: {}
+    // });
+    // });
 </script>
