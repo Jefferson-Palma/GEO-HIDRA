@@ -193,6 +193,12 @@
             }
         }
 
+        let listaAuxiliar=[]
+        let contador=0;
+        let horaNorte=[]
+        let horaLeste=[]
+        let horaOeste=[]
+        let horaSul=[]
         function buscarHistoricoNorte(fkEmpresa) {
             fetch(`/obra/historico/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
@@ -202,17 +208,69 @@
                         kpiLeste.innerHTML = ``;
                         kpiOeste.innerHTML = ``;
                         kpiSul.innerHTML = ``;
+                        horaLeste.reverse()
+                        horaNorte.reverse()
+                        horaOeste.reverse()
+                        horaSul.reverse()
+                        let diaLeste=0;
+                        let diaNorte=0;
+                        let diaSul=0;
+                        let diaOeste=0;
                         for (let i = 0; i < resposta.length; i++) {
 
                             let resposta1 = Number(resposta[i].umidade);
                             let resposta2 = Number(resposta[i].umidade) * 1.5;
                             let resposta3 = Number(resposta[i].umidade) * 1.2;
                             let resposta4 = Number(resposta[i].umidade) * 0;
+                            let msg1=''
+                            let msg2=''
+                            let msg3=''
+                            let msg4=''
+                            if(resposta2>30){
+                                msg2='ALTO'
+                            }else if(resposta2>0){
+                                msg2='BAIXO'
+                            }else{
+                                msg2='INATIVO'
+                            }
 
-                            kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta1.toFixed(2)}%]</span></h2>`
-                            kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta2.toFixed(2)}%]</span></h2>`
-                            kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta3.toFixed(2)}%]</span></h2>`
-                            kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta4.toFixed(2)}%]</span></h2>`
+                            if(resposta3>30){
+                                msg3='ALTO'
+                            }else if(resposta3>0){
+                                msg3='BAIXO'
+                            }else{
+                                msg3='INATIVO'
+                            }
+
+                            if(resposta4>30){
+                                msg4='ALTO'
+                            }else if(resposta4>0){
+                                msg4='BAIXO'
+                            }else{
+                                msg4='INATIVO'
+                            }
+
+                            if(horaLeste[i]==0){
+                                diaLeste--
+                            }
+
+                            if(horaOeste[i]==0){
+                                diaOeste--
+                            }
+
+                            if(horaNorte[i]==0){
+                                diaNorte--
+                            }
+
+                            if(horaSul[i]==0){
+                                diaSul--
+                            }
+
+
+                            kpiLeste.innerHTML += `<h2>[${Number(resposta[i].dia)+diaLeste}${resposta[i].dtFormatada}-${horaLeste[i]}h] <span class="alerta">[${resposta[i].alerta}-${resposta1.toFixed(2)}%]</span></h2>`
+                            kpiOeste.innerHTML += `<h2>[${Number(resposta[i].dia)+diaOeste}${resposta[i].dtFormatada}-${horaOeste[i]}h] <span class="alerta">[${msg2}-${resposta2.toFixed(2)}%]</span></h2>`
+                            kpiNorte.innerHTML += `<h2>[${Number(resposta[i].dia)+diaNorte}${resposta[i].dtFormatada}-${horaNorte[i]}h] <span class="alerta">[${msg3}-${resposta3.toFixed(2)}%]</span></h2>`
+                            kpiSul.innerHTML += `<h2>[${Number(resposta[i].dia)+diaSul}${resposta[i].dtFormatada}-${horaSul[i]}h] <span class="alerta">[${msg4}-${resposta4.toFixed(2)}%]</span></h2>`
                         }
                     });
                 } else {
@@ -334,7 +392,8 @@
                 }
                 // evita que apareça mais de um registro na mesma data no eixo X
                 if (!labels.includes(registro.dtRegistro)) {
-                    labels.push(registro.dtRegistro);
+                    listaAuxiliar.push(registro.dtRegistro);
+                    labels.push(`${i}h`);
                 }
 
 
@@ -345,15 +404,40 @@
 
                     // utiliza o valor capturado da umidade la variavel e puxa ele pro indice 0 que seria o primeiro sensor
                     dados.datasets[0].data.push(umidade);
+                    if(dados.datasets[0].data[i]>30 || dados.datasets[0].data[i]<21 ){
+                        horaLeste.push(i);
+                        if(horaLeste.length>4){
+                            horaLeste.shift();
+                        }
+                    }
 
                     // usa como base o valor capturado na fkSensor 1 para multiplicar por x o dado encontrado e manda ele
                     // para as outras labels que existem ex: indice 1 do dados é o OESTE ent o valor do indice[0] * 1.5 vai
                     // ser o valor plotado no indice 1
                     dados.datasets[1].data.push(umidade * 1.5);
+                    if(dados.datasets[1].data[i]>30 || dados.datasets[1].data[i]<21 ){
+                        horaOeste.push(i);
+                        if(horaOeste.length>4){
+                            horaOeste.shift();
+                        }
+                    }
 
                     dados.datasets[2].data.push(umidade * 1.2);
+                    if(dados.datasets[2].data[i]>30 || dados.datasets[2].data[i]<21 ){
+                        horaNorte.push(i);
+                        if(horaNorte.length>4){
+                            horaNorte.shift();
+                        }
+                    }
+
 
                     dados.datasets[3].data.push(umidade * 0);
+                    if(dados.datasets[3].data[i]>30 || dados.datasets[3].data[i]<21 ){
+                        horaSul.push(i);
+                        if(horaSul.length>4){
+                            horaSul.shift();
+                        }
+                    }
 
 
                 }
@@ -362,7 +446,7 @@
 
 
             }
-
+            contador=resposta.length-1;
             console.log('----------------------------------------------')
             console.log('O gráfico será plotado com os respectivos valores:')
             console.log('Labels:')
@@ -422,7 +506,7 @@
 
 
 
-                    if (novoRegistro[0].dtRegistro == dados.labels[dados.labels.length - 1]) {
+                    if (novoRegistro[0].dtRegistro == listaAuxiliar[listaAuxiliar.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
@@ -434,8 +518,14 @@
                     } else {
 
                         // tirando e colocando valores no gráfico
-                        
-                        dados.labels.push(novoRegistro[0].dtRegistro); // incluir um novo momento
+                        if(contador>=23){
+                            contador=0;
+                        }else{
+
+                            contador++
+                        }
+                        dados.labels.push(contador); // incluir um novo momento
+                        listaAuxiliar.push(novoRegistro[0].dtRegistro);
 
 
                         dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade

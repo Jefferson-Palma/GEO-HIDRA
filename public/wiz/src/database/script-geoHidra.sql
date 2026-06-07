@@ -186,3 +186,21 @@ SELECT * FROM kpis_alertas
 WHERE area='NORTE';
 
 TRUNCATE registroSensor;
+
+
+-- nova view
+CREATE VIEW kpis_alertas AS
+SELECT  DATE_FORMAT(dtRegistro, '%d') as dia,DATE_FORMAT(dtRegistro, '/%m/%Y') as dtFormatada,DATE_FORMAT(dtRegistro, '%s') as segundos,idObra, area, idEmpresa,umidade,
+CASE 
+WHEN umidade 
+<=0 THEN 'INATIVO' 
+WHEN umidade<= 20 AND umidade> 0 THEN 'BAIXO'
+WHEN umidade <=30 AND umidade> 0 THEN 'IDEAL'
+ELSE 'ALTO'
+END AS alerta FROM registroSensor
+JOIN sensor ON idSensor=fkSensor
+JOIN obra ON idObra=fkObra
+JOIN empresa ON idEmpresa=fkEmpresa
+WHERE umidade<=20 OR umidade>30 
+ORDER BY dtRegistro DESC
+LIMIT 4;
