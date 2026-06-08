@@ -826,8 +826,8 @@ footer {
 
 
 .regiao{
-    width: 43%;
-    height: 325px;
+    width: 89%;
+    height: 500px;
     padding: 5px;
     flex-direction: column;
     border-radius: 15px;
@@ -843,6 +843,8 @@ footer {
     align-items: center;
     justify-content: center;
     text-align: center;
+    width: 100%;
+    height: 400px;
 }
 
 .direcao{
@@ -869,11 +871,11 @@ footer {
     text-align: center;
     align-items: center;
     justify-content: center;
-    height: 70px;
+    height: 100px;
 }
 .leste,
 .oeste{
-    width: 100px;
+    width: 150px;
 }
 
 .alinhamento{
@@ -883,8 +885,8 @@ footer {
 }
 .bloco{
     align-items: center;
-    height: 15px;
-    width: 15px;
+    height: 17px;
+    width: 17px;
 }
 
 .legenda{
@@ -893,7 +895,9 @@ footer {
     font-size: 15px;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
+    margin-top: 17px;
+    font-size: 17px;
 }
 
 .escrita{
@@ -907,7 +911,7 @@ footer {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 5px;
+    margin: 10px;
 }
 
 .alerta{
