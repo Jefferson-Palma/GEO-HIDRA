@@ -44,6 +44,9 @@
     </header>
 
     <div class="boxGeral">
+        <div class="olaUsuario">
+            <h2>Olá, <span id="b_usuario"></span>!</h2>
+        </div>
             <div class="kpisGeral">
                 <div class="kpiGeral1">
                     <h4>OBRAS MONITORADAS</h4>
@@ -124,7 +127,7 @@
         var nome = sessionStorage.NOME_USUARIO;
 
         if (nome != null) {
-            // b_usuario.innerHTML = nome;
+            b_usuario.innerHTML = nome;
 
         } else {
             window.location = "../login.html";
