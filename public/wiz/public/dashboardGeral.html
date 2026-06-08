@@ -16,7 +16,7 @@
         <div class="componentes">
             <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
             <div class="caminhos">
-                <div id="cadastro" class="funcionarioCadastro">
+                <div id="cadastro3" class="funcionarioCadastro">
                     <span>
                         <a href="cadastroObra.html" style="color: #06ba63;">Cadastrar obra</a>
                     </span>
@@ -28,6 +28,11 @@
                 <div id="cadastro2" class="funcionarioCadastro"><span>
                         <a href="https://sptech-team-hst2y1fq.atlassian.net/servicedesk/customer/portal/36/create/64"
                             style="color: white;">Suporte</a>
+                    </span>
+                </div>
+                <div id="cadastro" class="funcionarioCadastro">
+                    <span>
+                        <a href="alterarSenha.html" style="color: #06ba63;">Alterar Senha</a>
                     </span>
                 </div>
                 <div class="sair"><span> <button onclick="limparSessao()"
@@ -88,7 +93,7 @@
             </div>
             <div class="conteudo">
                 <span><a href="index.html">Home</a></span>
-                <span><a href="index.html #sobreNos">Sobre Nós</a></span>
+                <span><a href="index.html#sobreNos">Sobre Nós</a></span>
                 <span><a href="index.html#contato">Contato</a></span>
             </div>
         </div>
@@ -131,6 +136,7 @@
         if (tipoUser == "comum" || tipoUser == "suporte") {
             cadastro1.style.display = "none";
             cadastro2.style.display = "none";
+            cadastro3.style.display = "none";
 
         } else {
             cadastro1.style.display = "block";

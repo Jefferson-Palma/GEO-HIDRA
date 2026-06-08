@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Senha</title>
+    <link rel="stylesheet" href="styles/styleCadastro.css">
+    <link rel="icon" href="assets/imgs/logo.PNG" width="0.01px">
+    <script src="js/sessao.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="componentes">
+            <div class="logo"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa"></div>
+            <div class="caminhos">
+                <div class="dashboard">
+                    <span>
+                        <a href="dashboardGeral.html" style="color: white;">Dashboard Geral</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-login">
+        <div class="caixa-alterarSenha">
+            <h1>Alterar Senha</h1>
+            <div class="campo">
+                <p>Senha atual</p>
+                <input class="inputLogin" type="password" id="input_senha" placeholder="Digite sua senha atual">
+                <p>Nova senha</p>
+                <input class="inputLogin" type="password" id="input_novaSenha" placeholder="Digite sua nova senha">
+                <p>Confirmar senha</p>
+                <input class="inputLogin" type="password" id="input_confirmar" placeholder="Confirmar nova senha">
+            </div>
+            <div class="mensagemDeErroLogin" id="mensagem"></div>
+            <div id="login_mensagem" style="display: none"></div>
+            <div class="botao">
+                <button onclick="alterarSenha()">Alterar Senha</button>
+            </div>
+        </div>
+        <div class="imagemLogin">
+            <img src="assets/imgs/pexels-keat007-32858871 1.png" alt="Imagem Login" width="530px">
+            <span id="b_usuario" style="display: none;"></span>
+        </div>
+    </div>
+
+    </div>
+    <footer>
+        <div class="footerConteudo">
+            <div class="logoFooter"><img src="assets/imgs/Group 10.png" alt="Logo da Empresa">
+            </div>
+            <div class="conteudo">
+                <span><a href="index.html">Home</a></span>
+                <span><a href="index.html#sobreNos">Sobre Nós</a></span>
+                <span><a href="index.html#contato">Contato</a></span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+<script>
+    let idFuncionario = sessionStorage.ID_USUARIO;
+    let senha = sessionStorage.SENHA_USUARIO;
+
+    window.onload = validarSessao();
+
+    function alterarSenha() {
+        let senhaAtual = input_senha.value;
+        let novaSenha = input_novaSenha.value;
+        let confirmarSenha = input_confirmar.value;
+
+        if(senhaAtual != senha){
+            alert('A senha atual está incorreta!');
+            return false;
+        }
+
+        if(senhaAtual == novaSenha){
+            alert('A nova senha não pode ser igual à senha atual!');
+            return false;
+        }
+
+        if(novaSenha != confirmarSenha){
+            alert('As senhas não coincidem!');
+            return false;
+        }
+
+        fetch(`/usuarios/alterarSenha`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idFuncionarioServer: idFuncionario,
+                senhaAtualServer: senhaAtual,
+                novaSenhaServer: novaSenha,
+
+            })
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    sessionStorage.SENHA_USUARIO = novaSenha;
+
+                    alert('Sua senha foi alterada com sucesso!');
+                    setTimeout(() => {
+                    window.location = "dashboardGeral.html"
+                    }, 2000);
+                } else {
+                    throw "Houve um erro ao tentar realizar a alteração da senha!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+    }
+</script>

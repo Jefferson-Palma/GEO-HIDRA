@@ -484,3 +484,15 @@ button:hover{
     
     transform: scale(1.5); 
 }
+
+.caixa-alterarSenha{
+    background-color: #06ba63;
+    width: 35%;
+    height: 550px;
+    border-radius: 20px;
+    box-shadow: -8px 8px 10px gray;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    position: relative;
+}

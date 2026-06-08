@@ -25,6 +25,7 @@ function autenticar(req, res) {
                                     res.json({
                                         idFuncionario: resultadoAutenticar[0].idFuncionario,
                                         email: resultadoAutenticar[0].email,
+                                        senha: resultadoAutenticar[0].senha,
                                         nomeFuncionario: resultadoAutenticar[0].nomeFuncionario,
                                         senha: resultadoAutenticar[0].senha,
                                         fkEmpresa: resultadoAutenticar[0].fkEmpresa,
@@ -97,7 +98,43 @@ function cadastrar(req, res) {
     }
 }
 
+function alterarSenha(req, res) {
+    var idFuncionario = req.body.idFuncionarioServer;
+    var senhaAtual = req.body.senhaAtualServer;
+    var novaSenha = req.body.novaSenhaServer;
+   
+    
+
+    // Faça as validações dos valores
+    if (idFuncionario == undefined) {
+        res.status(400).send("Seu idFuncionario está undefined!");
+    } else if (senhaAtual == undefined) {
+        res.status(400).send("Sua senhaAtual está undefined!");
+    } else if (novaSenha == undefined) {
+        res.status(400).send("Sua novaSenha está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.alterarSenha(idFuncionario, senhaAtual, novaSenha)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao alterar a senha! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    alterarSenha
 }
