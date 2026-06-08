@@ -15,7 +15,7 @@ function cadastrar(rua,cep,numero,cidade,estado, fkEmpresa) {
 }
 function dashboard(fkEmpresa){
 
-    var instrucaoSql = `SELECT fkSensor,area, umidade, DATE_FORMAT(dtRegistro, '%d/%m/%Y %H:%i:%s') AS dtRegistro
+    var instrucaoSql = `SELECT fkSensor,area, umidade, DATE_FORMAT(dtRegistro,'%H:%i:%s') AS dtRegistro
 FROM registroSensor
   JOIN sensor ON idSensor=fkSensor
   JOIN obra ON idObra=fkObra
@@ -59,7 +59,7 @@ where dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = 1 o
 
 function tempoReal(fkEmpresa) {
 
-     var instrucaoSql = `SELECT fkSensor,area, umidade, DATE_FORMAT(dtRegistro, '%d/%m/%Y %H:%i:%s') AS dtRegistro
+     var instrucaoSql = `SELECT fkSensor,area, umidade, DATE_FORMAT(dtRegistro, '%H:%i:%s') AS dtRegistro
 FROM registroSensor
   JOIN sensor ON idSensor=fkSensor
   JOIN obra ON idObra=fkObra

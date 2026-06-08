@@ -177,10 +177,10 @@
 
         let listaAuxiliar=[]
         let contador=0;
-        let horaNorte=[]
-        let horaLeste=[]
-        let horaOeste=[]
-        let horaSul=[]
+        // let horaNorte=[]
+        // let horaLeste=[]
+        // let horaOeste=[]
+        // let horaSul=[]
         function buscarHistoricoNorte(fkEmpresa) {
             fetch(`/obra/historico/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
@@ -190,14 +190,14 @@
                         kpiLeste.innerHTML = ``;
                         kpiOeste.innerHTML = ``;
                         kpiSul.innerHTML = ``;
-                        horaLeste.reverse()
-                        horaNorte.reverse()
-                        horaOeste.reverse()
-                        horaSul.reverse()
-                        let diaLeste=0;
-                        let diaNorte=0;
-                        let diaSul=0;
-                        let diaOeste=0;
+                        // horaLeste.reverse()
+                        // horaNorte.reverse()
+                        // horaOeste.reverse()
+                        // horaSul.reverse()
+                        // let diaLeste=0;
+                        // let diaNorte=0;
+                        // let diaSul=0;
+                        // let diaOeste=0;
                         for (let i = 0; i < resposta.length; i++) {
 
                             let resposta1 = Number(resposta[i].umidade);
@@ -210,7 +210,7 @@
                             let msg4=''
                             if(resposta2>30){
                                 msg2='ALTO'
-                            }else if(resposta2>0){
+                            }else if(resposta2>0  ){
                                 msg2='BAIXO'
                             }else{
                                 msg2='INATIVO'
@@ -232,27 +232,33 @@
                                 msg4='INATIVO'
                             }
 
-                            if(horaLeste[i]==0){
-                                diaLeste--
+                            // if(horaLeste[i]==0){
+                            //     diaLeste--
+                            // }
+
+                            // if(horaOeste[i]==0){
+                            //     diaOeste--
+                            // }
+
+                            // if(horaNorte[i]==0){
+                            //     diaNorte--
+                            // }
+
+                            // if(horaSul[i]==0){
+                            //     diaSul--
+                            // }
+
+
+                            kpiLeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${resposta[i].alerta}-${resposta1.toFixed(2)}%]</span></h2>`
+                            if(resposta2>30 || resposta2<20){
+                            kpiOeste.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${msg2}-${resposta2.toFixed(2)}%]</span></h2>`
                             }
-
-                            if(horaOeste[i]==0){
-                                diaOeste--
+                            if(resposta3>30 || resposta3<20){
+                            kpiNorte.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${msg3}-${resposta3.toFixed(2)}%]</span></h2>`
                             }
-
-                            if(horaNorte[i]==0){
-                                diaNorte--
+                            if(resposta4>30 || resposta4<20){
+                            kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${msg4}-${resposta4.toFixed(2)}%]</span></h2>`
                             }
-
-                            if(horaSul[i]==0){
-                                diaSul--
-                            }
-
-
-                            kpiLeste.innerHTML += `<h2>[${Number(resposta[i].dia)+diaLeste}${resposta[i].dtFormatada}-${horaLeste[i]}h] <span class="alerta">[${resposta[i].alerta}-${resposta1.toFixed(2)}%]</span></h2>`
-                            kpiOeste.innerHTML += `<h2>[${Number(resposta[i].dia)+diaOeste}${resposta[i].dtFormatada}-${horaOeste[i]}h] <span class="alerta">[${msg2}-${resposta2.toFixed(2)}%]</span></h2>`
-                            kpiNorte.innerHTML += `<h2>[${Number(resposta[i].dia)+diaNorte}${resposta[i].dtFormatada}-${horaNorte[i]}h] <span class="alerta">[${msg3}-${resposta3.toFixed(2)}%]</span></h2>`
-                            kpiSul.innerHTML += `<h2>[${Number(resposta[i].dia)+diaSul}${resposta[i].dtFormatada}-${horaSul[i]}h] <span class="alerta">[${msg4}-${resposta4.toFixed(2)}%]</span></h2>`
                         }
                     });
                 } else {
@@ -365,7 +371,7 @@
                 let umidade = Number(registro.umidade);
 
                 // se tiver mais de 10 dados tira o ultimo e coloca o novo
-                if (labels.length >= 10) {
+                if (labels.length >= 24) {
                     labels.shift();
                     dados.datasets[0].data.shift();
                     dados.datasets[1].data.shift();
@@ -374,8 +380,8 @@
                 }
                 // evita que apareça mais de um registro na mesma data no eixo X
                 if (!labels.includes(registro.dtRegistro)) {
-                    listaAuxiliar.push(registro.dtRegistro);
-                    labels.push(`${i}h`);
+                    labels.push(registro.dtRegistro);
+                    //labels.push(`${i}h`);
                 }
 
 
@@ -386,40 +392,40 @@
 
                     // utiliza o valor capturado da umidade la variavel e puxa ele pro indice 0 que seria o primeiro sensor
                     dados.datasets[0].data.push(umidade);
-                    if(dados.datasets[0].data[i]>30 || dados.datasets[0].data[i]<21 ){
-                        horaLeste.push(i);
-                        if(horaLeste.length>4){
-                            horaLeste.shift();
-                        }
-                    }
+                    // if(dados.datasets[0].data[i]>30 || dados.datasets[0].data[i]<21 ){
+                    //     horaLeste.push(i);
+                    //     if(horaLeste.length>4){
+                    //         horaLeste.shift();
+                    //     }
+                    // }
 
                     // usa como base o valor capturado na fkSensor 1 para multiplicar por x o dado encontrado e manda ele
                     // para as outras labels que existem ex: indice 1 do dados é o OESTE ent o valor do indice[0] * 1.5 vai
                     // ser o valor plotado no indice 1
                     dados.datasets[1].data.push(umidade * 1.5);
-                    if(dados.datasets[1].data[i]>30 || dados.datasets[1].data[i]<21 ){
-                        horaOeste.push(i);
-                        if(horaOeste.length>4){
-                            horaOeste.shift();
-                        }
-                    }
+                    // if(dados.datasets[1].data[i]>30 || dados.datasets[1].data[i]<21 ){
+                    //     horaOeste.push(i);
+                    //     if(horaOeste.length>4){
+                    //         horaOeste.shift();
+                    //     }
+                    // }
 
                     dados.datasets[2].data.push(umidade * 1.2);
-                    if(dados.datasets[2].data[i]>30 || dados.datasets[2].data[i]<21 ){
-                        horaNorte.push(i);
-                        if(horaNorte.length>4){
-                            horaNorte.shift();
-                        }
-                    }
+                    // if(dados.datasets[2].data[i]>30 || dados.datasets[2].data[i]<21 ){
+                    //     horaNorte.push(i);
+                    //     if(horaNorte.length>4){
+                    //         horaNorte.shift();
+                    //     }
+                    // }
 
 
                     dados.datasets[3].data.push(umidade * 0);
-                    if(dados.datasets[3].data[i]>30 || dados.datasets[3].data[i]<21 ){
-                        horaSul.push(i);
-                        if(horaSul.length>4){
-                            horaSul.shift();
-                        }
-                    }
+                    // if(dados.datasets[3].data[i]>30 || dados.datasets[3].data[i]<21 ){
+                    //     horaSul.push(i);
+                    //     if(horaSul.length>4){
+                    //         horaSul.shift();
+                    //     }
+                    // }
 
 
                 }
@@ -468,7 +474,7 @@
                 config
             );
 
-            setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
+            setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 5000);
 
         }
         function atualizarGrafico(fkEmpresa, dados, myChart) {
@@ -488,7 +494,7 @@
 
 
 
-                    if (novoRegistro[0].dtRegistro == listaAuxiliar[listaAuxiliar.length - 1]) {
+                    if (novoRegistro[0].dtRegistro == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
 
@@ -500,14 +506,14 @@
                     } else {
 
                         // tirando e colocando valores no gráfico
-                        if(contador>=23){
-                            contador=0;
-                        }else{
+                        // if(contador>=23){
+                        //     contador=0;
+                        // }else{
 
-                            contador++
-                        }
-                        dados.labels.push(contador); // incluir um novo momento
-                        listaAuxiliar.push(novoRegistro[0].dtRegistro);
+                        //     contador++
+                        // }
+//                        dados.labels.push(contador); // incluir um novo momento
+                        dados.labels.push(novoRegistro[0].dtRegistro);
 
 
                         dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
@@ -518,7 +524,7 @@
 
                         dados.datasets[3].data.push(novoRegistro[0].umidade * 0); // incluir uma nova medida de umidade
 
-                        if (dados.labels.length >= 10) {
+                        if (dados.labels.length >= 24) {
                             dados.labels.shift();
                             dados.datasets[0].data.shift();
                             dados.datasets[1].data.shift();
@@ -527,19 +533,19 @@
                         }
 
                         myChart.update();
-                        setTimeout(() => atualizarKpis(), 880);
+                        setTimeout(() => atualizarKpis(), 440);
 
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                     //  setTimeout(() => exibirGrafico(), 900);
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 5000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                 // setTimeout(() => exibirGrafico(), 900);
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 5000);
             }
         })
             .catch(function (error) {
@@ -577,24 +583,24 @@
                             leste.style.color = "white"
                         }
                         if (Number(registro2) <= 20) {
-                            norte.style.backgroundColor = "yellow"
-                            norte.style.color = "black"
-                        } else if (Number(registro2) <= 30) {
-                            norte.style.backgroundColor = "green"
-                            norte.style.color = "white"
-                        } else {
-                            norte.style.backgroundColor = "red"
-                            norte.style.color = "white"
-                        }
-                        if (Number(registro3) <= 20) {
                             oeste.style.backgroundColor = "yellow"
                             oeste.style.color = "black"
-                        } else if (Number(registro3) <= 30) {
+                        } else if (Number(registro2) <= 30) {
                             oeste.style.backgroundColor = "green"
                             oeste.style.color = "white"
                         } else {
                             oeste.style.backgroundColor = "red"
                             oeste.style.color = "white"
+                        }
+                        if (Number(registro3) <= 20) {
+                            norte.style.backgroundColor = "yellow"
+                            norte.style.color = "black"
+                        } else if (Number(registro3) <= 30) {
+                            norte.style.backgroundColor = "green"
+                            norte.style.color = "white"
+                        } else {
+                            norte.style.backgroundColor = "red"
+                            norte.style.color = "white"
                         }
                         if (Number(registro4) <= 20) {
                             sul.style.backgroundColor = "yellow"
