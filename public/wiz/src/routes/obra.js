@@ -7,28 +7,28 @@ var obraController = require("../controllers/obraController");
 router.post("/cadastrar", function (req, res) {
     obraController.cadastrar(req, res);
 })
-router.get("/dashboard/:fkEmpresa", function (req, res){
+router.get("/dashboard/:idObra", function (req, res){
     obraController.dashboard(req, res);
 
 });
-router.get("/tempoReal/:fkEmpresa", function (req, res) {
+router.get("/tempoReal/:idObra", function (req, res) {
     obraController.tempoReal(req, res);
 })
-router.get("/saturacao/:fkEmpresa", function (req, res) {
+router.get("/saturacao/:idObra", function (req, res) {
     obraController.saturacao(req, res);
 })
 
-router.get("/historico/:fkEmpresa", function (req, res){
+router.get("/historico/:idObra", function (req, res){
     obraController.historico(req, res);
 
 });
 
-router.get("/regioesAcima/:fkEmpresa", function (req, res){
+router.get("/regioesAcima/:idObra", function (req, res){
     obraController.buscarRegioesAcima(req, res);
 
 });
 
-router.get("/regioesAbaixo/:fkEmpresa", function (req, res){
+router.get("/regioesAbaixo/:idObra", function (req, res){
     obraController.buscarRegioesAbaixo(req, res);
 
 });

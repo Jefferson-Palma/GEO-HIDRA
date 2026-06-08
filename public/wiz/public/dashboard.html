@@ -149,11 +149,16 @@
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
+
+                        
                         for(let i = 0; i < resposta.length; i++){
-                            for(let j = 0; j < resposta[i].endereco.length; j++){
-                                b_usuario.innerHTML = `${resposta[i].endereco[j]}`;
-                            }
+                        if(resposta[i].idObra==idObra){
+                            b_usuario.innerHTML = `${resposta[i].endereco}`;
+
                         }
+                        }
+                        //     for(let j = 0; j < resposta[i].endereco.length; j++){
+                        // }
 
                         console.log(`${resposta[0].endereco}`)
 
@@ -177,8 +182,8 @@
         // let horaLeste=[]
         // let horaOeste=[]
         // let horaSul=[]
-        function buscarHistoricoNorte(fkEmpresa) {
-            fetch(`/obra/historico/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        function buscarHistoricoNorte(idObra) {
+            fetch(`/obra/historico/${idObra}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -267,17 +272,17 @@
         }
 
         function exibirGrafico() {
-            dashboard(fkEmpresa);
-            buscarSaturacaoPorSensores(fkEmpresa)
-            buscarHistoricoNorte(fkEmpresa)
+            dashboard(idObra);
+            buscarSaturacaoPorSensores(idObra)
+            buscarHistoricoNorte(idObra)
 
         }
         function atualizarKpis() {
-            buscarSaturacaoPorSensores(fkEmpresa)
-            buscarHistoricoNorte(fkEmpresa)
+            buscarSaturacaoPorSensores(idObra)
+            buscarHistoricoNorte(idObra)
 
         }
-        function dashboard(fkEmpresa) {
+        function dashboard(idObra) {
 
 
             if (proximaAtualizacao != undefined) {
@@ -285,12 +290,12 @@
             }
 
 
-            fetch(`/obra/dashboard/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            fetch(`/obra/dashboard/${idObra}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                        plotarGrafico(resposta, fkEmpresa);
+                        plotarGrafico(resposta, idObra);
 
                     });
                 } else {
@@ -305,7 +310,7 @@
         // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
         // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
         // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-        function plotarGrafico(resposta, fkEmpresa) {
+        function plotarGrafico(resposta, idObra) {
 
 
 
@@ -467,19 +472,19 @@
                 config
             );
 
-            setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 5000);
+            setTimeout(() => atualizarGrafico(idObra, dados, myChart), 5000);
 
         }
-        function atualizarGrafico(fkEmpresa, dados, myChart) {
+        function atualizarGrafico(idObra, dados, myChart) {
 
 
 
-        fetch(`obra/tempoReal/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`obra/tempoReal/${idObra}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
 
-                    // alertar(novoRegistro, fkEmpresa);
+                    // alertar(novoRegistro, idObra);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
@@ -525,13 +530,13 @@
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                     //  setTimeout(() => exibirGrafico(), 900);
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 5000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idObra, dados, myChart), 5000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                 // setTimeout(() => exibirGrafico(), 900);
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 5000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idObra, dados, myChart), 5000);
             }
         })
             .catch(function (error) {
@@ -540,8 +545,8 @@
 
     }
 
-        function buscarSaturacaoPorSensores(fkEmpresa) {
-            fetch(`/obra/saturacao/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        function buscarSaturacaoPorSensores(idObra) {
+            fetch(`/obra/saturacao/${idObra}`, { cache: 'no-store' }).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);

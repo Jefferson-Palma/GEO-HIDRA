@@ -13,58 +13,58 @@ function cadastrar(rua,cep,numero,cidade,estado, fkEmpresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function dashboard(fkEmpresa){
+function dashboard(idObra){
 
     var instrucaoSql = `SELECT fkSensor,area, umidade, DATE_FORMAT(dtRegistro,'%H:%i:%s') AS dtRegistro
 FROM registroSensor
   JOIN sensor ON idSensor=fkSensor
   JOIN obra ON idObra=fkObra
  JOIN empresa ON idEmpresa=fkEmpresa
- WHERE idEmpresa = ${fkEmpresa};`
+ WHERE idObra = ${idObra};`
  console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 
 }
 
-function historico(fkEmpresa){
+function historico(idObra){
 
     var instrucaoSql = `SELECT * FROM kpis_alertas
-WHERE area='LESTE' AND idEmpresa=${fkEmpresa} AND idObra=1;`
+WHERE area='LESTE' AND idObra=${idObra};`
  console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 
 }
-function buscarRegioesAcima(fkEmpresa){
+function buscarRegioesAcima(idObra){
 
-    var instrucaoSql = `SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor WHERE dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = 1 AND umidade > 30 order by dtRegistro desc; `
+    var instrucaoSql = `SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor WHERE dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = ${idObra} AND umidade > 30 order by dtRegistro desc; `
  console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 
 }
-function buscarRegioesAbaixo(fkEmpresa){
+function buscarRegioesAbaixo(idObra){
 
-    var instrucaoSql = `SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor WHERE dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = 1 AND umidade < 21 order by dtRegistro desc; `
+    var instrucaoSql = `SELECT area, umidade FROM registroSensor join sensor on idSensor = fkSensor WHERE dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = ${idObra} AND umidade < 21 order by dtRegistro desc; `
  console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 
 }
-function saturacao(fkEmpresa){
+function saturacao(idObra){
 
     var instrucaoSql = `SELECT area, TRUNCATE(umidade,2) AS umidade FROM registroSensor join sensor on idSensor = fkSensor  
-where dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = 1 order by area; `
+where dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = ${idObra} order by area; `
  console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 
 }
 
-function tempoReal(fkEmpresa) {
+function tempoReal(idObra) {
 
      var instrucaoSql = `SELECT fkSensor,area, umidade, DATE_FORMAT(dtRegistro, '%H:%i:%s') AS dtRegistro
 FROM registroSensor
   JOIN sensor ON idSensor=fkSensor
   JOIN obra ON idObra=fkObra
  JOIN empresa ON idEmpresa=fkEmpresa
- WHERE idEmpresa = ${fkEmpresa}
+ WHERE idObra = ${idObra}
  ORDER BY dtRegistro DESC;`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

@@ -48,10 +48,10 @@ function cadastrar(req, res) {
 }
 function dashboard(req, res){
     
-    var fkEmpresa = req.params.fkEmpresa;
+    var idObra = req.params.idObra;
 
     
-    obraModel.dashboard(fkEmpresa).then(function (resultado){
+    obraModel.dashboard(idObra).then(function (resultado){
         if(resultado.length > 0){
             res.status(200).json(resultado);
 
@@ -69,10 +69,10 @@ function dashboard(req, res){
 
 function buscarRegioesAcima(req, res){
     
-    var fkEmpresa = req.params.fkEmpresa;
+    var idObra = req.params.idObra;
 
     
-    obraModel.buscarRegioesAcima(fkEmpresa).then(function (resultado){
+    obraModel.buscarRegioesAcima(idObra).then(function (resultado){
         if(resultado.length > 0){
             res.status(200).json(resultado);
 
@@ -90,10 +90,10 @@ function buscarRegioesAcima(req, res){
 
 function buscarRegioesAbaixo(req, res){
     
-    var fkEmpresa = req.params.fkEmpresa;
+    var idObra = req.params.idObra;
 
     
-    obraModel.buscarRegioesAbaixo(fkEmpresa).then(function (resultado){
+    obraModel.buscarRegioesAbaixo(idObra).then(function (resultado){
         if(resultado.length > 0){
             res.status(200).json(resultado);
 
@@ -111,10 +111,10 @@ function buscarRegioesAbaixo(req, res){
 
 function historico(req, res){
     
-    var fkEmpresa = req.params.fkEmpresa;
+    var idObra = req.params.idObra;
 
     
-    obraModel.historico(fkEmpresa).then(function (resultado){
+    obraModel.historico(idObra).then(function (resultado){
         if(resultado.length > 0){
             res.status(200).json(resultado);
 
@@ -132,10 +132,10 @@ function historico(req, res){
 
 function saturacao(req, res){
     
-    var fkEmpresa = req.params.fkEmpresa;
+    var idObra = req.params.idObra;
 
     
-    obraModel.saturacao(fkEmpresa).then(function (resultado){
+    obraModel.saturacao(idObra).then(function (resultado){
         if(resultado.length > 0){
             res.status(200).json(resultado);
 
@@ -152,11 +152,11 @@ function saturacao(req, res){
 }
 function tempoReal(req, res) {
 
-    var fkEmpresa = req.params.fkEmpresa;
+    var idObra = req.params.idObra;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    obraModel.tempoReal(fkEmpresa).then(function (resultado) {
+    obraModel.tempoReal(idObra).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

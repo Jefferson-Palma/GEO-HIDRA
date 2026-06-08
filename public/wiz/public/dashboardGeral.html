@@ -148,9 +148,9 @@
     }
 
     function exibirGrafico() {
+        
+        
         dashboardGeral(fkEmpresa);
-        todasObras(resposta, fkEmpresa);
-        atualizarKPIs();
     }
 
 
@@ -168,8 +168,8 @@
 
                     
                     listaObras = resposta;
-
-
+                    todasObras();
+                    atualizarKPIs();
                     plotarGrafico(resposta, fkEmpresa);
 
                 });
