@@ -82,13 +82,40 @@ function dashboardGeral(fkEmpresa){
     ELSE "Normal"
     END AS status
     FROM obra
-    JOIN sensor ON fkObra = idObra
-    JOIN registroSensor ON fkSensor = idSensor
+    LEFT JOIN sensor ON fkObra = idObra
+    LEFT JOIN registroSensor ON fkSensor = idSensor
     WHERE fkEmpresa = ${fkEmpresa}
     AND idRegistro = (
     SELECT r2.idRegistro
     FROM registroSensor r2
-    JOIN sensor s2 ON s2.idSensor = r2.fkSensor
+    LEFT JOIN sensor s2 ON s2.idSensor = r2.fkSensor
+    WHERE s2.fkObra = idObra
+    ORDER BY r2.dtRegistro DESC
+    LIMIT 1)
+    ORDER BY idObra DESC;`
+
+ console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function dashboardGeralTempoReal(fkEmpresa){
+
+    var instrucaoSql = `SELECT 
+    idObra,
+    CONCAT(rua, ', ', numero, ' - ', cidade) AS endereco,
+    DATE_FORMAT(dtRegistro, '%d/%m %H:%i') AS ultimoRegistro,
+    CASE 
+    WHEN umidade <= 20 OR umidade >=31 THEN "Alerta"
+    ELSE "Normal"
+    END AS status
+    FROM obra
+    LEFT JOIN sensor ON fkObra = idObra
+    LEFT JOIN registroSensor ON fkSensor = idSensor
+    WHERE fkEmpresa = ${fkEmpresa}
+    AND idRegistro = (
+    SELECT r2.idRegistro
+    FROM registroSensor r2
+    LEFT JOIN sensor s2 ON s2.idSensor = r2.fkSensor
     WHERE s2.fkObra = idObra
     ORDER BY r2.dtRegistro DESC
     LIMIT 1)
@@ -106,5 +133,6 @@ module.exports = {
     saturacao,
     buscarRegioesAcima,
     buscarRegioesAbaixo,
-    dashboardGeral
+    dashboardGeral,
+    dashboardGeralTempoReal
 };

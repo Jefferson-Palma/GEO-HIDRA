@@ -21,15 +21,6 @@
                         <a href="dashboardGeral.html" style="color: #06ba63;">Dashboard Geral</a>
                     </span>
                 </div>
-                <div id="cadastro1">
-                    <span>
-                        <a href="cadastroObra.html">Cadastrar obra</a>
-                    </span>
-                </div>
-                <div id="cadastro2"><span>
-                        <a href="cadastroFuncionario.html">Cadastrar Funcionário</a>
-                    </span>
-                </div>
                 <div id="cadastro"><span>
                         <a href="https://sptech-team-hst2y1fq.atlassian.net/servicedesk/customer/portal/36/create/64"
                             style="color: #06ba63;">Suporte</a>
@@ -45,7 +36,7 @@
     </header>
     <div class="box">
         <div class="olaUsuario">
-            <h2>Olá, <span id="b_usuario"></span>!</h2>
+            <h2 id="b_usuario"></h2></h2>
         </div>
         <div class="kpi">
             <div class="box-kpi">
@@ -137,12 +128,11 @@
 </html>
 <script>
     let fkEmpresa = sessionStorage.FK_EMPRESA;
+    let idObra = sessionStorage.ID_OBRA;
 
     let proximaAtualizacao;
 
     window.onload = validarSessao();
-
-    window.onload = validarTipoUser();
 
     window.onload = exibirGrafico();
 
@@ -153,27 +143,33 @@
 
 
     function validarSessao() {
-        var nome = sessionStorage.NOME_USUARIO;
+        if (idObra != null) {
+            fetch(`/obra/dashboardGeral/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-        if (nome != null) {
-            b_usuario.innerHTML = nome;
+                        for(let i = 0; i < resposta.length; i++){
+                            for(let j = 0; j < resposta[i].endereco.length; j++){
+                                b_usuario.innerHTML = `${resposta[i].endereco[j]}`;
+                            }
+                        }
+
+                        console.log(`${resposta[0].endereco}`)
+
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
 
         } else {
             window.location = "../login.html";
         }
     }
-
-        function validarTipoUser() {
-            var tipoUser = sessionStorage.TIPO_ACESSO;
-            if (tipoUser == "comum" || tipoUser == "suporte") {
-                cadastro1.style.display = "none";
-                cadastro2.style.display = "none";
-
-            } else {
-                cadastro1.style.display = "block";
-                cadastro2.style.display = "block";
-            }
-        }
 
         let listaAuxiliar=[]
         let contador=0;
@@ -294,10 +290,7 @@
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-
                         plotarGrafico(resposta, fkEmpresa);
-
-
 
                     });
                 } else {
@@ -504,14 +497,7 @@
                         console.log(dados.labels[dados.labels.length - 1])
                         console.log("---------------------------------------------------------------")
                     } else {
-
-                        // tirando e colocando valores no gráfico
-                        // if(contador>=23){
-                        //     contador=0;
-                        // }else{
-
-                        //     contador++
-                        // }
+                        
 //                        dados.labels.push(contador); // incluir um novo momento
                         dados.labels.push(novoRegistro[0].dtRegistro);
 

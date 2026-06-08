@@ -18,7 +18,7 @@
             <div class="caminhos">
                 <div id="cadastro3" class="funcionarioCadastro">
                     <span>
-                        <a href="cadastroObra.html" style="color: #06ba63;">Cadastrar obra</a>
+                        <a href="cadastroObra.html" style="color: white;">Cadastrar obra</a>
                     </span>
                 </div>
                 <div id="cadastro1" class="funcionarioCadastro"><span>
@@ -27,7 +27,7 @@
                 </div>
                 <div id="cadastro2" class="funcionarioCadastro"><span>
                         <a href="https://sptech-team-hst2y1fq.atlassian.net/servicedesk/customer/portal/36/create/64"
-                            style="color: white;">Suporte</a>
+                            style="color: #06ba63;">Suporte</a>
                     </span>
                 </div>
                 <div id="cadastro" class="funcionarioCadastro">
@@ -47,27 +47,27 @@
         <div class="olaUsuario">
             <h2>Olá, <span id="b_usuario"></span>!</h2>
         </div>
-            <div class="kpisGeral">
-                <div class="kpiGeral1">
-                    <h4>OBRAS MONITORADAS</h4>
-                    <div class="projecao">
-                        <span class="textoKpi" id="totalObras">8</span>
-                    </div>
-                </div>
-                <div class="kpiGeral2">
-                    <h4>OBRAS EM ALERTA</h4>
-                    <div class="projecao">
-                        <span class="textoKpiProblema" id="totalAlerta">2</span>
-                    </div>
+        <div class="kpisGeral">
+            <div class="kpiGeral1">
+                <h4>OBRAS MONITORADAS</h4>
+                <div class="projecao">
+                    <span class="textoKpi" id="totalObras"></span>
                 </div>
             </div>
-        <div class="tabelaDash">
-                <div class="graficoGeral">
-                    <div class="grafico-geral">
-                        <h3 class="tituloGraficosGeral">Estado das Obras</h3>
-                        <canvas class="graficoDashGeral" id="graficoComposicao"></canvas>
-                    </div>
+            <div class="kpiGeral2">
+                <h4>OBRAS EM ALERTA</h4>
+                <div class="projecao">
+                    <span class="textoKpiProblema" id="totalAlerta"></span>
                 </div>
+            </div>
+        </div>
+        <div class="tabelaDash">
+            <div class="graficoGeral">
+                <div class="grafico-geral">
+                    <h3 class="tituloGraficosGeral">Estado das Obras</h3>
+                    <canvas class="graficoDashGeral" id="graficoComposicao"></canvas>
+                </div>
+            </div>
 
             <div class="obras-card">
                 <div class="obras-header">
@@ -106,6 +106,7 @@
 </html>
 <script>
     let fkEmpresa = sessionStorage.FK_EMPRESA;
+    let myChart;
 
     let proximaAtualizacao;
 
@@ -119,8 +120,7 @@
 
     if (sessionStorage.TIPO_ACESSO == "suporte") {
         window.location = "bobia.html"
-    } 
-        let myChart;
+    }
 
 
     function validarSessao() {
@@ -143,139 +143,110 @@
 
         } else {
             cadastro1.style.display = "block";
-         cadastro2.style.display = "block";
+            cadastro2.style.display = "block";
         }
     }
 
-    function exibirGrafico(){
+    function exibirGrafico() {
         dashboardGeral(fkEmpresa);
+        todasObras(resposta, fkEmpresa);
+        atualizarKPIs();
     }
 
 
-        function dashboardGeral(fkEmpresa) {
-            fetch(`/obra/dashboardGeral/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (resposta) {
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    function dashboardGeral(fkEmpresa) {
 
-                        listaObras = resposta;
-
-                        atualizarKPIs();
-                        plotarGrafico(resposta, fkEmpresa);
-                        todasObras(resposta, fkEmpresa)
-
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-                .catch(function (error) {
-                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                });
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
         }
 
-        function atualizarKPIs() {
-            let total = listaObras.length;
-            let alerta = 0;
-            for(let i = 0; i < listaObras.length; i++) {
-                if(listaObras[i].status == "Alerta") {
-                    alerta++;
-                }
-            }
-            totalObras.innerHTML = total;
-            totalAlerta.innerHTML = alerta;
-        }
 
-        function plotarGrafico(resposta, fkEmpresa) {
-            console.log('iniciando plotagem do gráfico...');
+        fetch(`/obra/dashboardGeral/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-            let normal = 0;
-            let alerta = 0;
-            for(let i = 0; i < resposta.length; i++){
-                if(resposta[i].status == "Normal"){
-                    normal++;
-                } else if(resposta[i].status == "Alerta"){
-                    alerta++;
-                }
-            }
-
-            // Criando estrutura para plotar gráfico - labels
-            // let labels = [];
-
-            // Criando estrutura para plotar gráfico - dados
-            let dados = {
-                labels: ['Normal', 'Alerta'],
-                datasets: [{
-                    data: [normal, alerta],
-                    backgroundColor: ['#06BA63', 'red'],
-                    tension: 0.1
-                }
-                    // {
-                    //     label: 'Alerta',
-                    //     data: [],
-                    //     backgroundColor: 'red',
-                    //     tension: 0.1
-                    // },
-                    // {
-                    //     label: 'Normal',
-                    //     data: [],
-                    //     backgroundColor: 'blue',
-                    //     tension: 0.1
-                    // },
                     
-                ]
+                    listaObras = resposta;
 
 
-            };
+                    plotarGrafico(resposta, fkEmpresa);
 
-            console.log('----------------------------------------------')
-            console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-            console.log(resposta)
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
-            // Inserindo valores recebidos em estrutura para plotar o gráfico
-            // for (let i = 0; i < resposta.length; i++) {
+    function atualizarKPIs() {
+        let total = listaObras.length;
+        let alerta = 0;
+        for (let i = 0; i < listaObras.length; i++) {
+            if (listaObras[i].status == "Alerta") {
+                alerta++;
+            }
+        }
+        totalObras.innerHTML = total;
+        totalAlerta.innerHTML = alerta;
+    }
 
-            //     let registro = resposta[i];
+    function plotarGrafico(resposta, fkEmpresa) {
+        console.log('iniciando plotagem do gráfico...');
 
-            //     labels.push(registro.Situacao)
-            //     // No console o valor da umidade tava vindo como string, ent precisamos transformar em number para aparecer no gráfico
-            //     dados.datasets[0].data.push(Number(registro.Total))
-            // }
-
-            console.log('----------------------------------------------')
-            console.log('O gráfico será plotado com os respectivos valores:')
-            // console.log('Labels:')
-            // console.log(labels)
-            console.log('Dados:')
-            console.log(dados.datasets)
-            console.log('----------------------------------------------')
-
-            // Criando estrutura para plotar gráfico - config
-            const config = {
-                type: 'doughnut',
-                data: dados,
-            };
-
-            // Adicionando gráfico criado em div na tela
-
-
-            myChart = new Chart(
-                document.getElementById(`graficoComposicao`),
-                config
-            );
-
-            // setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 10000);
-
+        let normal = 0;
+        let alerta = 0;
+        for (let i = 0; i < resposta.length; i++) {
+            if (resposta[i].status == "Normal") {
+                normal++;
+            } else if (resposta[i].status == "Alerta") {
+                alerta++;
+            }
         }
 
-    // const obras = [
-    //     { nome: "Ed. Vitor Meireles", addr: "R. Vitor Meireles, 88", st: "Alerta", ts: "18/05 00:42" },
-    //     { nome: "Torre Marítima", addr: "Av. do Porto, 1200", st: "Alerta", ts: "18/05 00:41" },
-    //     { nome: "Galpão Industrial 3", addr: "Rodovia Anhang., km 32", st: "OK", ts: "18/05 00:43" },
-    //     { nome: "Shopping Norte", addr: "Av. Norte, 3000 — SP", st: "OK", ts: "18/05 00:44" },
-    //     { nome: "Centro Log. SP", addr: "Dist. Industrial, Q3", st: "OK", ts: "18/05 00:45" },
-    //     { nome: "Col. Nova Geração", addr: "R. Escolar, 75 — SP", st: "OK", ts: "18/05 00:44" },
-    // ];
+        let dados = {
+            labels: ['Normal', 'Alerta'],
+            datasets: [{
+                data: [normal, alerta],
+                backgroundColor: ['#06BA63', 'red'],
+                tension: 0.1
+            }
+
+            ]
+
+
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'doughnut',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+
+
+        myChart = new Chart(
+            document.getElementById(`graficoComposicao`),
+            config
+        );
+
+        setTimeout(() => atualizarGrafico(fkEmpresa, dados, myChart), 5000);
+
+    }
     function todasObras() {
         document.getElementById("span1");
         document.getElementById("span2");
@@ -305,7 +276,7 @@
         }
     }
 
-    function apenasAlerta(){
+    function apenasAlerta() {
         document.getElementById("span1");
         document.getElementById("span2");
         document.getElementById("span3");
@@ -318,7 +289,7 @@
 
         obrasBody.innerHTML = "";
         for (let i = 0; i < listaObras.length; i++) {
-            if(listaObras[i].status == "Alerta"){
+            if (listaObras[i].status == "Alerta") {
                 obrasBody.innerHTML += `
                     <div class="dadosGerais" style="cursor:pointer" onclick="irParaObra(${listaObras[i].idObra})">
                         <div class="divDadosTabela">
@@ -335,7 +306,7 @@
             }
         }
     }
-    function apenasNormal(){
+    function apenasNormal() {
         document.getElementById("span1");
         document.getElementById("span2");
         document.getElementById("span3");
@@ -348,7 +319,7 @@
 
         obrasBody.innerHTML = "";
         for (let i = 0; i < listaObras.length; i++) {
-            if(listaObras[i].status == "Normal"){
+            if (listaObras[i].status == "Normal") {
                 obrasBody.innerHTML += `
                     <div class="dadosGerais" style="cursor:pointer" onclick="irParaObra(${listaObras[i].idObra})">
                         <div class="divDadosTabela">
@@ -364,28 +335,59 @@
                     <hr>`;
             }
         }
+
     }
     function irParaObra(idObra) {
         sessionStorage.ID_OBRA = idObra;
         window.location = "dashboard.html";
     }
 
-    // Chart.defaults.color = "#000"
-    // new Chart(document.getElementById('graficoComposicao'), {
-    //     type: 'doughnut',
-    //     data: {
-    //         labels: ['Normal', 'Alerta', 'Crítico'],
-    //         datasets: [{
-    //             data: [1, 2, 5],
-    //             backgroundColor: [
-    //                 'rgb(106, 62, 55)',
-    //                 'rgb(6, 186, 99)',
-    //                 'rgb(29, 205, 254)'
-    //             ],
-    //             borderWidth: 0
-    //         }]
-    //     },
-    //     options: {}
-    // });
-    // });
+    function atualizarGrafico(fkEmpresa) {
+    fetch(`/obra/dashboardGeralTempoReal/${fkEmpresa}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+                    console.log(`Dados atualizados: ${JSON.stringify(novoRegistro)}`);
+
+                    listaObras = novoRegistro;
+
+                    let normal = 0; 
+                    let alerta = 0;
+
+                    for (let i = 0; i < novoRegistro.length; i++) {
+                        if (novoRegistro[i].status == "Normal") {
+                            normal++;
+                        }
+                        else if (novoRegistro[i].status == "Alerta") {
+                            alerta++;
+                        }
+                    }
+
+                    myChart.data.datasets[0].data = [normal, alerta];
+                    myChart.update();
+
+                    atualizarKPIs();
+
+                    if (span2.style.backgroundColor == "rgb(6, 186, 99)") {
+                        apenasAlerta();
+                    }
+                    else if (span3.style.backgroundColor == "rgb(6, 186, 99)"){
+                        apenasNormal();
+                    }
+                    else {
+                        todasObras();
+                    }
+
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa), 10000);
+                });
+            } else {
+                console.error('Erro na API ao atualizar gráfico');
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa), 10000);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na atualização: ${error.message}`);
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(fkEmpresa), 10000);
+        });
+}
 </script>
