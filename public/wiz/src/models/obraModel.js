@@ -50,8 +50,9 @@ function buscarRegioesAbaixo(idObra){
 }
 function saturacao(idObra){
 
-    var instrucaoSql = `SELECT area, TRUNCATE(umidade,2) AS umidade FROM registroSensor join sensor on idSensor = fkSensor  
-where dtRegistro = (SELECT MAX(dtRegistro) from registroSensor) AND fkObra = ${idObra} order by area; `
+    var instrucaoSql = `SELECT area, TRUNCATE(umidade,2) AS umidade FROM registroSensor join sensor on idSensor = fkSensor 
+    JOIN obra ON fkObra = idObra 
+where dtRegistro = (SELECT MAX(dtRegistro) from registroSensor); `
  console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 

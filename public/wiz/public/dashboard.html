@@ -274,6 +274,8 @@
                             if(resposta4>30 || resposta4<20){
                             kpiSul.innerHTML += `<h2>[${resposta[i].dtFormatada}] <span class="alerta">[${msg4}-${resposta4.toFixed(2)}%]</span></h2>`
                             }
+                        
+
                         }
                     });
                 } else {
@@ -283,6 +285,78 @@
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                 });
+        }
+         function buscarSaturacaoPorSensores(idObra) {
+            fetch(`/obra/saturacao/${idObra}`, { cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        leste.innerHTML = ``
+                        norte.innerHTML = ``
+                        oeste.innerHTML = ``
+                        sul.innerHTML = ``
+                        let registro1 = Number(resposta[0].umidade);
+                        let registro2 = Number(resposta[0].umidade) * 1.5;
+                        let registro3 = Number(resposta[0].umidade) * 1.2;
+                        let registro4 = Number(resposta[0].umidade) * 0;
+                        leste.innerHTML += `<h3>${registro1.toFixed(2)} %`
+                        oeste.innerHTML += `<h3>${registro2.toFixed(2)} %`
+                        norte.innerHTML += `<h3>${registro3.toFixed(2)} %`
+                        sul.innerHTML += `<h3>${registro4.toFixed(2)} %`
+
+                        if (Number(registro1) <= 20) {
+                            leste.style.backgroundColor = "yellow"
+                            leste.style.color = "black"
+                        } else if (Number(registro1) <= 30) {
+                            leste.style.backgroundColor = "green"
+                            leste.style.color = "white"
+                        } else {
+                            leste.style.backgroundColor = "red"
+                            leste.style.color = "white"
+                        }
+                        if (Number(registro2) <= 20) {
+                            oeste.style.backgroundColor = "yellow"
+                            oeste.style.color = "black"
+                        } else if (Number(registro2) <= 30) {
+                            oeste.style.backgroundColor = "green"
+                            oeste.style.color = "white"
+                        } else {
+                            oeste.style.backgroundColor = "red"
+                            oeste.style.color = "white"
+                        }
+                        if (Number(registro3) <= 20) {
+                            norte.style.backgroundColor = "yellow"
+                            norte.style.color = "black"
+                        } else if (Number(registro3) <= 30) {
+                            norte.style.backgroundColor = "green"
+                            norte.style.color = "white"
+                        } else {
+                            norte.style.backgroundColor = "red"
+                            norte.style.color = "white"
+                        }
+                        if (Number(registro4) <= 20) {
+                            sul.style.backgroundColor = "yellow"
+                            sul.style.color = "black"
+                        } else if (Number(registro4) <= 30) {
+                            sul.style.backgroundColor = "green"
+                            sul.style.color = "white"
+                        } else {
+                            sul.style.backgroundColor = "red"
+                            sul.style.color = "white"
+                        }
+
+                        
+
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
+                
+
         }
 
         function dashboard(idObra) {
@@ -387,7 +461,7 @@
 
 
 
-
+                    
                 // pega os registro do sensor que ta na fk 1 pelo indice e plota no grafico
                 
                     // utiliza o valor capturado da umidade la variavel e puxa ele pro indice 0 que seria o primeiro sensor
@@ -547,72 +621,6 @@
 
     }
 
-        function buscarSaturacaoPorSensores(idObra) {
-            fetch(`/obra/saturacao/${idObra}`, { cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (resposta) {
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        leste.innerHTML = ``
-                        norte.innerHTML = ``
-                        oeste.innerHTML = ``
-                        sul.innerHTML = ``
-                        let registro1 = Number(resposta[0].umidade);
-                        let registro2 = Number(resposta[0].umidade) * 1.5;
-                        let registro3 = Number(resposta[0].umidade) * 1.2;
-                        let registro4 = Number(resposta[0].umidade) * 0;
-                        leste.innerHTML += `<h3>${registro1.toFixed(2)} %`
-                        oeste.innerHTML += `<h3>${registro2.toFixed(2)} %`
-                        norte.innerHTML += `<h3>${registro3.toFixed(2)} %`
-                        sul.innerHTML += `<h3>${registro4.toFixed(2)} %`
-
-                        if (Number(registro1) <= 20) {
-                            leste.style.backgroundColor = "yellow"
-                            leste.style.color = "black"
-                        } else if (Number(registro1) <= 30) {
-                            leste.style.backgroundColor = "green"
-                            leste.style.color = "white"
-                        } else {
-                            leste.style.backgroundColor = "red"
-                            leste.style.color = "white"
-                        }
-                        if (Number(registro2) <= 20) {
-                            oeste.style.backgroundColor = "yellow"
-                            oeste.style.color = "black"
-                        } else if (Number(registro2) <= 30) {
-                            oeste.style.backgroundColor = "green"
-                            oeste.style.color = "white"
-                        } else {
-                            oeste.style.backgroundColor = "red"
-                            oeste.style.color = "white"
-                        }
-                        if (Number(registro3) <= 20) {
-                            norte.style.backgroundColor = "yellow"
-                            norte.style.color = "black"
-                        } else if (Number(registro3) <= 30) {
-                            norte.style.backgroundColor = "green"
-                            norte.style.color = "white"
-                        } else {
-                            norte.style.backgroundColor = "red"
-                            norte.style.color = "white"
-                        }
-                        if (Number(registro4) <= 20) {
-                            sul.style.backgroundColor = "yellow"
-                            sul.style.color = "black"
-                        } else if (Number(registro4) <= 30) {
-                            sul.style.backgroundColor = "green"
-                            sul.style.color = "white"
-                        } else {
-                            sul.style.backgroundColor = "red"
-                            sul.style.color = "white"
-                        }
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-                .catch(function (error) {
-                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                });
-        }
+       
 
 </script>
