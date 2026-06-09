@@ -130,6 +130,8 @@
     let fkEmpresa = sessionStorage.FK_EMPRESA;
     let idObra = sessionStorage.ID_OBRA;
 
+    let myChart;
+
     let proximaAtualizacao;
 
     window.onload = validarSessao();
@@ -139,7 +141,7 @@
     if (sessionStorage.TIPO_ACESSO == "suporte") {
         window.location = "bobia.html"
     } 
-        let myChart;
+        
 
 
     function validarSessao() {
@@ -175,9 +177,21 @@
             window.location = "../login.html";
         }
     }
+    
+    let listaAuxiliar=[]
+    let contador=0;
 
-        let listaAuxiliar=[]
-        let contador=0;
+    function exibirGrafico() {
+        dashboard(idObra);
+        buscarSaturacaoPorSensores(idObra)
+        buscarHistoricoNorte(idObra)
+
+    }
+    function atualizarKpis() {
+        buscarSaturacaoPorSensores(idObra)
+        buscarHistoricoNorte(idObra)
+
+    }
         // let horaNorte=[]
         // let horaLeste=[]
         // let horaOeste=[]
@@ -271,17 +285,6 @@
                 });
         }
 
-        function exibirGrafico() {
-            dashboard(idObra);
-            buscarSaturacaoPorSensores(idObra)
-            buscarHistoricoNorte(idObra)
-
-        }
-        function atualizarKpis() {
-            buscarSaturacaoPorSensores(idObra)
-            buscarHistoricoNorte(idObra)
-
-        }
         function dashboard(idObra) {
 
 
@@ -386,8 +389,7 @@
 
 
                 // pega os registro do sensor que ta na fk 1 pelo indice e plota no grafico
-                if (registro.fkSensor == 1) {
-
+                
                     // utiliza o valor capturado da umidade la variavel e puxa ele pro indice 0 que seria o primeiro sensor
                     dados.datasets[0].data.push(umidade);
                     // if(dados.datasets[0].data[i]>30 || dados.datasets[0].data[i]<21 ){
@@ -426,7 +428,7 @@
                     // }
 
 
-                }
+                
 
 
 
