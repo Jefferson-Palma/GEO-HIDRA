@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="assets/imgs/logo.PNG" width="0.01px">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3">
+    </script>
     <script src="/js/sessao.js"></script>
 </head>
 
@@ -67,7 +69,7 @@
         <div class="kpi2">
             <div class="regiao" onload="buscarSaturacaoPorSensores()">
                 <div class="tituloRegiao">
-                    <h3>UMIDADE POR ÁREA (ÚLTIMO REGISTRO)</h3>
+                    <h3>UMIDADE POR REGIÃO DA OBRA (ÚLTIMO REGISTRO)</h3>
                 </div>
                 <div class="regiao2">
 
@@ -518,7 +520,7 @@
             console.log('----------------------------------------------')
 
             // Criando estrutura para plotar gráfico - config
-            const config = {
+           const config = {
                 type: 'line',
                 data: dados,
                 options: {
@@ -536,9 +538,45 @@
 
                             }
                         }
+                    },
+                    plugins: {
+                        annotation: {
+                            annotations: {
+                                linhaBaixo: {
+                                    type: 'line',
+                                    yMin: 21,
+                                    yMax: 21,
+                                    borderColor: 'green',
+                                    borderWidth: 4,
+                                    borderDash: [8, 8],
+                                    label: {
+                                        display: true,
+                                        content: 'Ideal (21%)',
+                                        position: 'start',
+                                        color: 'rgba(144, 238, 144)'
+                                    }
+                                },
+                                linhaAlto: {
+                                    type: 'line',
+                                    yMin: 30,
+                                    yMax: 30,
+                                    borderColor: 'green',
+                                    borderWidth: 4,
+                                    borderDash: [8, 8],
+                                    label: {
+                                        display: true,
+                                        content: 'Ideal (30%)',
+                                        position: 'start',
+                                        color: 'rgba(144, 238, 144)'
+                                    }
+                                },
+                            }
+                        }
+
                     }
                 }
             };
+
 
             // Adicionando gráfico criado em div na tela
 

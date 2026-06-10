@@ -82,6 +82,7 @@
                     <div class="headerTable">
                         <span>Obra</span>
                         <span>Status</span>
+                        <span>Umidade</span>
                         <span>Último Registro</span>
                     </div>
                     <div id="obrasBody"></div>
@@ -258,21 +259,49 @@
         span2.style.color = "#000"
         span3.style.color = "#000"
 
+        
+
+        
         obrasBody.innerHTML = "";
         for (let i = 0; i < listaObras.length; i++) {
-            obrasBody.innerHTML += `
+            
+                if(listaObras[i].status == 'Normal'){
+                    
+                     obrasBody.innerHTML += `
                 <div class="dadosGerais" style="cursor:pointer" onclick="irParaObra(${listaObras[i].idObra})">
                     <div class="divDadosTabela">
                         <span class="dadosTabelas">${listaObras[i].endereco}</span>
                     </div>
                     <div class="divDadosTabela">
-                        <span class="dadosTabelas">${listaObras[i].status}</span>
+                        <span class="dadosTabelas" style="color:green"><b>${listaObras[i].status}</b></span>
                     </div>
+                     <div class="divDadosTabela">
+                            <span class="dadosTabelas">${listaObras[i].umidade}</span>
+                        </div>
                     <div class="divDadosTabela">
                         <span class="dadosTabelas">${listaObras[i].ultimoRegistro}</span>
                     </div>
                 </div> 
-                <hr>`;
+                <hr>`
+                }else{
+                          obrasBody.innerHTML += `
+                <div class="dadosGerais" style="cursor:pointer" onclick="irParaObra(${listaObras[i].idObra})">
+                    <div class="divDadosTabela">
+                        <span class="dadosTabelas">${listaObras[i].endereco}</span>
+                    </div>
+                    <div class="divDadosTabela">
+                        <span class="dadosTabelas" style="color:red"><b>${listaObras[i].status}</b></span>
+                    </div>
+                     <div class="divDadosTabela">
+                            <span class="dadosTabelas">${listaObras[i].umidade}</span>
+                        </div>
+                    <div class="divDadosTabela">
+                        <span class="dadosTabelas">${listaObras[i].ultimoRegistro}</span>
+                    </div>
+                </div> 
+                <hr>`
+                }
+                ;
         }
     }
 
@@ -296,7 +325,10 @@
                             <span class="dadosTabelas">${listaObras[i].endereco}</span>
                         </div>
                         <div class="divDadosTabela">
-                            <span class="dadosTabelas">${listaObras[i].status}</span>
+                            <span class="dadosTabelas" style="color:red"><b>${listaObras[i].status}</b></span>
+                        </div>
+                         <div class="divDadosTabela">
+                            <span class="dadosTabelas">${listaObras[i].umidade}</span>
                         </div>
                         <div class="divDadosTabela">
                             <span class="dadosTabelas">${listaObras[i].ultimoRegistro}</span>
@@ -326,7 +358,10 @@
                             <span class="dadosTabelas">${listaObras[i].endereco}</span>
                         </div>
                         <div class="divDadosTabela">
-                            <span class="dadosTabelas">${listaObras[i].status}</span>
+                            <span class="dadosTabelas" style="color:green"><b>${listaObras[i].status}</b></span>
+                        </div>
+                         <div class="divDadosTabela">
+                            <span class="dadosTabelas">${listaObras[i].umidade}</span>
                         </div>
                         <div class="divDadosTabela">
                             <span class="dadosTabelas">${listaObras[i].ultimoRegistro}</span>
