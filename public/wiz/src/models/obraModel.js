@@ -78,6 +78,7 @@ function dashboardGeral(fkEmpresa){
     idObra,
     CONCAT(rua, ', ', numero, ' - ', cidade) AS endereco,
     DATE_FORMAT(dtRegistro, '%d/%m %H:%i') AS ultimoRegistro,
+    umidade,
     CASE 
     WHEN umidade <= 20 OR umidade >=31 THEN "Alerta"
     ELSE "Normal"
@@ -105,6 +106,7 @@ function dashboardGeralTempoReal(fkEmpresa){
     idObra,
     CONCAT(rua, ', ', numero, ' - ', cidade) AS endereco,
     DATE_FORMAT(dtRegistro, '%d/%m %H:%i') AS ultimoRegistro,
+    umidade,
     CASE 
     WHEN umidade <= 20 OR umidade >=31 THEN "Alerta"
     ELSE "Normal"
