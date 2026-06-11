@@ -1038,7 +1038,7 @@ footer {
     flex-direction: column;
     background-color: #ffffff;
     color: #000000;
-    width: 54%;
+    width: 57%;
 
 }
 
@@ -1051,6 +1051,12 @@ footer {
 .obras-title{
     font-size: 22px;
     font-weight: bold;
+}
+.obras-title p{
+    color: red;
+    font-size: 15px;
+    
+    font-weight: 700;
 }
 
 .filter-badges{
